@@ -1,0 +1,801 @@
+order_id,order_datetime,city,restaurant,cuisine,order_value,delivery_fee,delivery_time_min,status,payment_method,rating
+IF00001,2026-04-29 13:08:47,São Paulo,Sushi Bar 7,Japonesa,39.87,0.0,19,delivered,voucher,
+IF00002,2026-08-07 21:14:28,São Paulo,Curry Box,Indiana,52.54,0.0,28,delivered,credit,4
+IF00003,2026-02-21 12:24:06,Goiânia,Smash House,Hambúrguer,31.0,6.99,20,delivered,debit,5
+IF00004,2026-04-13 19:45:04,Recife,Sushi Bar 7,Japonesa,23.24,6.99,,cancelled,credit,
+IF00005,2026-03-29 19:23:22,Belo Horizonte,Sushi Bar 7,Japonesa,26.95,0.0,28,delivered,debit,4
+IF00006,2026-04-27 21:43:20,Rio de Janeiro,Churros & Shake,Doce,30.13,4.99,,cancelled,credit,
+IF00007,2026-03-19 20:16:08,Salvador,Burger Lab,Hambúrguer,23.43,6.99,55,delivered,credit,5
+IF00008,2026-09-14 21:05:48,Goiânia,Burger Lab,Hambúrguer,58.74,8.99,22,delivered,voucher,5
+IF00009,2026-05-21 12:49:41,Goiânia,El Paso Delivery,Mexicana,30.73,4.99,47,delivered,credit,
+IF00010,2026-06-06 12:53:40,Brasília,Nonna Pasta,Italiana,36.87,6.99,48,late,voucher,5
+IF00011,2026-06-11 19:15:03,Curitiba,Hommous & Cia,Árabe,23.05,0.0,23,delivered,credit,3
+IF00012,2026-05-20 12:33:55,Salvador,Napoli 30min,Pizza,60.98,8.99,61,late,pix,5
+IF00013,2026-05-02 11:37:14,Rio de Janeiro,Smash House,Hambúrguer,21.32,11.99,33,delivered,voucher,5
+IF00014,2026-05-09 20:50:30,Porto Alegre,Napoli 30min,Pizza,49.07,0.0,65,late,pix,5
+IF00015,2026-03-01 19:15:12,São Paulo,Sushi Bar 7,Japonesa,23.72,8.99,,cancelled,credit,
+IF00016,2026-02-24 20:03:41,Rio de Janeiro,Green Bowl,Saudável,50.55,8.99,48,delivered,credit,5
+IF00017,2026-08-25 18:18:27,São Paulo,Doce Hora,Doce,64.27,11.99,49,delivered,pix,4
+IF00018,2026-02-03 19:03:37,Porto Alegre,Taj Delivery,Indiana,29.3,11.99,28,delivered,pix,
+IF00019,2026-07-30 13:07:56,São Paulo,Pizza da Esquina,Pizza,41.58,0.0,23,delivered,voucher,5
+IF00020,2026-05-07 19:16:25,Goiânia,Esfiha do Zé,Árabe,16.38,8.99,38,delivered,debit,3
+IF00021,2026-04-24 12:32:16,Goiânia,Curry Box,Indiana,23.67,0.0,33,delivered,voucher,4
+IF00022,2026-01-09 21:42:52,Salvador,Taco Livre,Mexicana,67.88,0.0,,cancelled,credit,
+IF00023,2026-03-25 21:17:18,Campinas,Wasabi Fast,Japonesa,48.74,4.99,,cancelled,credit,
+IF00024,2026-08-09 12:53:17,Curitiba,Cantina 12,Italiana,21.58,4.99,34,delivered,debit,5
+IF00025,2026-01-23 12:53:23,São Paulo,Al Dente,Italiana,39.44,4.99,20,delivered,credit,3
+IF00026,2026-08-01 21:39:47,Salvador,Smash House,Hambúrguer,50.76,0.0,42,delivered,credit,5
+IF00027,2026-01-17 13:42:12,Rio de Janeiro,Fit Box,Saudável,32.83,0.0,35,delivered,voucher,5
+IF00028,2026-04-06 18:37:16,Goiânia,Hommous & Cia,Árabe,20.95,8.99,50,delivered,credit,
+IF00029,2026-04-15 11:23:27,São Paulo,Guaca-Guaca,Mexicana,30.23,0.0,37,delivered,credit,5
+IF00030,2026-04-13 12:26:42,Porto Alegre,Açaí do Parque,Doce,82.17,6.99,63,late,credit,3
+IF00031,2026-08-31 19:28:28,Belo Horizonte,Pão & Fogo,Hambúrguer,48.3,4.99,43,late,voucher,5
+IF00032,2026-04-30 18:51:12,São Paulo,Sahara Express,Árabe,53.55,11.99,30,delivered,debit,5
+IF00033,2026-02-28 11:49:27,São Paulo,Burger Lab,Hambúrguer,12.09,11.99,,cancelled,pix,
+IF00034,2026-03-14 20:51:29,Rio de Janeiro,Al Dente,Italiana,159.96,8.99,50,delivered,credit,5
+IF00035,2026-09-10 18:40:15,Belo Horizonte,Salada Urbana,Saudável,30.31,6.99,33,delivered,pix,4
+IF00036,2026-04-24 12:04:26,São Paulo,Napoli 30min,Pizza,31.31,8.99,21,delivered,voucher,5
+IF00037,2026-09-06 19:00:22,Campinas,Feijão & Cia,Brasileira,28.36,8.99,72,late,credit,5
+IF00038,2026-01-19 20:24:21,São Paulo,Salada Urbana,Saudável,69.81,4.99,47,delivered,pix,5
+IF00039,2026-02-16 11:41:27,Recife,Açaí do Parque,Doce,21.71,0.0,,cancelled,debit,
+IF00040,2026-07-18 19:17:48,São Paulo,Hommous & Cia,Árabe,66.83,0.0,48,delivered,pix,
+IF00041,2026-01-20 11:15:12,Rio de Janeiro,Hommous & Cia,Árabe,73.08,4.99,26,delivered,credit,3
+IF00042,2026-03-04 12:49:52,Porto Alegre,Salada Urbana,Saudável,25.11,11.99,19,delivered,debit,5
+IF00043,2026-05-09 12:06:44,Goiânia,Churros & Shake,Doce,39.97,11.99,20,delivered,credit,5
+IF00044,2026-08-08 11:52:31,Curitiba,Wasabi Fast,Japonesa,67.43,4.99,45,delivered,credit,5
+IF00045,2026-08-31 20:27:52,Brasília,Masala Express,Indiana,46.7,4.99,43,late,debit,5
+IF00046,2026-01-19 19:31:54,Salvador,Taj Delivery,Indiana,28.12,6.99,34,delivered,credit,5
+IF00047,2026-05-08 12:46:26,São Paulo,Nonna Pasta,Italiana,35.29,8.99,49,delivered,credit,3
+IF00048,2026-07-12 18:30:35,Belo Horizonte,Burger Lab,Hambúrguer,38.15,11.99,39,delivered,credit,5
+IF00049,2026-06-15 13:07:47,Rio de Janeiro,Taco Livre,Mexicana,41.12,4.99,,cancelled,credit,
+IF00050,2026-05-29 21:06:53,Rio de Janeiro,Salada Urbana,Saudável,26.96,4.99,57,late,credit,
+IF00051,2026-06-03 21:44:08,São Paulo,Guaca-Guaca,Mexicana,56.29,0.0,18,delivered,debit,5
+IF00052,2026-09-06 18:07:52,São Paulo,Sahara Express,Árabe,18.91,11.99,21,delivered,pix,5
+IF00053,2026-07-18 13:28:58,São Paulo,Pão & Fogo,Hambúrguer,26.68,8.99,37,delivered,pix,3
+IF00054,2026-03-26 12:15:11,Salvador,Burger Lab,Hambúrguer,38.38,8.99,46,delivered,pix,5
+IF00055,2026-02-10 20:43:14,Rio de Janeiro,Smash House,Hambúrguer,48.66,4.99,45,delivered,credit,
+IF00056,2026-03-30 11:50:19,Brasília,Guaca-Guaca,Mexicana,55.56,6.99,46,delivered,debit,5
+IF00057,2026-02-15 20:38:02,Curitiba,El Paso Delivery,Mexicana,39.73,4.99,54,delivered,credit,3
+IF00058,2026-08-19 20:58:17,São Paulo,Curry Box,Indiana,20.23,8.99,23,delivered,credit,5
+IF00059,2026-09-15 19:18:42,Campinas,Wasabi Fast,Japonesa,39.29,6.99,34,delivered,pix,5
+IF00060,2026-07-09 13:39:48,Curitiba,Al Dente,Italiana,36.52,0.0,31,delivered,debit,4
+IF00061,2026-03-27 13:19:35,São Paulo,Green Bowl,Saudável,19.41,4.99,,cancelled,debit,
+IF00062,2026-06-03 20:32:45,Salvador,Nikkei Go,Japonesa,12.7,8.99,33,delivered,credit,4
+IF00063,2026-05-26 12:49:50,Curitiba,Taj Delivery,Indiana,55.39,11.99,35,delivered,credit,4
+IF00064,2026-03-22 20:28:34,Recife,Curry Box,Indiana,35.94,11.99,,cancelled,debit,
+IF00065,2026-07-20 13:14:54,Campinas,Sahara Express,Árabe,69.47,8.99,,cancelled,credit,
+IF00066,2026-06-23 21:55:06,Goiânia,Green Bowl,Saudável,61.32,11.99,47,delivered,debit,
+IF00067,2026-07-27 19:41:05,São Paulo,Pizza da Esquina,Pizza,57.25,6.99,49,delivered,pix,3
+IF00068,2026-02-20 13:27:06,Salvador,Smash House,Hambúrguer,72.15,0.0,46,delivered,pix,4
+IF00069,2026-07-15 19:27:09,Brasília,Sahara Express,Árabe,26.16,4.99,28,delivered,voucher,5
+IF00070,2026-05-03 12:29:40,Curitiba,Pão & Fogo,Hambúrguer,28.36,0.0,67,late,credit,5
+IF00071,2026-08-10 18:44:16,Belo Horizonte,Nikkei Go,Japonesa,34.89,8.99,48,delivered,voucher,
+IF00072,2026-01-16 18:53:42,Recife,Hommous & Cia,Árabe,33.75,0.0,,cancelled,debit,
+IF00073,2026-04-27 19:40:12,Brasília,Taco Livre,Mexicana,48.89,4.99,24,delivered,credit,5
+IF00074,2026-02-20 12:58:18,São Paulo,Salada Urbana,Saudável,29.11,4.99,26,delivered,voucher,4
+IF00075,2026-06-05 20:47:55,Brasília,El Paso Delivery,Mexicana,31.79,0.0,27,delivered,debit,4
+IF00076,2026-05-20 11:34:07,Belo Horizonte,Al Dente,Italiana,32.89,6.99,55,delivered,pix,5
+IF00077,2026-06-21 21:58:39,Curitiba,Smash House,Hambúrguer,29.09,8.99,57,late,pix,3
+IF00078,2026-02-23 12:15:56,Rio de Janeiro,Feijão & Cia,Brasileira,38.38,6.99,52,delivered,credit,5
+IF00079,2026-05-28 19:02:44,Salvador,Churros & Shake,Doce,30.58,4.99,41,delivered,credit,
+IF00080,2026-02-05 19:25:17,Campinas,Nonna Pasta,Italiana,27.86,8.99,,cancelled,credit,
+IF00081,2026-05-09 19:08:50,Goiânia,Curry Box,Indiana,38.61,11.99,31,delivered,credit,4
+IF00082,2026-05-13 12:51:11,São Paulo,Curry Box,Indiana,23.5,4.99,55,delivered,pix,4
+IF00083,2026-02-06 12:30:28,Porto Alegre,Forno Noturno,Pizza,56.88,0.0,66,late,voucher,5
+IF00084,2026-09-07 11:54:25,Belo Horizonte,El Paso Delivery,Mexicana,34.34,8.99,22,delivered,credit,4
+IF00085,2026-06-20 21:24:38,São Paulo,Wasabi Fast,Japonesa,38.21,11.99,65,late,pix,
+IF00086,2026-08-24 19:56:14,Porto Alegre,Al Dente,Italiana,24.89,8.99,44,delivered,credit,4
+IF00087,2026-02-08 20:05:53,Belo Horizonte,El Paso Delivery,Mexicana,20.83,6.99,26,delivered,voucher,5
+IF00088,2026-08-09 19:55:58,Salvador,Sahara Express,Árabe,41.25,11.99,50,delivered,credit,5
+IF00089,2026-03-04 19:48:17,Rio de Janeiro,Wasabi Fast,Japonesa,49.24,11.99,73,late,credit,
+IF00090,2026-06-27 18:22:00,São Paulo,Sabor da Casa,Brasileira,27.47,8.99,,cancelled,credit,
+IF00091,2026-07-16 13:26:29,São Paulo,Sabor da Casa,Brasileira,30.11,6.99,74,late,credit,3
+IF00092,2026-08-19 18:42:27,São Paulo,Curry Box,Indiana,35.88,6.99,31,delivered,debit,3
+IF00093,2026-06-11 20:02:14,Rio de Janeiro,Sushi Bar 7,Japonesa,29.91,0.0,,cancelled,credit,
+IF00094,2026-06-21 18:07:00,Brasília,Pão & Fogo,Hambúrguer,36.47,4.99,42,delivered,voucher,4
+IF00095,2026-08-16 11:01:29,São Paulo,Sahara Express,Árabe,41.98,8.99,,cancelled,pix,
+IF00096,2026-08-28 12:53:44,São Paulo,Açaí do Parque,Doce,52.01,11.99,43,delivered,credit,5
+IF00097,2026-03-04 12:33:32,Rio de Janeiro,Burger Lab,Hambúrguer,12.73,6.99,27,delivered,credit,4
+IF00098,2026-04-05 12:49:40,Recife,Napoli 30min,Pizza,35.93,11.99,,cancelled,voucher,
+IF00099,2026-03-23 19:28:04,Rio de Janeiro,Taj Delivery,Indiana,34.29,6.99,,cancelled,pix,
+IF00100,2026-08-24 20:02:03,Curitiba,Hommous & Cia,Árabe,31.75,0.0,50,delivered,pix,5
+IF00101,2026-06-18 13:38:30,Campinas,Salada Urbana,Saudável,37.52,8.99,44,late,pix,4
+IF00102,2026-08-17 13:28:33,Salvador,Cantina 12,Italiana,37.37,6.99,36,delivered,voucher,4
+IF00103,2026-02-07 19:21:06,Brasília,Feijão & Cia,Brasileira,39.37,6.99,,cancelled,voucher,
+IF00104,2026-07-03 12:19:41,Rio de Janeiro,Pizza da Esquina,Pizza,47.09,11.99,43,late,credit,5
+IF00105,2026-02-21 21:41:42,Salvador,Napoli 30min,Pizza,33.36,6.99,,cancelled,credit,
+IF00106,2026-04-30 13:08:09,Rio de Janeiro,Smash House,Hambúrguer,21.37,11.99,26,delivered,credit,4
+IF00107,2026-01-27 20:26:23,Brasília,Masala Express,Indiana,43.75,8.99,36,delivered,voucher,5
+IF00108,2026-07-12 13:43:36,Rio de Janeiro,Smash House,Hambúrguer,73.31,6.99,42,delivered,credit,5
+IF00109,2026-09-08 11:55:23,São Paulo,Curry Box,Indiana,38.36,11.99,25,delivered,debit,4
+IF00110,2026-04-28 12:52:28,São Paulo,Al Dente,Italiana,32.82,6.99,33,delivered,credit,3
+IF00111,2026-03-20 19:08:02,Rio de Janeiro,Sabor da Casa,Brasileira,13.92,4.99,48,delivered,pix,3
+IF00112,2026-08-09 21:07:49,São Paulo,Guaca-Guaca,Mexicana,28.96,0.0,33,delivered,pix,5
+IF00113,2026-01-13 21:40:32,Brasília,Nikkei Go,Japonesa,44.96,6.99,45,delivered,credit,
+IF00114,2026-07-08 12:04:33,Belo Horizonte,Taj Delivery,Indiana,42.92,11.99,,cancelled,pix,
+IF00115,2026-07-15 19:16:47,Campinas,Doce Hora,Doce,23.37,0.0,55,delivered,pix,4
+IF00116,2026-08-30 12:44:30,Recife,Hommous & Cia,Árabe,62.77,0.0,,cancelled,debit,
+IF00117,2026-01-26 13:20:59,Rio de Janeiro,Sabor da Casa,Brasileira,28.68,11.99,48,delivered,credit,5
+IF00118,2026-05-24 19:07:51,Campinas,Sahara Express,Árabe,14.56,8.99,42,delivered,debit,4
+IF00119,2026-02-16 18:46:27,Campinas,Esfiha do Zé,Árabe,16.16,4.99,72,late,credit,3
+IF00120,2026-03-31 19:44:28,Rio de Janeiro,Taco Livre,Mexicana,32.47,6.99,65,late,debit,3
+IF00121,2026-01-20 12:09:54,Curitiba,Esfiha do Zé,Árabe,53.5,0.0,,cancelled,pix,
+IF00122,2026-07-20 19:36:02,Brasília,Pão & Fogo,Hambúrguer,47.12,6.99,41,delivered,credit,3
+IF00123,2026-05-12 18:07:01,Belo Horizonte,Al Dente,Italiana,52.62,8.99,53,delivered,debit,
+IF00124,2026-04-17 20:07:08,Goiânia,Pão & Fogo,Hambúrguer,60.16,8.99,23,delivered,credit,4
+IF00125,2026-03-26 18:45:45,Recife,Nikkei Go,Japonesa,58.06,0.0,30,delivered,pix,4
+IF00126,2026-03-12 20:39:56,Recife,Hommous & Cia,Árabe,23.05,8.99,51,delivered,pix,5
+IF00127,2026-08-23 12:29:43,Goiânia,Pizza da Esquina,Pizza,37.17,11.99,,cancelled,voucher,
+IF00128,2026-09-19 19:58:55,Brasília,Napoli 30min,Pizza,26.56,6.99,32,delivered,pix,5
+IF00129,2026-03-10 18:40:19,São Paulo,Taco Livre,Mexicana,40.34,4.99,75,late,voucher,4
+IF00130,2026-01-19 11:05:02,Rio de Janeiro,Curry Box,Indiana,29.07,11.99,64,late,voucher,3
+IF00131,2026-05-10 20:51:51,Salvador,Guaca-Guaca,Mexicana,44.85,0.0,21,delivered,debit,5
+IF00132,2026-06-17 19:46:55,Rio de Janeiro,Smash House,Hambúrguer,30.01,6.99,50,delivered,debit,4
+IF00133,2026-02-23 12:03:18,Rio de Janeiro,Nikkei Go,Japonesa,27.53,11.99,47,delivered,pix,4
+IF00134,2026-05-08 20:13:37,Goiânia,Sushi Bar 7,Japonesa,32.47,8.99,68,late,debit,3
+IF00135,2026-07-30 19:23:02,Campinas,Napoli 30min,Pizza,30.61,4.99,,cancelled,voucher,
+IF00136,2026-05-28 20:52:39,São Paulo,El Paso Delivery,Mexicana,42.86,0.0,63,late,credit,4
+IF00137,2026-09-18 19:02:02,São Paulo,Napoli 30min,Pizza,59.63,4.99,70,late,credit,5
+IF00138,2026-06-26 18:32:53,Goiânia,Açaí do Parque,Doce,37.14,11.99,,cancelled,debit,
+IF00139,2026-08-06 12:37:19,Belo Horizonte,Feijão & Cia,Brasileira,84.27,0.0,,cancelled,debit,
+IF00140,2026-01-31 13:37:30,Goiânia,Taco Livre,Mexicana,18.44,11.99,62,late,pix,5
+IF00141,2026-01-14 13:28:20,Goiânia,Curry Box,Indiana,32.89,4.99,44,delivered,pix,5
+IF00142,2026-09-06 19:33:24,Curitiba,Pizza da Esquina,Pizza,30.76,11.99,59,late,credit,5
+IF00143,2026-06-06 18:14:19,Curitiba,Taj Delivery,Indiana,74.4,8.99,38,delivered,credit,5
+IF00144,2026-07-18 21:57:25,São Paulo,El Paso Delivery,Mexicana,50.98,6.99,,cancelled,pix,
+IF00145,2026-09-07 18:13:12,Campinas,Hommous & Cia,Árabe,51.8,11.99,,cancelled,credit,
+IF00146,2026-05-09 13:03:42,São Paulo,Forno Noturno,Pizza,54.81,4.99,,cancelled,pix,
+IF00147,2026-03-16 12:00:35,Rio de Janeiro,Açaí do Parque,Doce,98.39,8.99,48,delivered,credit,4
+IF00148,2026-01-24 13:58:58,Campinas,Sabor da Casa,Brasileira,69.17,8.99,29,delivered,pix,4
+IF00149,2026-05-30 19:29:41,Recife,Taco Livre,Mexicana,39.1,4.99,50,delivered,credit,4
+IF00150,2026-04-10 18:00:47,Porto Alegre,Forno Noturno,Pizza,30.62,4.99,,cancelled,voucher,
+IF00151,2026-02-18 19:25:42,Brasília,Açaí do Parque,Doce,27.9,0.0,54,late,credit,5
+IF00152,2026-05-18 11:41:23,Recife,El Paso Delivery,Mexicana,42.89,0.0,67,late,voucher,5
+IF00153,2026-07-12 18:39:14,Porto Alegre,Guaca-Guaca,Mexicana,28.5,4.99,,cancelled,voucher,
+IF00154,2026-04-26 20:48:15,Belo Horizonte,Sahara Express,Árabe,51.65,0.0,71,late,pix,5
+IF00155,2026-04-18 21:36:34,São Paulo,Masala Express,Indiana,24.48,11.99,66,late,voucher,
+IF00156,2026-02-02 20:29:08,São Paulo,Salada Urbana,Saudável,37.29,0.0,73,late,pix,4
+IF00157,2026-02-11 13:02:27,Rio de Janeiro,Doce Hora,Doce,32.19,0.0,22,delivered,credit,5
+IF00158,2026-07-15 19:57:24,São Paulo,Churros & Shake,Doce,22.66,8.99,42,delivered,voucher,
+IF00159,2026-04-06 12:34:25,Salvador,Napoli 30min,Pizza,39.72,4.99,18,delivered,voucher,4
+IF00160,2026-08-28 13:22:09,Curitiba,Doce Hora,Doce,44.51,8.99,19,delivered,voucher,3
+IF00161,2026-05-10 11:47:02,Belo Horizonte,Sabor da Casa,Brasileira,33.16,4.99,,cancelled,credit,
+IF00162,2026-06-18 19:15:19,Goiânia,Cantina 12,Italiana,37.64,6.99,21,delivered,credit,5
+IF00163,2026-07-19 19:50:33,Recife,Açaí do Parque,Doce,28.8,4.99,37,delivered,credit,5
+IF00164,2026-08-30 12:58:03,Rio de Janeiro,Pão & Fogo,Hambúrguer,163.21,11.99,,cancelled,credit,
+IF00165,2026-02-14 19:59:28,Rio de Janeiro,Doce Hora,Doce,45.34,6.99,42,delivered,pix,5
+IF00166,2026-04-26 21:30:13,Brasília,Smash House,Hambúrguer,56.13,0.0,51,late,debit,5
+IF00167,2026-07-27 13:58:15,Porto Alegre,Burger Lab,Hambúrguer,43.78,8.99,,cancelled,voucher,
+IF00168,2026-09-16 21:29:06,Rio de Janeiro,Esfiha do Zé,Árabe,84.96,6.99,31,delivered,voucher,5
+IF00169,2026-08-06 18:18:09,Porto Alegre,Pão & Fogo,Hambúrguer,26.99,11.99,33,delivered,credit,5
+IF00170,2026-08-28 20:10:46,Brasília,El Paso Delivery,Mexicana,48.14,11.99,49,delivered,pix,5
+IF00171,2026-01-08 11:26:08,São Paulo,Al Dente,Italiana,51.63,4.99,18,delivered,pix,5
+IF00172,2026-09-11 20:01:00,Salvador,Curry Box,Indiana,38.18,0.0,71,late,pix,5
+IF00173,2026-04-06 19:06:58,Brasília,Al Dente,Italiana,22.15,6.99,,cancelled,debit,
+IF00174,2026-05-09 20:44:14,Belo Horizonte,Nikkei Go,Japonesa,14.91,0.0,20,delivered,debit,
+IF00175,2026-04-02 11:05:31,Curitiba,Cantina 12,Italiana,77.54,6.99,,cancelled,pix,
+IF00176,2026-09-05 13:17:02,Campinas,Nonna Pasta,Italiana,25.25,0.0,29,delivered,credit,4
+IF00177,2026-02-13 19:19:10,São Paulo,Taj Delivery,Indiana,41.02,8.99,,cancelled,voucher,
+IF00178,2026-02-14 12:32:47,Belo Horizonte,Hommous & Cia,Árabe,27.08,6.99,,cancelled,voucher,
+IF00179,2026-05-24 11:50:28,Belo Horizonte,Taj Delivery,Indiana,36.19,8.99,45,delivered,debit,5
+IF00180,2026-02-11 13:05:17,Brasília,Sushi Bar 7,Japonesa,14.5,4.99,42,delivered,pix,3
+IF00181,2026-03-13 12:05:11,Belo Horizonte,Taco Livre,Mexicana,32.45,11.99,44,delivered,credit,
+IF00182,2026-07-21 19:00:18,São Paulo,Cantina 12,Italiana,27.08,11.99,53,late,debit,4
+IF00183,2026-09-14 18:09:04,São Paulo,Napoli 30min,Pizza,25.67,6.99,48,delivered,credit,4
+IF00184,2026-02-28 20:08:19,Recife,Fit Box,Saudável,19.49,11.99,42,delivered,credit,4
+IF00185,2026-06-07 12:20:38,Brasília,Churros & Shake,Doce,60.99,8.99,,cancelled,credit,
+IF00186,2026-03-04 19:59:36,Belo Horizonte,Sahara Express,Árabe,12.64,0.0,47,delivered,credit,4
+IF00187,2026-03-17 20:40:19,Brasília,Wasabi Fast,Japonesa,20.42,8.99,42,delivered,debit,
+IF00188,2026-01-23 19:50:23,Belo Horizonte,Masala Express,Indiana,83.87,11.99,43,late,credit,
+IF00189,2026-06-23 19:50:27,Salvador,Napoli 30min,Pizza,15.68,11.99,55,delivered,credit,4
+IF00190,2026-03-23 21:22:01,Curitiba,Doce Hora,Doce,35.91,0.0,,cancelled,credit,
+IF00191,2026-09-09 13:22:30,Rio de Janeiro,Sahara Express,Árabe,35.19,0.0,25,delivered,pix,
+IF00192,2026-04-04 13:35:10,Campinas,Forno Noturno,Pizza,29.15,8.99,,cancelled,debit,
+IF00193,2026-07-26 19:01:47,São Paulo,Napoli 30min,Pizza,40.84,11.99,,cancelled,debit,
+IF00194,2026-02-06 18:36:06,Porto Alegre,Mineiro Express,Brasileira,60.3,6.99,38,delivered,debit,3
+IF00195,2026-07-24 19:37:07,Goiânia,Al Dente,Italiana,17.12,11.99,29,delivered,voucher,5
+IF00196,2026-03-06 19:15:19,São Paulo,Masala Express,Indiana,22.83,4.99,50,delivered,voucher,5
+IF00197,2026-04-03 21:35:10,Belo Horizonte,Doce Hora,Doce,36.26,6.99,46,delivered,debit,4
+IF00198,2026-09-20 21:41:31,São Paulo,Forno Noturno,Pizza,31.88,8.99,49,delivered,credit,5
+IF00199,2026-06-01 21:10:49,São Paulo,Taco Livre,Mexicana,32.2,8.99,53,delivered,credit,5
+IF00200,2026-01-26 21:48:46,Brasília,Nonna Pasta,Italiana,34.54,8.99,24,delivered,credit,5
+IF00201,2026-08-17 12:55:07,Belo Horizonte,Feijão & Cia,Brasileira,48.37,11.99,40,delivered,debit,5
+IF00202,2026-02-04 13:36:22,Salvador,Napoli 30min,Pizza,38.93,4.99,38,delivered,voucher,4
+IF00203,2026-03-15 12:48:50,Goiânia,Taco Livre,Mexicana,34.04,6.99,46,late,credit,4
+IF00204,2026-09-12 19:09:36,Brasília,Sahara Express,Árabe,48.16,8.99,,cancelled,pix,
+IF00205,2026-07-12 18:29:31,Belo Horizonte,Wasabi Fast,Japonesa,80.79,8.99,,cancelled,credit,
+IF00206,2026-08-12 13:52:13,Brasília,Wasabi Fast,Japonesa,36.38,6.99,39,delivered,debit,4
+IF00207,2026-02-24 11:40:50,Campinas,Esfiha do Zé,Árabe,10.83,6.99,23,delivered,credit,4
+IF00208,2026-05-04 18:27:41,São Paulo,Forno Noturno,Pizza,28.79,11.99,,cancelled,voucher,
+IF00209,2026-03-07 19:55:27,São Paulo,Fit Box,Saudável,48.75,4.99,,cancelled,pix,
+IF00210,2026-03-16 18:24:49,São Paulo,Wasabi Fast,Japonesa,51.34,0.0,51,delivered,credit,5
+IF00211,2026-08-03 12:39:43,Rio de Janeiro,Salada Urbana,Saudável,34.58,0.0,26,delivered,debit,5
+IF00212,2026-05-11 12:17:41,Goiânia,Esfiha do Zé,Árabe,17.84,11.99,36,delivered,credit,5
+IF00213,2026-07-24 13:18:41,Curitiba,Smash House,Hambúrguer,73.32,0.0,53,late,voucher,5
+IF00214,2026-07-22 12:55:53,Goiânia,Sabor da Casa,Brasileira,39.77,4.99,48,delivered,voucher,3
+IF00215,2026-02-04 11:50:25,São Paulo,Sushi Bar 7,Japonesa,37.1,11.99,44,delivered,voucher,5
+IF00216,2026-06-12 12:05:32,Salvador,Cantina 12,Italiana,24.65,11.99,22,delivered,credit,5
+IF00217,2026-08-25 12:39:38,Rio de Janeiro,Mineiro Express,Brasileira,42.44,0.0,26,delivered,credit,4
+IF00218,2026-03-31 18:23:08,Curitiba,Al Dente,Italiana,44.88,0.0,,cancelled,debit,
+IF00219,2026-09-16 12:29:32,Curitiba,Taco Livre,Mexicana,29.49,11.99,28,delivered,voucher,4
+IF00220,2026-01-27 11:54:55,Rio de Janeiro,Wasabi Fast,Japonesa,9.81,4.99,40,late,debit,5
+IF00221,2026-05-23 19:52:04,Rio de Janeiro,Smash House,Hambúrguer,38.97,0.0,29,delivered,debit,5
+IF00222,2026-06-21 18:05:35,Campinas,Wasabi Fast,Japonesa,34.71,6.99,54,delivered,credit,5
+IF00223,2026-05-10 13:09:00,Belo Horizonte,Salada Urbana,Saudável,39.97,0.0,39,delivered,debit,
+IF00224,2026-08-07 13:31:03,São Paulo,Guaca-Guaca,Mexicana,30.64,4.99,71,late,pix,4
+IF00225,2026-02-12 19:37:36,São Paulo,Curry Box,Indiana,24.47,6.99,43,delivered,credit,5
+IF00226,2026-03-15 13:49:49,Rio de Janeiro,Green Bowl,Saudável,39.54,4.99,46,delivered,voucher,5
+IF00227,2026-06-11 20:29:16,Goiânia,Esfiha do Zé,Árabe,51.48,11.99,20,delivered,pix,4
+IF00228,2026-01-30 21:43:19,Goiânia,Smash House,Hambúrguer,19.93,8.99,53,delivered,debit,4
+IF00229,2026-01-11 12:03:53,Brasília,Wasabi Fast,Japonesa,48.37,4.99,43,delivered,pix,5
+IF00230,2026-02-07 11:12:57,Recife,Masala Express,Indiana,66.09,0.0,39,delivered,credit,5
+IF00231,2026-09-16 19:01:24,Belo Horizonte,Masala Express,Indiana,43.42,4.99,,cancelled,credit,
+IF00232,2026-05-10 11:41:18,Belo Horizonte,Guaca-Guaca,Mexicana,36.33,8.99,21,delivered,credit,
+IF00233,2026-01-14 13:24:50,São Paulo,Açaí do Parque,Doce,50.23,8.99,60,late,debit,5
+IF00234,2026-01-20 13:57:51,São Paulo,Guaca-Guaca,Mexicana,43.17,0.0,32,delivered,credit,5
+IF00235,2026-01-19 19:45:44,Rio de Janeiro,Pizza da Esquina,Pizza,28.08,4.99,54,delivered,credit,5
+IF00236,2026-05-04 11:38:14,Curitiba,Pizza da Esquina,Pizza,17.99,6.99,30,delivered,credit,4
+IF00237,2026-03-02 12:54:33,São Paulo,Hommous & Cia,Árabe,33.46,6.99,38,delivered,debit,4
+IF00238,2026-07-06 21:14:42,Salvador,Green Bowl,Saudável,39.78,6.99,36,delivered,voucher,5
+IF00239,2026-04-08 11:38:20,Campinas,Doce Hora,Doce,22.29,8.99,47,late,credit,3
+IF00240,2026-08-21 19:00:16,São Paulo,Esfiha do Zé,Árabe,17.63,6.99,34,delivered,pix,5
+IF00241,2026-08-04 12:31:56,Belo Horizonte,Churros & Shake,Doce,29.78,0.0,48,delivered,credit,5
+IF00242,2026-01-15 18:20:16,Belo Horizonte,Napoli 30min,Pizza,24.34,0.0,53,delivered,voucher,3
+IF00243,2026-08-13 11:41:10,Campinas,Masala Express,Indiana,42.37,0.0,,cancelled,credit,
+IF00244,2026-05-20 21:42:18,Goiânia,Smash House,Hambúrguer,30.78,8.99,54,delivered,pix,5
+IF00245,2026-09-07 18:12:06,São Paulo,Sahara Express,Árabe,30.72,0.0,37,delivered,credit,5
+IF00246,2026-07-13 12:56:24,Salvador,Nikkei Go,Japonesa,30.51,6.99,46,delivered,voucher,4
+IF00247,2026-02-17 12:42:22,São Paulo,Sabor da Casa,Brasileira,54.93,11.99,,cancelled,voucher,
+IF00248,2026-09-05 19:36:56,Brasília,Feijão & Cia,Brasileira,27.36,8.99,40,late,voucher,5
+IF00249,2026-03-31 12:13:51,São Paulo,Pizza da Esquina,Pizza,18.7,6.99,22,delivered,debit,
+IF00250,2026-08-27 21:58:55,Rio de Janeiro,Cantina 12,Italiana,49.88,0.0,44,delivered,voucher,5
+IF00251,2026-05-31 12:55:34,Campinas,Nikkei Go,Japonesa,21.6,11.99,68,late,debit,
+IF00252,2026-01-24 19:25:56,Salvador,Pizza da Esquina,Pizza,94.19,0.0,,cancelled,debit,
+IF00253,2026-06-09 19:19:17,Campinas,El Paso Delivery,Mexicana,27.11,8.99,38,delivered,pix,5
+IF00254,2026-07-15 20:52:03,Belo Horizonte,Pão & Fogo,Hambúrguer,37.11,6.99,50,delivered,pix,5
+IF00255,2026-05-12 11:02:29,São Paulo,Pizza da Esquina,Pizza,21.28,4.99,35,delivered,debit,5
+IF00256,2026-09-12 19:38:28,Salvador,Sushi Bar 7,Japonesa,40.57,4.99,34,delivered,credit,5
+IF00257,2026-04-28 13:41:14,Belo Horizonte,Feijão & Cia,Brasileira,44.15,8.99,50,delivered,pix,
+IF00258,2026-01-09 12:14:16,Campinas,Fit Box,Saudável,158.78,6.99,,cancelled,debit,
+IF00259,2026-06-08 20:43:33,Belo Horizonte,Sahara Express,Árabe,55.44,0.0,18,delivered,voucher,5
+IF00260,2026-09-08 12:04:21,Recife,Masala Express,Indiana,53.39,6.99,30,delivered,voucher,4
+IF00261,2026-01-18 12:41:31,Salvador,Churros & Shake,Doce,33.02,0.0,,cancelled,voucher,
+IF00262,2026-09-05 13:58:42,Rio de Janeiro,Pão & Fogo,Hambúrguer,31.31,4.99,,cancelled,voucher,
+IF00263,2026-05-17 12:46:51,Rio de Janeiro,Pizza da Esquina,Pizza,61.66,6.99,23,delivered,credit,4
+IF00264,2026-05-18 19:37:18,Brasília,Doce Hora,Doce,35.46,0.0,55,delivered,debit,5
+IF00265,2026-06-06 19:26:03,Curitiba,Burger Lab,Hambúrguer,51.27,4.99,,cancelled,debit,
+IF00266,2026-06-15 12:55:45,Campinas,Taj Delivery,Indiana,31.41,8.99,35,delivered,credit,4
+IF00267,2026-08-15 12:40:27,Brasília,Salada Urbana,Saudável,33.33,4.99,41,delivered,credit,4
+IF00268,2026-04-30 13:44:56,Salvador,Feijão & Cia,Brasileira,31.88,8.99,,cancelled,voucher,
+IF00269,2026-06-02 18:29:46,São Paulo,Guaca-Guaca,Mexicana,37.82,8.99,26,delivered,credit,5
+IF00270,2026-05-01 11:14:46,Goiânia,Napoli 30min,Pizza,17.37,0.0,41,delivered,credit,3
+IF00271,2026-03-01 11:41:53,Salvador,Nonna Pasta,Italiana,32.99,11.99,54,late,pix,4
+IF00272,2026-05-23 21:39:38,Belo Horizonte,Guaca-Guaca,Mexicana,47.78,0.0,50,delivered,pix,3
+IF00273,2026-05-19 13:53:33,Curitiba,Nikkei Go,Japonesa,64.64,8.99,56,late,credit,5
+IF00274,2026-02-19 11:58:07,Rio de Janeiro,Salada Urbana,Saudável,79.99,4.99,23,delivered,pix,3
+IF00275,2026-05-20 18:29:03,Salvador,Guaca-Guaca,Mexicana,25.17,0.0,36,delivered,debit,5
+IF00276,2026-03-16 11:42:41,São Paulo,Nikkei Go,Japonesa,24.63,8.99,35,delivered,credit,3
+IF00277,2026-05-24 20:53:24,São Paulo,Pizza da Esquina,Pizza,48.47,8.99,28,delivered,pix,
+IF00278,2026-08-17 20:11:39,São Paulo,Forno Noturno,Pizza,31.67,0.0,46,late,debit,5
+IF00279,2026-01-11 19:45:55,São Paulo,Fit Box,Saudável,66.08,11.99,54,delivered,voucher,5
+IF00280,2026-08-14 12:42:46,Salvador,Cantina 12,Italiana,27.2,8.99,47,late,pix,5
+IF00281,2026-09-02 21:54:31,Salvador,Feijão & Cia,Brasileira,36.29,6.99,21,delivered,debit,5
+IF00282,2026-08-20 20:51:36,Brasília,Açaí do Parque,Doce,27.68,8.99,38,delivered,pix,
+IF00283,2026-01-05 21:52:05,Belo Horizonte,Nikkei Go,Japonesa,96.18,11.99,31,delivered,credit,5
+IF00284,2026-09-04 19:45:42,Brasília,Mineiro Express,Brasileira,30.18,0.0,32,delivered,credit,
+IF00285,2026-01-28 12:57:10,Curitiba,Nonna Pasta,Italiana,35.42,8.99,,cancelled,credit,
+IF00286,2026-04-25 19:29:52,São Paulo,Taj Delivery,Indiana,78.82,0.0,44,delivered,voucher,
+IF00287,2026-09-20 20:08:31,Brasília,Wasabi Fast,Japonesa,39.35,11.99,48,delivered,voucher,4
+IF00288,2026-07-22 12:42:38,Porto Alegre,Forno Noturno,Pizza,41.3,8.99,44,delivered,credit,5
+IF00289,2026-03-14 20:08:26,Goiânia,Açaí do Parque,Doce,73.48,11.99,37,delivered,voucher,5
+IF00290,2026-06-30 18:58:43,São Paulo,Burger Lab,Hambúrguer,13.75,4.99,70,late,pix,5
+IF00291,2026-05-31 19:56:54,Recife,Hommous & Cia,Árabe,34.44,0.0,39,late,pix,3
+IF00292,2026-05-13 18:09:53,Rio de Janeiro,Pão & Fogo,Hambúrguer,22.24,6.99,46,delivered,voucher,
+IF00293,2026-05-06 19:32:50,Porto Alegre,Burger Lab,Hambúrguer,77.8,0.0,62,late,voucher,5
+IF00294,2026-08-19 13:53:14,São Paulo,Mineiro Express,Brasileira,58.29,11.99,30,delivered,debit,4
+IF00295,2026-04-03 12:47:32,Goiânia,Napoli 30min,Pizza,29.03,4.99,55,delivered,debit,3
+IF00296,2026-06-08 11:31:50,São Paulo,Pizza da Esquina,Pizza,39.94,6.99,51,delivered,pix,4
+IF00297,2026-07-30 21:05:22,São Paulo,Cantina 12,Italiana,27.84,6.99,59,late,voucher,4
+IF00298,2026-03-04 11:42:22,Goiânia,Salada Urbana,Saudável,23.59,11.99,,cancelled,credit,
+IF00299,2026-03-04 19:24:16,Salvador,Mineiro Express,Brasileira,38.22,11.99,41,delivered,debit,5
+IF00300,2026-06-18 13:32:05,Rio de Janeiro,Feijão & Cia,Brasileira,78.44,0.0,,cancelled,pix,
+IF00301,2026-02-27 19:13:34,Salvador,Pão & Fogo,Hambúrguer,50.9,0.0,27,delivered,credit,
+IF00302,2026-05-13 12:35:04,São Paulo,Mineiro Express,Brasileira,39.45,6.99,44,delivered,debit,5
+IF00303,2026-01-08 12:41:46,São Paulo,Esfiha do Zé,Árabe,53.22,11.99,,cancelled,pix,
+IF00304,2026-06-08 18:38:05,Campinas,Esfiha do Zé,Árabe,21.87,0.0,48,delivered,debit,4
+IF00305,2026-06-06 12:43:56,Rio de Janeiro,Cantina 12,Italiana,48.54,0.0,,cancelled,voucher,
+IF00306,2026-02-17 19:19:13,São Paulo,Pizza da Esquina,Pizza,29.81,11.99,27,delivered,credit,4
+IF00307,2026-08-29 11:41:35,São Paulo,Burger Lab,Hambúrguer,28.79,11.99,,cancelled,credit,
+IF00308,2026-02-25 13:18:39,São Paulo,Sahara Express,Árabe,24.25,8.99,,cancelled,credit,
+IF00309,2026-07-10 12:51:20,Salvador,Curry Box,Indiana,18.68,8.99,,cancelled,credit,
+IF00310,2026-08-29 20:28:22,Salvador,Napoli 30min,Pizza,55.34,0.0,29,delivered,credit,3
+IF00311,2026-02-12 12:57:01,São Paulo,Cantina 12,Italiana,76.14,11.99,,cancelled,debit,
+IF00312,2026-05-18 21:34:57,São Paulo,Masala Express,Indiana,51.16,4.99,55,delivered,debit,4
+IF00313,2026-09-19 19:00:42,Curitiba,Cantina 12,Italiana,46.11,4.99,29,delivered,credit,5
+IF00314,2026-09-11 13:14:04,Goiânia,Fit Box,Saudável,28.86,4.99,51,delivered,debit,4
+IF00315,2026-02-26 19:45:33,Campinas,Fit Box,Saudável,42.18,6.99,55,delivered,debit,4
+IF00316,2026-05-13 21:24:58,Recife,Esfiha do Zé,Árabe,25.53,6.99,49,delivered,voucher,5
+IF00317,2026-05-28 12:13:09,Belo Horizonte,Pizza da Esquina,Pizza,25.05,0.0,32,delivered,pix,4
+IF00318,2026-03-28 13:41:53,Salvador,Salada Urbana,Saudável,33.42,4.99,54,delivered,voucher,4
+IF00319,2026-03-31 11:16:59,Campinas,Mineiro Express,Brasileira,43.63,0.0,36,delivered,voucher,4
+IF00320,2026-08-03 13:38:09,Campinas,Fit Box,Saudável,17.79,6.99,28,delivered,voucher,4
+IF00321,2026-03-13 19:06:01,São Paulo,Taj Delivery,Indiana,36.81,4.99,24,delivered,pix,5
+IF00322,2026-09-08 12:42:08,Curitiba,Nonna Pasta,Italiana,71.78,0.0,45,delivered,voucher,4
+IF00323,2026-07-03 19:37:51,Rio de Janeiro,Açaí do Parque,Doce,79.96,11.99,24,delivered,credit,4
+IF00324,2026-05-16 19:12:00,Rio de Janeiro,Sushi Bar 7,Japonesa,78.79,11.99,71,late,debit,
+IF00325,2026-07-09 19:06:09,Salvador,Pão & Fogo,Hambúrguer,31.89,6.99,52,delivered,credit,4
+IF00326,2026-09-09 21:11:23,Porto Alegre,Açaí do Parque,Doce,39.98,6.99,54,delivered,credit,5
+IF00327,2026-02-25 12:13:32,Porto Alegre,Sushi Bar 7,Japonesa,32.59,11.99,21,delivered,pix,5
+IF00328,2026-02-19 19:04:16,Curitiba,Pizza da Esquina,Pizza,28.98,0.0,62,late,voucher,5
+IF00329,2026-04-04 11:40:31,Porto Alegre,El Paso Delivery,Mexicana,34.5,11.99,56,late,voucher,5
+IF00330,2026-07-08 11:15:41,Salvador,Smash House,Hambúrguer,30.34,11.99,,cancelled,voucher,
+IF00331,2026-05-30 12:46:53,Porto Alegre,Mineiro Express,Brasileira,40.83,6.99,35,delivered,debit,4
+IF00332,2026-09-21 19:06:35,São Paulo,Taj Delivery,Indiana,22.93,0.0,50,delivered,credit,5
+IF00333,2026-05-09 20:48:21,Goiânia,Green Bowl,Saudável,70.67,8.99,75,late,credit,5
+IF00334,2026-06-15 13:26:22,Belo Horizonte,Wasabi Fast,Japonesa,37.07,6.99,33,delivered,credit,5
+IF00335,2026-06-14 20:22:13,Recife,Wasabi Fast,Japonesa,55.5,4.99,49,delivered,credit,4
+IF00336,2026-07-06 13:09:49,São Paulo,Taco Livre,Mexicana,54.78,11.99,18,delivered,debit,5
+IF00337,2026-09-13 18:11:48,Salvador,Sahara Express,Árabe,57.18,4.99,54,delivered,debit,5
+IF00338,2026-04-04 19:29:07,São Paulo,Cantina 12,Italiana,48.59,0.0,18,delivered,pix,5
+IF00339,2026-05-19 12:15:17,Belo Horizonte,Sahara Express,Árabe,34.56,6.99,29,delivered,credit,4
+IF00340,2026-04-07 20:36:08,Campinas,Esfiha do Zé,Árabe,87.25,4.99,53,delivered,credit,5
+IF00341,2026-08-08 12:31:08,Curitiba,Forno Noturno,Pizza,38.36,8.99,37,delivered,debit,5
+IF00342,2026-05-15 13:30:53,Porto Alegre,Wasabi Fast,Japonesa,43.91,6.99,34,delivered,credit,5
+IF00343,2026-04-16 19:36:36,São Paulo,Sahara Express,Árabe,47.02,6.99,40,delivered,debit,5
+IF00344,2026-03-20 20:55:10,Belo Horizonte,Nikkei Go,Japonesa,31.32,8.99,22,delivered,credit,
+IF00345,2026-07-26 18:17:56,Rio de Janeiro,Sahara Express,Árabe,26.84,6.99,55,delivered,credit,5
+IF00346,2026-05-13 13:47:44,Campinas,Napoli 30min,Pizza,46.72,8.99,24,delivered,voucher,
+IF00347,2026-02-16 21:06:16,São Paulo,Mineiro Express,Brasileira,40.43,8.99,37,delivered,debit,5
+IF00348,2026-01-22 11:42:22,São Paulo,Napoli 30min,Pizza,55.27,8.99,47,delivered,voucher,5
+IF00349,2026-04-05 21:37:38,São Paulo,Fit Box,Saudável,32.02,11.99,,cancelled,voucher,
+IF00350,2026-05-01 20:51:05,Rio de Janeiro,Cantina 12,Italiana,34.1,6.99,27,delivered,credit,3
+IF00351,2026-09-13 11:48:30,Rio de Janeiro,Sahara Express,Árabe,18.9,6.99,52,late,credit,5
+IF00352,2026-05-12 19:10:45,Campinas,Churros & Shake,Doce,49.4,8.99,32,delivered,credit,5
+IF00353,2026-05-30 18:41:47,Brasília,Nonna Pasta,Italiana,37.85,4.99,42,late,debit,4
+IF00354,2026-04-11 20:20:01,Belo Horizonte,Taj Delivery,Indiana,30.2,8.99,,cancelled,pix,
+IF00355,2026-04-26 20:21:26,São Paulo,Burger Lab,Hambúrguer,17.72,6.99,47,delivered,pix,3
+IF00356,2026-09-02 12:11:12,São Paulo,Forno Noturno,Pizza,55.0,8.99,18,delivered,debit,5
+IF00357,2026-08-28 13:47:49,Rio de Janeiro,Fit Box,Saudável,14.32,4.99,48,delivered,credit,4
+IF00358,2026-03-08 21:16:30,Porto Alegre,Feijão & Cia,Brasileira,41.82,0.0,51,late,debit,4
+IF00359,2026-07-26 12:50:15,São Paulo,Esfiha do Zé,Árabe,55.54,11.99,27,delivered,credit,3
+IF00360,2026-02-04 19:03:22,São Paulo,Salada Urbana,Saudável,53.18,0.0,46,late,credit,4
+IF00361,2026-07-07 19:46:08,Porto Alegre,Salada Urbana,Saudável,52.55,11.99,49,delivered,credit,4
+IF00362,2026-03-28 21:04:33,Porto Alegre,Hommous & Cia,Árabe,25.08,6.99,52,delivered,voucher,3
+IF00363,2026-05-07 19:20:46,Porto Alegre,Açaí do Parque,Doce,49.6,8.99,53,delivered,debit,4
+IF00364,2026-01-27 12:53:08,São Paulo,Hommous & Cia,Árabe,25.15,0.0,74,late,debit,5
+IF00365,2026-01-30 18:23:14,Salvador,Al Dente,Italiana,39.97,4.99,69,late,pix,3
+IF00366,2026-02-03 19:52:39,Recife,Hommous & Cia,Árabe,22.73,4.99,51,delivered,credit,
+IF00367,2026-05-12 21:36:40,Belo Horizonte,Cantina 12,Italiana,80.03,11.99,44,delivered,credit,5
+IF00368,2026-03-31 12:50:11,Porto Alegre,Fit Box,Saudável,39.56,4.99,52,delivered,credit,5
+IF00369,2026-08-04 19:48:40,Goiânia,Al Dente,Italiana,30.1,11.99,33,delivered,voucher,4
+IF00370,2026-07-27 20:00:46,Belo Horizonte,Taco Livre,Mexicana,22.15,0.0,51,delivered,credit,4
+IF00371,2026-05-26 11:58:35,São Paulo,Burger Lab,Hambúrguer,37.35,11.99,27,delivered,credit,
+IF00372,2026-05-04 13:16:51,São Paulo,Napoli 30min,Pizza,25.56,11.99,31,delivered,debit,5
+IF00373,2026-06-07 12:02:46,Curitiba,Napoli 30min,Pizza,53.78,0.0,,cancelled,credit,
+IF00374,2026-01-10 13:40:49,Belo Horizonte,Doce Hora,Doce,40.77,11.99,20,delivered,credit,5
+IF00375,2026-07-25 11:28:48,Porto Alegre,Nonna Pasta,Italiana,42.45,4.99,45,delivered,credit,5
+IF00376,2026-07-28 11:16:05,São Paulo,Sahara Express,Árabe,31.86,4.99,46,late,debit,4
+IF00377,2026-05-11 21:15:04,São Paulo,Curry Box,Indiana,26.67,11.99,43,late,debit,
+IF00378,2026-01-17 19:49:19,Rio de Janeiro,Esfiha do Zé,Árabe,24.71,8.99,27,delivered,credit,4
+IF00379,2026-02-01 12:15:39,Porto Alegre,Forno Noturno,Pizza,43.31,8.99,48,delivered,voucher,
+IF00380,2026-09-09 18:39:46,São Paulo,Burger Lab,Hambúrguer,45.08,11.99,40,late,credit,3
+IF00381,2026-02-08 11:24:42,Rio de Janeiro,Taj Delivery,Indiana,11.09,6.99,24,delivered,debit,
+IF00382,2026-06-15 12:31:55,Goiânia,Pão & Fogo,Hambúrguer,39.73,4.99,70,late,pix,5
+IF00383,2026-06-24 18:31:25,Rio de Janeiro,Mineiro Express,Brasileira,45.64,6.99,53,late,pix,5
+IF00384,2026-05-28 21:14:09,Campinas,El Paso Delivery,Mexicana,29.93,4.99,23,delivered,voucher,5
+IF00385,2026-08-11 12:19:58,Belo Horizonte,Pão & Fogo,Hambúrguer,42.42,4.99,51,late,credit,5
+IF00386,2026-03-15 21:27:58,Rio de Janeiro,Forno Noturno,Pizza,26.62,0.0,,cancelled,credit,
+IF00387,2026-08-03 19:19:28,Porto Alegre,Forno Noturno,Pizza,106.0,6.99,27,delivered,credit,3
+IF00388,2026-05-03 18:38:14,Brasília,Sabor da Casa,Brasileira,34.16,4.99,62,late,credit,4
+IF00389,2026-08-04 18:14:47,São Paulo,Pão & Fogo,Hambúrguer,43.2,4.99,22,delivered,debit,5
+IF00390,2026-07-31 19:49:02,Campinas,Hommous & Cia,Árabe,58.81,6.99,43,delivered,voucher,5
+IF00391,2026-03-01 11:28:29,Curitiba,Al Dente,Italiana,27.0,11.99,,cancelled,voucher,
+IF00392,2026-06-09 19:49:52,São Paulo,Mineiro Express,Brasileira,30.02,6.99,21,delivered,debit,4
+IF00393,2026-03-15 12:25:26,Porto Alegre,Nikkei Go,Japonesa,31.82,8.99,55,delivered,pix,4
+IF00394,2026-03-09 12:05:07,Rio de Janeiro,El Paso Delivery,Mexicana,56.55,0.0,,cancelled,debit,
+IF00395,2026-07-18 19:02:49,Salvador,Cantina 12,Italiana,24.97,4.99,28,delivered,pix,4
+IF00396,2026-06-01 20:40:11,Rio de Janeiro,Doce Hora,Doce,19.93,6.99,,cancelled,debit,
+IF00397,2026-09-14 11:15:13,Campinas,Salada Urbana,Saudável,41.71,8.99,66,late,pix,
+IF00398,2026-04-21 21:03:11,Campinas,Pão & Fogo,Hambúrguer,16.72,0.0,27,delivered,voucher,5
+IF00399,2026-03-01 11:26:11,Rio de Janeiro,Guaca-Guaca,Mexicana,25.4,11.99,54,delivered,voucher,4
+IF00400,2026-06-19 18:23:57,Goiânia,Sahara Express,Árabe,33.11,8.99,53,delivered,credit,
+IF00401,2026-08-04 19:33:13,Porto Alegre,Wasabi Fast,Japonesa,54.04,0.0,54,delivered,pix,5
+IF00402,2026-08-11 18:38:54,Porto Alegre,Salada Urbana,Saudável,27.15,11.99,60,late,debit,5
+IF00403,2026-04-07 20:56:39,Porto Alegre,Al Dente,Italiana,27.36,4.99,18,delivered,pix,
+IF00404,2026-01-28 19:21:22,Brasília,Smash House,Hambúrguer,41.62,0.0,30,delivered,credit,4
+IF00405,2026-03-04 11:43:21,Curitiba,Guaca-Guaca,Mexicana,23.47,11.99,19,delivered,credit,4
+IF00406,2026-09-08 12:09:40,Campinas,Salada Urbana,Saudável,29.21,6.99,47,delivered,pix,5
+IF00407,2026-01-14 19:13:36,Rio de Janeiro,Nonna Pasta,Italiana,74.76,6.99,,cancelled,credit,
+IF00408,2026-03-30 19:36:38,Brasília,Guaca-Guaca,Mexicana,29.65,6.99,38,delivered,pix,4
+IF00409,2026-06-08 20:13:33,Campinas,Salada Urbana,Saudável,30.82,0.0,30,delivered,pix,5
+IF00410,2026-06-28 13:59:30,Campinas,Salada Urbana,Saudável,53.34,6.99,27,delivered,credit,3
+IF00411,2026-03-05 19:00:19,Porto Alegre,Pão & Fogo,Hambúrguer,39.64,8.99,20,delivered,credit,
+IF00412,2026-06-18 13:12:12,Recife,Mineiro Express,Brasileira,25.73,8.99,25,delivered,pix,4
+IF00413,2026-02-26 21:13:34,Goiânia,Sabor da Casa,Brasileira,30.89,4.99,56,late,credit,4
+IF00414,2026-01-30 20:08:01,Campinas,Curry Box,Indiana,34.14,0.0,62,late,debit,
+IF00415,2026-07-06 20:19:21,Porto Alegre,Pizza da Esquina,Pizza,85.93,11.99,43,late,credit,5
+IF00416,2026-02-23 20:29:19,Brasília,Nikkei Go,Japonesa,59.83,8.99,,cancelled,credit,
+IF00417,2026-07-10 18:25:11,São Paulo,Burger Lab,Hambúrguer,57.99,6.99,67,late,pix,3
+IF00418,2026-07-02 18:38:36,Curitiba,Sahara Express,Árabe,24.94,6.99,52,delivered,credit,5
+IF00419,2026-07-20 20:04:21,Rio de Janeiro,Taj Delivery,Indiana,17.53,8.99,45,delivered,credit,4
+IF00420,2026-03-04 20:37:38,Salvador,Forno Noturno,Pizza,34.32,8.99,29,delivered,voucher,5
+IF00421,2026-06-21 19:31:41,Salvador,Sushi Bar 7,Japonesa,41.93,4.99,75,late,credit,5
+IF00422,2026-08-21 19:12:13,Belo Horizonte,Pizza da Esquina,Pizza,44.93,11.99,37,delivered,credit,5
+IF00423,2026-07-30 21:54:08,Recife,Wasabi Fast,Japonesa,32.18,6.99,62,late,credit,5
+IF00424,2026-07-20 21:53:59,Curitiba,Pizza da Esquina,Pizza,30.41,6.99,26,delivered,pix,3
+IF00425,2026-03-15 19:05:08,Porto Alegre,Pizza da Esquina,Pizza,44.17,8.99,45,delivered,debit,5
+IF00426,2026-04-30 19:11:27,Brasília,Cantina 12,Italiana,44.31,4.99,50,delivered,credit,5
+IF00427,2026-07-12 20:07:37,Goiânia,Mineiro Express,Brasileira,34.95,4.99,71,late,voucher,4
+IF00428,2026-05-10 12:30:40,Curitiba,Wasabi Fast,Japonesa,15.04,11.99,57,late,pix,4
+IF00429,2026-08-08 19:22:51,Belo Horizonte,Fit Box,Saudável,30.25,11.99,37,delivered,pix,5
+IF00430,2026-06-03 11:51:47,Recife,Fit Box,Saudável,41.87,0.0,46,late,credit,4
+IF00431,2026-03-03 11:38:11,Rio de Janeiro,Curry Box,Indiana,44.48,4.99,34,delivered,credit,4
+IF00432,2026-03-20 12:38:59,Campinas,Cantina 12,Italiana,51.03,8.99,33,delivered,credit,5
+IF00433,2026-05-20 11:48:52,Recife,Pão & Fogo,Hambúrguer,25.63,8.99,48,delivered,credit,5
+IF00434,2026-05-19 20:09:33,Salvador,Doce Hora,Doce,66.58,6.99,51,delivered,voucher,3
+IF00435,2026-06-25 18:17:17,Goiânia,Hommous & Cia,Árabe,50.07,11.99,43,delivered,credit,5
+IF00436,2026-04-07 19:20:35,Brasília,Masala Express,Indiana,20.77,11.99,44,late,credit,4
+IF00437,2026-02-03 12:38:42,São Paulo,Taco Livre,Mexicana,53.97,11.99,25,delivered,voucher,3
+IF00438,2026-03-02 12:44:11,Belo Horizonte,Pizza da Esquina,Pizza,25.6,0.0,,cancelled,debit,
+IF00439,2026-05-16 19:10:49,Brasília,Guaca-Guaca,Mexicana,31.96,0.0,,cancelled,credit,
+IF00440,2026-07-25 13:11:41,Belo Horizonte,Napoli 30min,Pizza,36.34,8.99,31,delivered,credit,3
+IF00441,2026-08-21 18:01:57,São Paulo,Sushi Bar 7,Japonesa,36.41,0.0,20,delivered,credit,4
+IF00442,2026-09-06 20:27:25,Recife,Doce Hora,Doce,59.09,0.0,62,late,voucher,5
+IF00443,2026-06-09 19:25:03,Goiânia,Cantina 12,Italiana,18.56,6.99,23,delivered,credit,4
+IF00444,2026-06-07 13:44:24,Recife,Pizza da Esquina,Pizza,83.81,6.99,49,delivered,debit,
+IF00445,2026-05-07 11:31:24,São Paulo,Smash House,Hambúrguer,17.56,6.99,49,delivered,pix,5
+IF00446,2026-07-31 11:07:13,São Paulo,Hommous & Cia,Árabe,74.64,8.99,,cancelled,voucher,
+IF00447,2026-01-23 12:47:09,Porto Alegre,Forno Noturno,Pizza,36.28,11.99,20,delivered,pix,5
+IF00448,2026-08-26 12:39:10,Salvador,Forno Noturno,Pizza,48.26,11.99,32,delivered,debit,
+IF00449,2026-06-20 19:07:43,Brasília,Esfiha do Zé,Árabe,39.17,4.99,,cancelled,voucher,
+IF00450,2026-03-18 18:48:26,Rio de Janeiro,Forno Noturno,Pizza,24.37,4.99,46,delivered,credit,5
+IF00451,2026-03-26 19:01:56,Brasília,Sushi Bar 7,Japonesa,36.23,4.99,,cancelled,voucher,
+IF00452,2026-04-20 12:09:40,Belo Horizonte,El Paso Delivery,Mexicana,26.53,4.99,29,delivered,credit,3
+IF00453,2026-07-02 18:26:00,Salvador,Salada Urbana,Saudável,38.67,11.99,24,delivered,credit,5
+IF00454,2026-05-26 13:03:12,Brasília,Fit Box,Saudável,25.75,8.99,,cancelled,credit,
+IF00455,2026-07-10 11:18:13,Salvador,Forno Noturno,Pizza,33.93,8.99,20,delivered,voucher,
+IF00456,2026-03-05 20:04:57,São Paulo,Pizza da Esquina,Pizza,25.33,11.99,38,delivered,credit,5
+IF00457,2026-02-24 13:15:47,Brasília,Smash House,Hambúrguer,33.64,4.99,22,delivered,debit,5
+IF00458,2026-04-06 20:24:23,São Paulo,Forno Noturno,Pizza,13.44,6.99,55,late,voucher,4
+IF00459,2026-08-27 20:26:10,Rio de Janeiro,Feijão & Cia,Brasileira,47.35,6.99,28,delivered,credit,5
+IF00460,2026-08-03 12:54:33,Goiânia,Masala Express,Indiana,5.36,11.99,48,delivered,debit,4
+IF00461,2026-03-22 13:58:36,Rio de Janeiro,Pão & Fogo,Hambúrguer,62.06,0.0,20,delivered,pix,5
+IF00462,2026-08-24 12:31:15,Curitiba,Churros & Shake,Doce,47.05,4.99,26,delivered,pix,4
+IF00463,2026-08-28 12:54:36,Curitiba,Feijão & Cia,Brasileira,31.41,8.99,29,delivered,debit,4
+IF00464,2026-06-24 19:33:02,Campinas,Feijão & Cia,Brasileira,19.39,11.99,52,delivered,pix,4
+IF00465,2026-07-10 11:56:03,Campinas,Masala Express,Indiana,22.8,11.99,,cancelled,credit,
+IF00466,2026-04-19 12:08:21,São Paulo,Esfiha do Zé,Árabe,29.15,8.99,75,late,credit,5
+IF00467,2026-08-09 21:17:03,Rio de Janeiro,Sahara Express,Árabe,21.87,8.99,50,delivered,voucher,3
+IF00468,2026-02-07 19:12:57,Campinas,Cantina 12,Italiana,33.02,0.0,24,delivered,credit,3
+IF00469,2026-01-16 21:18:26,São Paulo,Salada Urbana,Saudável,80.68,4.99,48,delivered,pix,5
+IF00470,2026-06-25 13:26:37,São Paulo,El Paso Delivery,Mexicana,25.97,6.99,49,delivered,voucher,5
+IF00471,2026-06-10 12:10:50,Belo Horizonte,Fit Box,Saudável,25.55,6.99,41,late,credit,4
+IF00472,2026-05-31 21:11:11,Campinas,Masala Express,Indiana,85.88,4.99,,cancelled,credit,
+IF00473,2026-08-18 12:16:23,São Paulo,Nikkei Go,Japonesa,20.97,0.0,38,delivered,debit,4
+IF00474,2026-03-08 18:58:01,Goiânia,Nonna Pasta,Italiana,31.59,4.99,67,late,voucher,4
+IF00475,2026-09-04 18:57:18,Rio de Janeiro,Al Dente,Italiana,85.79,8.99,,cancelled,pix,
+IF00476,2026-03-05 21:19:01,Campinas,Green Bowl,Saudável,22.71,8.99,40,delivered,voucher,
+IF00477,2026-04-15 18:01:05,Recife,Burger Lab,Hambúrguer,38.61,0.0,50,delivered,voucher,5
+IF00478,2026-07-27 19:09:45,Curitiba,Curry Box,Indiana,56.45,6.99,18,delivered,debit,4
+IF00479,2026-08-05 20:51:28,São Paulo,Cantina 12,Italiana,15.8,8.99,,cancelled,debit,
+IF00480,2026-03-19 12:13:19,Brasília,Napoli 30min,Pizza,31.57,6.99,42,late,pix,5
+IF00481,2026-04-04 19:35:29,Belo Horizonte,Mineiro Express,Brasileira,71.03,4.99,30,delivered,voucher,5
+IF00482,2026-09-14 18:35:47,São Paulo,Salada Urbana,Saudável,35.55,0.0,27,delivered,debit,5
+IF00483,2026-04-06 19:31:58,Salvador,Wasabi Fast,Japonesa,44.35,0.0,35,delivered,credit,3
+IF00484,2026-09-05 18:44:52,Curitiba,Taj Delivery,Indiana,20.04,11.99,19,delivered,pix,4
+IF00485,2026-07-06 12:10:03,Rio de Janeiro,Forno Noturno,Pizza,27.05,6.99,,cancelled,credit,
+IF00486,2026-04-14 21:49:40,Curitiba,El Paso Delivery,Mexicana,27.94,4.99,52,delivered,credit,4
+IF00487,2026-02-23 19:34:37,Salvador,El Paso Delivery,Mexicana,32.02,4.99,,cancelled,credit,
+IF00488,2026-03-29 19:06:13,Brasília,Hommous & Cia,Árabe,25.99,4.99,53,delivered,voucher,5
+IF00489,2026-03-13 12:59:01,Belo Horizonte,Wasabi Fast,Japonesa,35.77,6.99,26,delivered,credit,5
+IF00490,2026-04-28 12:08:54,Porto Alegre,Napoli 30min,Pizza,59.19,6.99,26,delivered,pix,3
+IF00491,2026-01-26 19:12:06,São Paulo,Wasabi Fast,Japonesa,41.91,6.99,20,delivered,pix,
+IF00492,2026-04-17 13:11:42,Brasília,Wasabi Fast,Japonesa,32.26,6.99,75,late,voucher,4
+IF00493,2026-01-12 12:33:13,Curitiba,Pão & Fogo,Hambúrguer,13.06,0.0,24,delivered,debit,5
+IF00494,2026-02-28 20:11:53,Porto Alegre,Sahara Express,Árabe,30.55,4.99,50,delivered,pix,3
+IF00495,2026-07-08 20:45:18,São Paulo,Fit Box,Saudável,38.32,6.99,49,delivered,debit,
+IF00496,2026-04-30 20:35:26,Porto Alegre,Masala Express,Indiana,11.97,4.99,,cancelled,debit,
+IF00497,2026-02-27 20:25:28,São Paulo,Esfiha do Zé,Árabe,38.63,0.0,,cancelled,debit,
+IF00498,2026-02-07 12:23:12,Porto Alegre,Churros & Shake,Doce,26.91,8.99,25,delivered,debit,5
+IF00499,2026-07-28 18:22:30,Brasília,El Paso Delivery,Mexicana,22.22,0.0,54,late,credit,4
+IF00500,2026-09-17 12:43:01,São Paulo,Sabor da Casa,Brasileira,66.04,6.99,27,delivered,pix,5
+IF00501,2026-06-04 13:42:31,Brasília,Al Dente,Italiana,36.23,6.99,52,delivered,pix,3
+IF00502,2026-08-28 20:02:02,Belo Horizonte,Açaí do Parque,Doce,17.59,6.99,28,delivered,debit,4
+IF00503,2026-09-02 20:30:35,Brasília,Salada Urbana,Saudável,63.72,8.99,54,late,credit,5
+IF00504,2026-03-11 11:53:23,Rio de Janeiro,Guaca-Guaca,Mexicana,23.28,0.0,39,delivered,credit,5
+IF00505,2026-05-11 13:15:41,Rio de Janeiro,Açaí do Parque,Doce,31.23,0.0,,cancelled,pix,
+IF00506,2026-01-24 19:29:42,São Paulo,Sahara Express,Árabe,70.06,8.99,55,late,voucher,
+IF00507,2026-06-19 19:36:06,Goiânia,Mineiro Express,Brasileira,47.68,4.99,39,delivered,credit,5
+IF00508,2026-09-16 13:40:54,Rio de Janeiro,Curry Box,Indiana,51.63,6.99,21,delivered,credit,5
+IF00509,2026-06-26 12:17:04,Porto Alegre,Taj Delivery,Indiana,40.83,8.99,31,delivered,credit,3
+IF00510,2026-06-14 21:12:26,Brasília,Cantina 12,Italiana,29.93,8.99,53,delivered,voucher,3
+IF00511,2026-05-22 20:59:40,Recife,Pizza da Esquina,Pizza,39.08,8.99,54,delivered,credit,3
+IF00512,2026-06-07 12:54:27,Curitiba,Sahara Express,Árabe,22.3,0.0,31,delivered,credit,4
+IF00513,2026-05-07 19:07:09,Salvador,Guaca-Guaca,Mexicana,26.7,6.99,47,delivered,pix,5
+IF00514,2026-05-17 11:50:51,São Paulo,Smash House,Hambúrguer,24.98,0.0,49,delivered,credit,3
+IF00515,2026-07-10 19:42:42,Rio de Janeiro,Taj Delivery,Indiana,59.96,4.99,33,delivered,voucher,
+IF00516,2026-05-13 21:31:56,Curitiba,Nikkei Go,Japonesa,16.6,6.99,59,late,credit,5
+IF00517,2026-04-24 12:17:28,São Paulo,Doce Hora,Doce,21.85,0.0,49,delivered,credit,5
+IF00518,2026-05-27 13:56:50,Belo Horizonte,Al Dente,Italiana,62.15,6.99,,cancelled,pix,
+IF00519,2026-05-07 11:16:35,São Paulo,Taj Delivery,Indiana,28.6,6.99,,cancelled,pix,
+IF00520,2026-01-09 19:58:25,Campinas,Al Dente,Italiana,48.52,4.99,46,delivered,pix,5
+IF00521,2026-08-04 20:59:53,Campinas,Taco Livre,Mexicana,29.27,0.0,28,delivered,credit,5
+IF00522,2026-08-25 19:44:01,Recife,Doce Hora,Doce,64.32,4.99,66,late,debit,4
+IF00523,2026-03-02 12:10:15,Salvador,Burger Lab,Hambúrguer,55.51,4.99,44,delivered,debit,4
+IF00524,2026-05-29 19:12:05,Rio de Janeiro,Pizza da Esquina,Pizza,33.76,8.99,,cancelled,credit,
+IF00525,2026-02-19 13:29:12,Goiânia,Mineiro Express,Brasileira,10.58,0.0,63,late,credit,5
+IF00526,2026-01-12 12:45:33,Goiânia,Wasabi Fast,Japonesa,19.58,8.99,49,delivered,credit,
+IF00527,2026-09-15 18:24:08,Goiânia,Burger Lab,Hambúrguer,34.23,4.99,36,delivered,credit,4
+IF00528,2026-05-19 18:15:39,Brasília,Açaí do Parque,Doce,34.8,11.99,47,delivered,credit,
+IF00529,2026-07-20 13:45:27,Goiânia,Sahara Express,Árabe,46.76,0.0,53,delivered,credit,
+IF00530,2026-01-07 11:16:32,Campinas,Green Bowl,Saudável,41.78,8.99,61,late,voucher,5
+IF00531,2026-06-27 20:56:29,Rio de Janeiro,Napoli 30min,Pizza,24.14,11.99,65,late,pix,3
+IF00532,2026-08-13 19:18:57,Curitiba,Napoli 30min,Pizza,77.62,6.99,51,delivered,debit,4
+IF00533,2026-02-01 20:12:09,Recife,Napoli 30min,Pizza,35.61,8.99,,cancelled,pix,
+IF00534,2026-09-10 21:29:31,São Paulo,Salada Urbana,Saudável,24.1,4.99,36,delivered,voucher,4
+IF00535,2026-01-07 13:33:49,Recife,Taco Livre,Mexicana,40.19,0.0,,cancelled,debit,
+IF00536,2026-03-08 18:25:23,Campinas,Nikkei Go,Japonesa,152.88,6.99,27,delivered,debit,
+IF00537,2026-06-22 11:02:41,Salvador,Salada Urbana,Saudável,43.5,11.99,26,delivered,credit,3
+IF00538,2026-07-19 12:05:25,Brasília,Esfiha do Zé,Árabe,28.54,8.99,,cancelled,pix,
+IF00539,2026-03-24 18:07:19,São Paulo,Burger Lab,Hambúrguer,36.15,6.99,26,delivered,voucher,3
+IF00540,2026-05-22 20:36:38,Curitiba,Smash House,Hambúrguer,28.68,6.99,29,delivered,pix,5
+IF00541,2026-03-25 13:59:31,Rio de Janeiro,Al Dente,Italiana,38.85,0.0,36,delivered,credit,3
+IF00542,2026-05-12 18:33:27,Goiânia,Forno Noturno,Pizza,31.01,0.0,,cancelled,voucher,
+IF00543,2026-08-30 12:42:46,Curitiba,Wasabi Fast,Japonesa,39.28,6.99,55,delivered,pix,
+IF00544,2026-04-08 12:53:25,Porto Alegre,Wasabi Fast,Japonesa,20.06,6.99,38,delivered,debit,5
+IF00545,2026-04-23 12:11:05,Brasília,Curry Box,Indiana,59.24,0.0,45,delivered,pix,3
+IF00546,2026-07-31 20:55:42,São Paulo,Feijão & Cia,Brasileira,35.63,11.99,41,delivered,debit,5
+IF00547,2026-04-12 11:07:52,São Paulo,El Paso Delivery,Mexicana,51.96,4.99,33,delivered,credit,5
+IF00548,2026-09-04 12:27:01,Rio de Janeiro,Nikkei Go,Japonesa,51.02,8.99,48,delivered,voucher,
+IF00549,2026-01-31 19:21:00,São Paulo,Burger Lab,Hambúrguer,33.44,8.99,75,late,pix,5
+IF00550,2026-05-03 20:45:03,Belo Horizonte,Salada Urbana,Saudável,38.01,6.99,73,late,debit,
+IF00551,2026-08-22 19:44:27,São Paulo,Salada Urbana,Saudável,21.77,4.99,68,late,credit,4
+IF00552,2026-03-13 20:56:18,Campinas,Taj Delivery,Indiana,48.54,8.99,41,delivered,credit,4
+IF00553,2026-03-12 20:11:12,Porto Alegre,El Paso Delivery,Mexicana,21.7,8.99,49,delivered,pix,4
+IF00554,2026-03-27 19:11:52,Rio de Janeiro,Sabor da Casa,Brasileira,64.0,0.0,39,delivered,pix,5
+IF00555,2026-07-05 19:49:02,Rio de Janeiro,Cantina 12,Italiana,58.6,4.99,50,delivered,pix,3
+IF00556,2026-02-26 12:52:35,Brasília,Fit Box,Saudável,79.58,6.99,28,delivered,voucher,5
+IF00557,2026-07-10 12:21:52,Porto Alegre,Fit Box,Saudável,33.77,0.0,33,delivered,credit,5
+IF00558,2026-08-05 19:23:40,São Paulo,Al Dente,Italiana,42.53,11.99,44,delivered,debit,4
+IF00559,2026-01-20 19:28:09,Campinas,Açaí do Parque,Doce,76.6,11.99,42,late,debit,
+IF00560,2026-03-23 11:57:36,Belo Horizonte,Pizza da Esquina,Pizza,59.44,11.99,36,delivered,voucher,5
+IF00561,2026-01-09 19:52:17,Porto Alegre,El Paso Delivery,Mexicana,80.88,4.99,43,delivered,voucher,4
+IF00562,2026-07-31 19:49:12,Salvador,Taj Delivery,Indiana,38.37,4.99,,cancelled,voucher,
+IF00563,2026-06-13 21:33:21,São Paulo,Guaca-Guaca,Mexicana,46.35,0.0,72,late,debit,4
+IF00564,2026-05-17 19:40:32,São Paulo,Nonna Pasta,Italiana,32.53,0.0,46,delivered,debit,5
+IF00565,2026-05-04 21:22:19,Goiânia,Hommous & Cia,Árabe,16.9,11.99,,cancelled,credit,
+IF00566,2026-06-21 12:33:37,Curitiba,Açaí do Parque,Doce,12.53,8.99,24,delivered,pix,5
+IF00567,2026-04-24 20:28:04,São Paulo,Nikkei Go,Japonesa,29.58,11.99,53,delivered,voucher,5
+IF00568,2026-08-06 20:52:10,Salvador,Salada Urbana,Saudável,26.72,8.99,26,delivered,pix,5
+IF00569,2026-07-13 12:58:07,Belo Horizonte,Pão & Fogo,Hambúrguer,41.79,0.0,41,delivered,credit,3
+IF00570,2026-06-04 18:31:01,Belo Horizonte,Nikkei Go,Japonesa,47.56,11.99,44,delivered,credit,
+IF00571,2026-01-06 20:07:35,São Paulo,Burger Lab,Hambúrguer,14.85,8.99,,cancelled,voucher,
+IF00572,2026-09-05 19:53:46,Recife,El Paso Delivery,Mexicana,49.26,4.99,50,delivered,debit,5
+IF00573,2026-08-02 12:24:14,Campinas,Forno Noturno,Pizza,58.41,0.0,46,delivered,credit,5
+IF00574,2026-03-09 18:41:35,Recife,Feijão & Cia,Brasileira,41.81,11.99,,cancelled,credit,
+IF00575,2026-04-07 12:01:17,Curitiba,Salada Urbana,Saudável,49.07,11.99,46,delivered,voucher,
+IF00576,2026-01-16 20:21:27,Belo Horizonte,Esfiha do Zé,Árabe,37.9,0.0,25,delivered,credit,5
+IF00577,2026-06-11 12:26:43,São Paulo,Forno Noturno,Pizza,18.87,6.99,29,delivered,credit,
+IF00578,2026-06-19 19:16:24,São Paulo,Churros & Shake,Doce,23.22,11.99,55,delivered,debit,5
+IF00579,2026-08-01 20:04:30,Rio de Janeiro,Sushi Bar 7,Japonesa,40.48,0.0,33,delivered,credit,5
+IF00580,2026-04-19 21:50:09,Belo Horizonte,Curry Box,Indiana,58.6,8.99,53,delivered,voucher,3
+IF00581,2026-02-04 11:59:58,Salvador,El Paso Delivery,Mexicana,35.37,8.99,40,delivered,voucher,4
+IF00582,2026-02-09 21:19:05,São Paulo,El Paso Delivery,Mexicana,33.38,4.99,,cancelled,voucher,
+IF00583,2026-06-16 21:56:43,Campinas,Guaca-Guaca,Mexicana,21.78,6.99,39,delivered,pix,5
+IF00584,2026-01-07 20:57:00,Salvador,Pizza da Esquina,Pizza,45.93,8.99,43,delivered,pix,5
+IF00585,2026-03-09 20:22:52,São Paulo,Nonna Pasta,Italiana,28.81,8.99,,cancelled,pix,
+IF00586,2026-01-09 20:14:47,Curitiba,Wasabi Fast,Japonesa,21.85,6.99,30,delivered,credit,
+IF00587,2026-01-23 19:17:31,Rio de Janeiro,Pão & Fogo,Hambúrguer,27.68,8.99,25,delivered,debit,5
+IF00588,2026-02-07 12:37:08,Recife,Forno Noturno,Pizza,45.5,11.99,,cancelled,voucher,
+IF00589,2026-05-14 11:43:35,São Paulo,Guaca-Guaca,Mexicana,30.81,0.0,,cancelled,debit,
+IF00590,2026-08-31 21:31:23,Rio de Janeiro,Doce Hora,Doce,37.11,4.99,,cancelled,credit,
+IF00591,2026-07-24 11:12:21,Curitiba,Doce Hora,Doce,17.22,0.0,32,delivered,credit,5
+IF00592,2026-02-23 12:01:30,São Paulo,Smash House,Hambúrguer,34.68,6.99,34,delivered,credit,5
+IF00593,2026-02-11 13:49:38,Brasília,Sabor da Casa,Brasileira,54.12,8.99,75,late,debit,3
+IF00594,2026-03-11 12:03:58,Campinas,Hommous & Cia,Árabe,42.54,0.0,,cancelled,pix,
+IF00595,2026-02-23 19:39:48,São Paulo,Al Dente,Italiana,22.05,11.99,18,delivered,voucher,5
+IF00596,2026-08-25 11:33:21,São Paulo,Taj Delivery,Indiana,39.49,0.0,,cancelled,pix,
+IF00597,2026-09-22 12:16:22,Brasília,Masala Express,Indiana,29.33,8.99,29,delivered,credit,3
+IF00598,2026-06-13 19:37:56,Recife,Guaca-Guaca,Mexicana,37.98,8.99,57,late,pix,4
+IF00599,2026-02-03 12:15:32,Recife,Al Dente,Italiana,64.03,0.0,,cancelled,credit,
+IF00600,2026-02-09 13:21:12,Goiânia,Pão & Fogo,Hambúrguer,55.96,8.99,,cancelled,credit,
+IF00601,2026-08-07 18:21:10,Recife,Taj Delivery,Indiana,68.63,0.0,32,delivered,credit,5
+IF00602,2026-04-20 19:25:11,Curitiba,Smash House,Hambúrguer,20.3,11.99,25,delivered,voucher,5
+IF00603,2026-04-16 13:18:11,São Paulo,Esfiha do Zé,Árabe,27.28,4.99,39,delivered,credit,4
+IF00604,2026-01-15 12:53:43,São Paulo,Mineiro Express,Brasileira,16.26,0.0,39,delivered,credit,4
+IF00605,2026-08-15 12:56:45,Brasília,Sahara Express,Árabe,24.96,6.99,,cancelled,voucher,
+IF00606,2026-04-11 11:54:34,Goiânia,Doce Hora,Doce,30.37,4.99,21,delivered,voucher,4
+IF00607,2026-09-02 12:50:42,Campinas,Curry Box,Indiana,40.71,8.99,50,delivered,credit,5
+IF00608,2026-09-15 20:30:17,Porto Alegre,Sahara Express,Árabe,43.52,11.99,40,late,credit,4
+IF00609,2026-03-26 19:59:53,São Paulo,Açaí do Parque,Doce,29.48,4.99,23,delivered,credit,5
+IF00610,2026-08-11 19:28:29,São Paulo,Masala Express,Indiana,33.7,8.99,58,late,debit,3
+IF00611,2026-02-16 19:18:53,Rio de Janeiro,Smash House,Hambúrguer,36.71,0.0,35,delivered,pix,3
+IF00612,2026-04-15 19:43:21,São Paulo,Hommous & Cia,Árabe,17.16,6.99,30,delivered,voucher,4
+IF00613,2026-07-01 18:50:25,São Paulo,El Paso Delivery,Mexicana,17.11,4.99,48,delivered,debit,5
+IF00614,2026-04-11 19:27:49,Rio de Janeiro,Fit Box,Saudável,65.75,8.99,46,delivered,credit,3
+IF00615,2026-09-17 11:51:42,Campinas,Taj Delivery,Indiana,54.1,8.99,45,delivered,voucher,5
+IF00616,2026-03-17 11:09:21,Rio de Janeiro,Taco Livre,Mexicana,47.56,11.99,54,delivered,debit,5
+IF00617,2026-03-01 20:21:36,Curitiba,Wasabi Fast,Japonesa,30.51,11.99,29,delivered,voucher,
+IF00618,2026-07-21 12:18:13,São Paulo,Salada Urbana,Saudável,19.98,0.0,47,delivered,pix,
+IF00619,2026-03-26 19:07:08,Rio de Janeiro,Forno Noturno,Pizza,38.63,0.0,42,delivered,credit,4
+IF00620,2026-03-27 20:38:36,Belo Horizonte,El Paso Delivery,Mexicana,83.25,11.99,,cancelled,debit,
+IF00621,2026-02-06 20:52:25,São Paulo,Guaca-Guaca,Mexicana,40.75,6.99,54,delivered,voucher,5
+IF00622,2026-07-01 20:44:53,Porto Alegre,Feijão & Cia,Brasileira,46.18,11.99,29,delivered,debit,4
+IF00623,2026-02-22 12:25:44,Belo Horizonte,Fit Box,Saudável,57.54,4.99,,cancelled,voucher,
+IF00624,2026-09-14 13:26:48,Salvador,Taco Livre,Mexicana,49.66,8.99,28,delivered,debit,5
+IF00625,2026-07-19 20:21:47,São Paulo,Sabor da Casa,Brasileira,33.23,0.0,,cancelled,credit,
+IF00626,2026-08-30 19:31:29,Porto Alegre,Sushi Bar 7,Japonesa,17.49,4.99,46,delivered,credit,4
+IF00627,2026-03-09 18:34:47,Recife,Sabor da Casa,Brasileira,33.4,0.0,35,delivered,credit,4
+IF00628,2026-08-19 13:44:03,Campinas,Sabor da Casa,Brasileira,53.72,0.0,62,late,voucher,5
+IF00629,2026-05-12 13:23:58,São Paulo,Sabor da Casa,Brasileira,29.31,8.99,19,delivered,pix,4
+IF00630,2026-03-31 12:02:26,Goiânia,Smash House,Hambúrguer,38.56,6.99,53,delivered,voucher,5
+IF00631,2026-04-24 13:06:22,Goiânia,Doce Hora,Doce,27.54,6.99,41,delivered,debit,
+IF00632,2026-04-02 12:16:06,Brasília,Guaca-Guaca,Mexicana,58.59,4.99,39,delivered,debit,5
+IF00633,2026-07-19 20:32:40,Rio de Janeiro,Sushi Bar 7,Japonesa,53.3,0.0,52,late,credit,
+IF00634,2026-02-04 12:08:23,Porto Alegre,Pão & Fogo,Hambúrguer,36.55,8.99,31,delivered,voucher,4
+IF00635,2026-05-27 12:20:41,Porto Alegre,Fit Box,Saudável,53.78,6.99,19,delivered,credit,5
+IF00636,2026-04-28 13:38:55,São Paulo,Burger Lab,Hambúrguer,31.98,8.99,18,delivered,pix,
+IF00637,2026-03-10 13:05:11,São Paulo,Pão & Fogo,Hambúrguer,55.91,4.99,33,delivered,debit,5
+IF00638,2026-08-10 13:11:38,São Paulo,Taco Livre,Mexicana,27.91,8.99,30,delivered,credit,5
+IF00639,2026-08-09 20:32:39,Belo Horizonte,Doce Hora,Doce,78.0,8.99,19,delivered,credit,5
+IF00640,2026-05-16 12:24:29,Curitiba,Masala Express,Indiana,29.69,11.99,68,late,debit,
+IF00641,2026-01-11 11:55:32,São Paulo,Burger Lab,Hambúrguer,48.63,8.99,44,delivered,debit,5
+IF00642,2026-08-02 12:56:02,Rio de Janeiro,Salada Urbana,Saudável,85.03,6.99,70,late,credit,5
+IF00643,2026-05-09 13:30:02,Salvador,Feijão & Cia,Brasileira,60.92,0.0,27,delivered,credit,5
+IF00644,2026-01-11 12:07:49,Rio de Janeiro,Taco Livre,Mexicana,27.01,0.0,71,late,debit,5
+IF00645,2026-07-19 21:37:19,Porto Alegre,Taco Livre,Mexicana,75.91,0.0,44,late,credit,4
+IF00646,2026-01-08 18:10:52,Goiânia,Pão & Fogo,Hambúrguer,36.34,8.99,51,delivered,debit,4
+IF00647,2026-04-16 12:31:11,São Paulo,Pizza da Esquina,Pizza,36.68,11.99,31,delivered,credit,3
+IF00648,2026-03-01 20:55:40,Rio de Janeiro,Smash House,Hambúrguer,25.42,8.99,25,delivered,voucher,4
+IF00649,2026-01-09 12:03:17,Curitiba,Burger Lab,Hambúrguer,19.08,0.0,,cancelled,voucher,
+IF00650,2026-09-04 20:48:21,Goiânia,Cantina 12,Italiana,41.32,6.99,38,delivered,debit,4
+IF00651,2026-02-25 19:00:29,Salvador,Açaí do Parque,Doce,59.04,4.99,19,delivered,credit,5
+IF00652,2026-08-04 20:42:12,Belo Horizonte,Esfiha do Zé,Árabe,60.54,6.99,,cancelled,credit,
+IF00653,2026-02-15 19:22:27,Rio de Janeiro,Salada Urbana,Saudável,34.68,0.0,42,delivered,credit,4
+IF00654,2026-01-21 21:08:31,Campinas,Al Dente,Italiana,50.8,11.99,,cancelled,credit,
+IF00655,2026-05-08 21:15:13,Goiânia,Fit Box,Saudável,43.49,0.0,28,delivered,credit,4
+IF00656,2026-03-09 20:42:08,Porto Alegre,Smash House,Hambúrguer,89.17,8.99,,cancelled,credit,
+IF00657,2026-06-29 12:24:58,Goiânia,Smash House,Hambúrguer,69.12,8.99,73,late,credit,5
+IF00658,2026-02-19 12:21:47,São Paulo,Guaca-Guaca,Mexicana,39.95,0.0,54,delivered,voucher,4
+IF00659,2026-04-12 21:54:24,Rio de Janeiro,Feijão & Cia,Brasileira,63.08,6.99,46,late,credit,5
+IF00660,2026-06-15 20:09:52,Belo Horizonte,Wasabi Fast,Japonesa,36.59,11.99,56,late,pix,5
+IF00661,2026-05-25 12:54:45,Rio de Janeiro,Masala Express,Indiana,42.73,4.99,69,late,credit,5
+IF00662,2026-01-31 13:59:55,Brasília,Napoli 30min,Pizza,47.01,4.99,19,delivered,debit,4
+IF00663,2026-05-29 12:18:44,Porto Alegre,Hommous & Cia,Árabe,38.13,6.99,55,delivered,credit,3
+IF00664,2026-08-19 12:44:30,Salvador,Fit Box,Saudável,30.31,4.99,50,late,voucher,3
+IF00665,2026-08-11 19:43:53,Salvador,Nikkei Go,Japonesa,29.61,0.0,25,delivered,voucher,5
+IF00666,2026-05-10 19:02:07,Goiânia,Doce Hora,Doce,24.75,11.99,,cancelled,debit,
+IF00667,2026-05-25 19:40:41,Brasília,Sushi Bar 7,Japonesa,35.06,0.0,,cancelled,pix,
+IF00668,2026-01-16 13:37:36,Salvador,Salada Urbana,Saudável,75.4,0.0,75,late,debit,5
+IF00669,2026-02-06 19:45:58,Recife,El Paso Delivery,Mexicana,66.99,8.99,19,delivered,debit,5
+IF00670,2026-03-09 21:48:48,Curitiba,Sushi Bar 7,Japonesa,18.89,0.0,49,late,pix,5
+IF00671,2026-01-25 12:08:36,Belo Horizonte,Nonna Pasta,Italiana,27.93,11.99,34,delivered,pix,3
+IF00672,2026-08-09 12:42:00,Rio de Janeiro,Cantina 12,Italiana,25.99,4.99,74,late,credit,4
+IF00673,2026-01-27 12:15:02,Curitiba,Taj Delivery,Indiana,25.95,4.99,26,delivered,credit,4
+IF00674,2026-02-12 19:35:16,São Paulo,El Paso Delivery,Mexicana,21.6,4.99,63,late,debit,4
+IF00675,2026-04-13 18:45:23,Curitiba,Napoli 30min,Pizza,42.08,11.99,28,delivered,debit,4
+IF00676,2026-02-13 13:17:07,São Paulo,Açaí do Parque,Doce,39.52,8.99,42,late,credit,3
+IF00677,2026-01-10 18:06:24,São Paulo,Taco Livre,Mexicana,19.81,6.99,55,delivered,voucher,5
+IF00678,2026-05-23 21:38:06,Porto Alegre,Hommous & Cia,Árabe,52.94,8.99,29,delivered,voucher,5
+IF00679,2026-03-11 20:16:00,Recife,Al Dente,Italiana,60.49,4.99,27,delivered,pix,5
+IF00680,2026-08-27 19:11:28,Porto Alegre,Sahara Express,Árabe,36.69,8.99,51,delivered,pix,4
+IF00681,2026-02-14 12:04:46,Belo Horizonte,Guaca-Guaca,Mexicana,29.33,11.99,21,delivered,voucher,
+IF00682,2026-09-22 19:59:46,Brasília,Green Bowl,Saudável,20.93,11.99,25,delivered,pix,5
+IF00683,2026-05-10 19:47:42,Porto Alegre,Doce Hora,Doce,68.18,11.99,,cancelled,voucher,
+IF00684,2026-04-30 21:11:04,Goiânia,Green Bowl,Saudável,32.51,6.99,,cancelled,debit,
+IF00685,2026-06-27 12:58:43,Belo Horizonte,Fit Box,Saudável,24.07,0.0,36,delivered,credit,4
+IF00686,2026-04-26 19:59:19,Porto Alegre,Sabor da Casa,Brasileira,40.96,8.99,69,late,voucher,
+IF00687,2026-01-07 12:22:56,Rio de Janeiro,Green Bowl,Saudável,48.77,0.0,24,delivered,voucher,4
+IF00688,2026-09-11 12:00:09,Campinas,Al Dente,Italiana,48.3,8.99,43,delivered,credit,4
+IF00689,2026-08-17 20:10:08,Brasília,Al Dente,Italiana,29.98,6.99,30,delivered,pix,
+IF00690,2026-01-21 19:10:42,Belo Horizonte,Forno Noturno,Pizza,23.42,6.99,,cancelled,debit,
+IF00691,2026-06-20 12:48:48,Recife,Green Bowl,Saudável,52.49,8.99,,cancelled,pix,
+IF00692,2026-06-30 12:32:00,Brasília,Sushi Bar 7,Japonesa,47.96,6.99,45,delivered,debit,5
+IF00693,2026-08-12 12:15:39,Rio de Janeiro,Salada Urbana,Saudável,21.14,4.99,35,delivered,credit,4
+IF00694,2026-09-19 12:39:11,São Paulo,Doce Hora,Doce,41.14,0.0,,cancelled,debit,
+IF00695,2026-08-11 12:01:39,Rio de Janeiro,Sabor da Casa,Brasileira,30.13,4.99,32,delivered,voucher,5
+IF00696,2026-05-22 12:23:17,Salvador,Doce Hora,Doce,43.93,6.99,48,delivered,debit,5
+IF00697,2026-06-25 19:19:07,Rio de Janeiro,Pizza da Esquina,Pizza,48.89,6.99,41,delivered,voucher,4
+IF00698,2026-04-22 18:37:24,Recife,Nonna Pasta,Italiana,47.05,0.0,55,delivered,credit,5
+IF00699,2026-06-29 21:19:46,Campinas,Green Bowl,Saudável,33.67,11.99,27,delivered,debit,
+IF00700,2026-07-11 19:28:40,Porto Alegre,Cantina 12,Italiana,20.61,11.99,39,late,credit,4
+IF00701,2026-04-12 11:47:52,São Paulo,Guaca-Guaca,Mexicana,28.47,11.99,42,late,voucher,5
+IF00702,2026-04-09 13:00:10,Belo Horizonte,Churros & Shake,Doce,41.93,0.0,50,delivered,voucher,5
+IF00703,2026-05-22 18:35:07,Rio de Janeiro,El Paso Delivery,Mexicana,57.52,0.0,33,delivered,pix,4
+IF00704,2026-06-20 19:05:45,Salvador,Mineiro Express,Brasileira,54.75,4.99,,cancelled,voucher,
+IF00705,2026-07-06 11:14:46,Rio de Janeiro,Guaca-Guaca,Mexicana,80.4,11.99,24,delivered,credit,5
+IF00706,2026-06-20 13:17:13,Recife,Taj Delivery,Indiana,50.8,8.99,27,delivered,debit,5
+IF00707,2026-09-15 12:11:29,São Paulo,Esfiha do Zé,Árabe,22.84,4.99,36,delivered,credit,
+IF00708,2026-03-19 12:04:27,Salvador,Doce Hora,Doce,39.47,0.0,24,delivered,pix,3
+IF00709,2026-03-19 18:40:38,São Paulo,Mineiro Express,Brasileira,48.21,0.0,30,delivered,credit,5
+IF00710,2026-02-02 13:34:44,Rio de Janeiro,Guaca-Guaca,Mexicana,24.7,0.0,20,delivered,pix,
+IF00711,2026-01-05 12:58:14,Campinas,Cantina 12,Italiana,19.27,4.99,40,delivered,debit,4
+IF00712,2026-02-26 13:18:22,Curitiba,Sushi Bar 7,Japonesa,22.4,6.99,23,delivered,credit,5
+IF00713,2026-08-10 12:09:57,Curitiba,Açaí do Parque,Doce,44.03,6.99,60,late,credit,4
+IF00714,2026-01-06 12:55:59,Brasília,El Paso Delivery,Mexicana,26.57,8.99,,cancelled,debit,
+IF00715,2026-03-20 18:05:20,São Paulo,Wasabi Fast,Japonesa,32.12,8.99,48,delivered,credit,5
+IF00716,2026-07-20 13:26:35,Brasília,Pizza da Esquina,Pizza,36.42,11.99,,cancelled,credit,
+IF00717,2026-04-27 19:44:05,São Paulo,Doce Hora,Doce,105.98,0.0,,cancelled,credit,
+IF00718,2026-08-28 18:09:53,Brasília,Hommous & Cia,Árabe,55.75,4.99,21,delivered,credit,3
+IF00719,2026-07-14 19:03:44,Porto Alegre,Churros & Shake,Doce,17.69,8.99,,cancelled,credit,
+IF00720,2026-05-10 12:04:00,São Paulo,Feijão & Cia,Brasileira,48.75,4.99,29,delivered,voucher,4
+IF00721,2026-08-20 19:50:41,Curitiba,Taco Livre,Mexicana,45.21,4.99,,cancelled,pix,
+IF00722,2026-01-10 12:25:53,Porto Alegre,Taj Delivery,Indiana,11.71,8.99,73,late,voucher,4
+IF00723,2026-05-24 12:05:33,Porto Alegre,El Paso Delivery,Mexicana,50.05,0.0,32,delivered,voucher,5
+IF00724,2026-06-14 20:41:41,Brasília,Nikkei Go,Japonesa,32.52,0.0,41,delivered,pix,4
+IF00725,2026-01-19 19:15:18,São Paulo,Sushi Bar 7,Japonesa,27.35,4.99,38,late,voucher,4
+IF00726,2026-05-22 13:05:36,Salvador,Smash House,Hambúrguer,41.04,8.99,20,delivered,credit,
+IF00727,2026-09-18 19:12:20,Goiânia,Feijão & Cia,Brasileira,74.35,4.99,24,delivered,pix,5
+IF00728,2026-07-19 11:30:37,Brasília,Nonna Pasta,Italiana,16.06,0.0,23,delivered,credit,4
+IF00729,2026-06-28 21:28:50,Goiânia,Pizza da Esquina,Pizza,24.5,11.99,65,late,debit,
+IF00730,2026-03-24 12:36:40,São Paulo,Burger Lab,Hambúrguer,12.06,0.0,69,late,credit,
+IF00731,2026-07-04 19:05:04,São Paulo,El Paso Delivery,Mexicana,12.35,6.99,48,delivered,credit,5
+IF00732,2026-07-10 11:54:18,Goiânia,Nikkei Go,Japonesa,21.44,4.99,46,delivered,credit,5
+IF00733,2026-05-19 20:56:56,Salvador,Nikkei Go,Japonesa,77.26,11.99,38,late,debit,3
+IF00734,2026-07-22 13:55:29,Recife,Forno Noturno,Pizza,44.73,8.99,52,delivered,pix,5
+IF00735,2026-04-17 19:25:21,Porto Alegre,Napoli 30min,Pizza,21.95,11.99,49,delivered,pix,5
+IF00736,2026-09-02 12:09:40,Belo Horizonte,Guaca-Guaca,Mexicana,21.93,11.99,62,late,debit,
+IF00737,2026-08-09 11:17:16,São Paulo,Salada Urbana,Saudável,41.03,0.0,35,delivered,debit,4
+IF00738,2026-04-09 18:53:03,Curitiba,Doce Hora,Doce,22.33,4.99,,cancelled,credit,
+IF00739,2026-08-16 12:22:58,Curitiba,Doce Hora,Doce,46.7,0.0,73,late,pix,5
+IF00740,2026-01-12 19:09:57,Salvador,Curry Box,Indiana,35.25,6.99,25,delivered,credit,5
+IF00741,2026-08-23 12:40:37,Porto Alegre,Cantina 12,Italiana,24.59,4.99,44,delivered,debit,4
+IF00742,2026-07-13 11:52:23,Rio de Janeiro,Burger Lab,Hambúrguer,37.05,8.99,47,delivered,voucher,4
+IF00743,2026-04-05 12:29:27,Curitiba,Churros & Shake,Doce,29.4,4.99,52,delivered,debit,4
+IF00744,2026-02-27 12:05:41,Porto Alegre,El Paso Delivery,Mexicana,45.15,8.99,50,delivered,credit,3
+IF00745,2026-07-19 21:07:12,São Paulo,Churros & Shake,Doce,20.92,8.99,44,delivered,debit,5
+IF00746,2026-05-30 21:17:56,Goiânia,Mineiro Express,Brasileira,43.68,8.99,33,delivered,pix,
+IF00747,2026-06-16 21:21:10,São Paulo,Mineiro Express,Brasileira,18.78,0.0,54,delivered,credit,5
+IF00748,2026-08-16 12:14:06,Campinas,Açaí do Parque,Doce,44.06,0.0,74,late,voucher,5
+IF00749,2026-02-21 12:01:27,Goiânia,Pizza da Esquina,Pizza,18.15,11.99,23,delivered,credit,3
+IF00750,2026-05-07 12:41:57,Salvador,Green Bowl,Saudável,28.04,4.99,42,delivered,credit,5
+IF00751,2026-02-26 11:07:29,Goiânia,Sushi Bar 7,Japonesa,25.16,4.99,,cancelled,pix,
+IF00752,2026-02-25 19:31:50,Brasília,Fit Box,Saudável,46.13,6.99,46,delivered,pix,4
+IF00753,2026-03-06 11:21:22,Salvador,Forno Noturno,Pizza,35.44,11.99,,cancelled,credit,
+IF00754,2026-01-20 13:34:01,Porto Alegre,Nonna Pasta,Italiana,38.79,4.99,41,delivered,pix,
+IF00755,2026-05-22 12:17:30,São Paulo,Sahara Express,Árabe,28.34,11.99,36,delivered,voucher,5
+IF00756,2026-04-16 12:43:54,Campinas,Açaí do Parque,Doce,55.47,8.99,24,delivered,credit,5
+IF00757,2026-08-21 19:27:38,Goiânia,Smash House,Hambúrguer,103.13,11.99,24,delivered,voucher,5
+IF00758,2026-08-23 12:10:56,Belo Horizonte,Sahara Express,Árabe,17.52,11.99,,cancelled,credit,
+IF00759,2026-07-04 21:25:01,Brasília,Masala Express,Indiana,34.23,4.99,,cancelled,credit,
+IF00760,2026-01-09 12:20:44,Belo Horizonte,Hommous & Cia,Árabe,20.85,8.99,54,delivered,pix,4
+IF00761,2026-04-26 21:06:35,Rio de Janeiro,Churros & Shake,Doce,23.64,0.0,54,delivered,debit,5
+IF00762,2026-01-30 13:51:31,Brasília,Hommous & Cia,Árabe,32.89,8.99,25,delivered,credit,4
+IF00763,2026-05-30 11:01:41,Belo Horizonte,Masala Express,Indiana,61.28,0.0,67,late,voucher,5
+IF00764,2026-02-09 11:30:06,São Paulo,Al Dente,Italiana,56.56,6.99,,cancelled,credit,
+IF00765,2026-09-14 19:39:03,Belo Horizonte,Sahara Express,Árabe,27.9,8.99,69,late,voucher,3
+IF00766,2026-03-17 11:06:20,São Paulo,Wasabi Fast,Japonesa,100.66,4.99,28,delivered,credit,
+IF00767,2026-05-17 11:56:50,Goiânia,Al Dente,Italiana,29.81,11.99,,cancelled,credit,
+IF00768,2026-03-07 20:08:20,Campinas,Napoli 30min,Pizza,32.43,0.0,71,late,debit,5
+IF00769,2026-04-30 20:05:16,Rio de Janeiro,El Paso Delivery,Mexicana,74.59,6.99,,cancelled,credit,
+IF00770,2026-02-04 20:13:00,Porto Alegre,Smash House,Hambúrguer,46.87,8.99,30,delivered,voucher,4
+IF00771,2026-08-25 18:41:09,Curitiba,Al Dente,Italiana,49.41,4.99,32,delivered,voucher,5
+IF00772,2026-02-09 13:17:27,São Paulo,Cantina 12,Italiana,25.17,11.99,24,delivered,pix,3
+IF00773,2026-05-21 12:01:30,São Paulo,Burger Lab,Hambúrguer,45.99,6.99,25,delivered,debit,3
+IF00774,2026-09-22 19:21:03,São Paulo,Smash House,Hambúrguer,34.06,0.0,62,late,credit,5
+IF00775,2026-09-14 18:33:27,Belo Horizonte,Burger Lab,Hambúrguer,29.43,0.0,41,late,credit,5
+IF00776,2026-07-31 13:25:25,Curitiba,Wasabi Fast,Japonesa,54.62,4.99,28,delivered,credit,4
+IF00777,2026-04-09 12:32:58,Rio de Janeiro,Masala Express,Indiana,49.19,6.99,33,delivered,credit,5
+IF00778,2026-01-11 12:42:30,Rio de Janeiro,Pizza da Esquina,Pizza,34.58,6.99,22,delivered,credit,3
+IF00779,2026-09-03 13:07:02,Recife,Green Bowl,Saudável,64.65,6.99,32,delivered,pix,4
+IF00780,2026-08-24 19:31:47,Rio de Janeiro,Nikkei Go,Japonesa,28.4,8.99,,cancelled,credit,
+IF00781,2026-06-24 18:57:33,São Paulo,Salada Urbana,Saudável,78.89,0.0,35,delivered,pix,5
+IF00782,2026-07-06 12:31:01,Goiânia,Forno Noturno,Pizza,17.08,8.99,41,delivered,debit,3
+IF00783,2026-08-23 21:56:33,Goiânia,Nikkei Go,Japonesa,30.74,11.99,,cancelled,credit,
+IF00784,2026-06-29 21:53:39,São Paulo,Taco Livre,Mexicana,46.9,6.99,56,late,debit,
+IF00785,2026-06-02 21:39:35,Curitiba,Napoli 30min,Pizza,43.91,6.99,22,delivered,pix,3
+IF00786,2026-02-01 12:31:19,Rio de Janeiro,Burger Lab,Hambúrguer,20.29,0.0,41,late,voucher,4
+IF00787,2026-03-19 18:46:12,São Paulo,Al Dente,Italiana,19.26,6.99,32,delivered,credit,
+IF00788,2026-06-08 18:38:19,Belo Horizonte,Açaí do Parque,Doce,23.41,6.99,55,delivered,credit,4
+IF00789,2026-02-17 18:19:36,Recife,Doce Hora,Doce,67.49,4.99,42,delivered,credit,5
+IF00790,2026-07-07 21:29:22,Belo Horizonte,Cantina 12,Italiana,33.24,8.99,47,delivered,pix,
+IF00791,2026-05-09 18:37:32,São Paulo,Açaí do Parque,Doce,28.26,11.99,36,delivered,credit,
+IF00792,2026-08-28 21:53:03,Salvador,Churros & Shake,Doce,23.59,0.0,39,delivered,debit,4
+IF00793,2026-02-01 21:44:13,Campinas,Hommous & Cia,Árabe,37.66,8.99,26,delivered,credit,5
+IF00794,2026-09-10 11:39:44,Salvador,Guaca-Guaca,Mexicana,37.35,0.0,,cancelled,pix,
+IF00795,2026-06-07 12:25:30,Belo Horizonte,Nonna Pasta,Italiana,65.5,11.99,46,delivered,debit,5
+IF00796,2026-05-08 12:10:32,Salvador,Forno Noturno,Pizza,55.23,8.99,48,delivered,voucher,5
+IF00797,2026-07-21 19:44:51,Belo Horizonte,Fit Box,Saudável,21.76,8.99,27,delivered,pix,
+IF00798,2026-01-22 18:41:41,Belo Horizonte,Taj Delivery,Indiana,81.34,0.0,60,late,debit,5
+IF00799,2026-09-18 19:54:55,São Paulo,El Paso Delivery,Mexicana,36.74,11.99,42,delivered,credit,4
+IF00800,2026-08-28 19:45:54,Salvador,Hommous & Cia,Árabe,49.73,6.99,63,late,debit,

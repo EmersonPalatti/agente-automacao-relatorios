@@ -1,0 +1,11 @@
+order_id,city,order_value,status,order_date,rating
+1,São Paulo,42.5,delivered,2026-01-01,5
+2,Rio de Janeiro,18.0,cancelled,2026-01-01,
+3,São Paulo,55.2,delivered,2026-01-02,4
+4,Belo Horizonte,33.0,late,2026-01-02,3
+5,São Paulo,21.9,delivered,2026-01-03,5
+6,Rio de Janeiro,90.0,delivered,2026-01-03,4
+7,Curitiba,12.0,cancelled,2026-01-04,
+8,São Paulo,47.3,delivered,2026-01-04,5
+9,Belo Horizonte,28.8,delivered,2026-01-05,
+10,Curitiba,61.4,late,2026-01-05,2
