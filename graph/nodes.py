@@ -1,16 +1,18 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from pathlib import Path
 
 import pandas as pd
 
 from tools.analyses import REGISTRY, plan_from_profile
+from tools.cleaner import clean_dataframe
 from tools.code_executor import execute_code
 from tools.data_loader import load_source, save_parquet
 from tools.llm import complete, llm_configured, load_prompt, parse_json_object
-from tools.models import AnalysisPlan, AnalysisResult, AnalysisSpec, DataProfile
+from tools.models import AnalysisPlan, AnalysisResult, AnalysisSpec, CleaningLog, DataProfile
 from tools.profiler import profile_dataframe
 from tools.progress import emit
 from tools.report_builder import build_markdown, write_markdown, write_pdf
@@ -52,6 +54,28 @@ def ingest(state: dict) -> dict:
         df_path=str(df_path),
         source_name=source.name,
         logs=_log(state, f"ingest: {df.shape[0]} linhas x {df.shape[1]} colunas"),
+    )
+
+
+def clean(state: dict) -> dict:
+    t0 = time.perf_counter()
+    emit("Limpando dados...")
+    import polars as pl
+
+    df = pl.read_parquet(state["df_path"])
+    cleaned, log = clean_dataframe(df)
+    save_parquet(cleaned, state["df_path"])
+    dropped = log.n_cols_in - log.n_cols_out
+    return _timed_update(
+        state,
+        "clean",
+        t0,
+        cleaning_log=log.model_dump(),
+        logs=_log(
+            state,
+            f"clean: {log.n_rows_out} linhas, {log.n_cols_out} colunas "
+            f"({dropped} coluna(s) vazia(s) removida(s))",
+        ),
     )
 
 
@@ -117,25 +141,28 @@ def analyze(state: dict) -> dict:
 
     for spec in planned.analyses:
         emit(f"  -> {spec.title}")
-        fn = REGISTRY.get(spec.analysis_type)
-        if fn is not None:
-            try:
-                results.append(fn(df, spec, plots_dir, prof))
-            except Exception as exc:
-                results.append(
-                    AnalysisResult(
-                        spec_id=spec.id,
-                        title=spec.title,
-                        analysis_type=spec.analysis_type,
-                        success=False,
-                        error=str(exc),
-                    )
+        result = None
+        if state.get("use_llm") and llm_configured():
+            result, usage, llm_used = _run_generated(spec, state["df_path"], plots_dir, prof)
+            usage_acc.extend(usage)
+            used_llm = used_llm or llm_used
+            if not result.success:
+                emit(f"     codegen falhou: {(result.error or '')[:240]}")
+                fallback = _run_registry(df, spec, plots_dir, prof)
+                if fallback is not None and fallback.success:
+                    emit(f"     fallback template: {spec.analysis_type}")
+                    result = fallback
+        if result is None:
+            result = _run_registry(df, spec, plots_dir, prof)
+            if result is None:
+                result = AnalysisResult(
+                    spec_id=spec.id,
+                    title=spec.title,
+                    analysis_type=spec.analysis_type,
+                    success=False,
+                    error="sem template e sem LLM para gerar codigo",
                 )
-            continue
-        result, usage, llm_used = _run_custom(spec, state["df_path"], plots_dir, state.get("use_llm", False))
         results.append(result)
-        usage_acc.extend(usage)
-        used_llm = used_llm or llm_used
 
     return _timed_update(
         state,
@@ -148,36 +175,42 @@ def analyze(state: dict) -> dict:
     )
 
 
-def _run_custom(
+def _run_registry(df, spec: AnalysisSpec, plots_dir: Path, prof: DataProfile) -> AnalysisResult | None:
+    fn = REGISTRY.get(spec.analysis_type)
+    if fn is None:
+        return None
+    try:
+        return fn(df, spec, plots_dir, prof)
+    except Exception as exc:
+        return AnalysisResult(
+            spec_id=spec.id,
+            title=spec.title,
+            analysis_type=spec.analysis_type,
+            success=False,
+            error=str(exc),
+        )
+
+
+def _run_generated(
     spec: AnalysisSpec,
     df_path: str,
     plots_dir: Path,
-    use_llm: bool,
+    prof: DataProfile,
 ) -> tuple[AnalysisResult, list[dict], bool]:
-    if not (use_llm and llm_configured()):
-        return (
-            AnalysisResult(
-                spec_id=spec.id,
-                title=spec.title,
-                analysis_type=spec.analysis_type,
-                success=False,
-                error="análise custom exige LLM configurada",
-            ),
-            [],
-            False,
-        )
-
     last_error = ""
     usage_acc: list[dict] = []
     system = load_prompt("coder.md")
+    cols = [{"name": c.name, "dtype": c.dtype} for c in prof.columns]
     for attempt in range(1, MAX_CODE_RETRIES + 1):
         user = (
-            f"Título: {spec.title}\nObjetivo: {spec.goal}\n"
-            f"Colunas: {spec.columns_hint}\n"
+            f"Titulo: {spec.title}\nObjetivo: {spec.goal}\n"
+            f"analysis_type: {spec.analysis_type}\n"
+            f"columns_hint: {spec.columns_hint}\n"
+            f"Colunas disponiveis: {json.dumps(cols, ensure_ascii=False)}\n"
             f"Salve PNGs em OUT_DIR.\n"
         )
         if last_error:
-            user += f"\nA tentativa anterior falhou:\n{last_error}\nCorrija o código.\n"
+            user += f"\nA tentativa anterior falhou:\n{last_error}\nCorrija o codigo.\n"
         try:
             code, usage = complete(system, user, temperature=0.1)
             usage_acc.append(usage)
@@ -185,6 +218,9 @@ def _run_custom(
             last_error = str(exc)
             continue
         code = _strip_fences(code)
+        if not code.strip():
+            last_error = "modelo devolveu codigo vazio"
+            continue
         exec_result = execute_code(code, df_path, plots_dir)
         if exec_result.ok:
             return (
@@ -219,12 +255,25 @@ def _run_custom(
 
 
 def _strip_fences(code: str) -> str:
-    code = code.strip()
-    if code.startswith("```"):
-        code = code.split("\n", 1)[-1]
-        if code.endswith("```"):
-            code = code[: code.rfind("```")]
-    return code.strip()
+    code = re.sub(r"<think>.*?</think>", "", code, flags=re.S | re.I).strip()
+    if "```" not in code:
+        return code
+    chunks = code.split("```")
+    picked = ""
+    for i, chunk in enumerate(chunks):
+        if i % 2 == 0:
+            continue
+        body = chunk
+        if body.startswith("python"):
+            body = body.split("\n", 1)[-1] if "\n" in body else ""
+        elif body.startswith("py"):
+            body = body.split("\n", 1)[-1] if "\n" in body else ""
+        picked = body.strip()
+        if picked.startswith("python"):
+            continue
+        if "plt" in picked or "df" in picked:
+            return picked
+    return picked or code
 
 
 def write(state: dict) -> dict:
@@ -287,6 +336,9 @@ def compile_report(state: dict) -> dict:
     # total parcial antes desta etapa; o workflow acrescenta o total final
     agent_so_far = sum(v for k, v in timings.items() if k != "total")
     economy = compute_economy(state.get("manual_minutes") or 210.0, agent_so_far)
+    cleaning = None
+    if state.get("cleaning_log"):
+        cleaning = CleaningLog.model_validate(state["cleaning_log"])
     md = build_markdown(
         source_name=state.get("source_name") or Path(state["source_path"]).name,
         profile=prof,
@@ -296,6 +348,8 @@ def compile_report(state: dict) -> dict:
         economy=economy,
         used_llm=bool(state.get("used_llm")),
         insights_md=state.get("insights_md") or "",
+        cleaning_log=cleaning,
+        token_usage=list(state.get("token_usage") or []),
     )
     run_dir = Path(state["run_dir"])
     md_path = write_markdown(md, run_dir / "report.md")

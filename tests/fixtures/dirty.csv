@@ -1,0 +1,6 @@
+order_id,city,order_value,status,empty_col
+1, São Paulo ,42.5,delivered,
+2,NA,18.0,cancelled,
+3,  Rio de Janeiro ,55.2,n/a,
+4,-,33.0,late,
+5,São Paulo,21.9, delivered ,

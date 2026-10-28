@@ -4,7 +4,8 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from tools.models import AnalysisPlan, AnalysisResult, DataProfile
+from tools.llm import summarize_usage
+from tools.models import AnalysisPlan, AnalysisResult, CleaningLog, DataProfile
 from tools.timing import TimeEconomy, format_duration
 
 
@@ -18,6 +19,8 @@ def build_markdown(
     economy: TimeEconomy,
     used_llm: bool,
     insights_md: str,
+    cleaning_log: CleaningLog | None = None,
+    token_usage: list[dict] | None = None,
 ) -> str:
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     lines: list[str] = [
@@ -38,6 +41,37 @@ def build_markdown(
         "O tempo manual assume EDA + gráficos + relatório escrito por uma pessoa "
         "(valor padrão: 3h30). Ajuste se o seu processo for diferente.",
         "",
+    ]
+    usage = summarize_usage(token_usage or [])
+    if used_llm and usage["calls"]:
+        cost = usage["cost_usd"]
+        cost_txt = "gratuito / $0" if cost == 0 else f"${cost:.4f}"
+        lines += [
+            "## Custo e tokens (LLM)",
+            "",
+            f"- Modelo: `{usage['model']}`",
+            f"- Chamadas: **{usage['calls']}**",
+            f"- Tokens: **{usage['total_tokens']}** (prompt {usage['prompt_tokens']}, completion {usage['completion_tokens']})",
+            f"- Custo estimado: **{cost_txt}**",
+            "",
+        ]
+    if cleaning_log is not None:
+        lines += [
+            "## Limpeza aplicada",
+            "",
+            f"- Shape: {cleaning_log.n_rows_in}x{cleaning_log.n_cols_in} → "
+            f"{cleaning_log.n_rows_out}x{cleaning_log.n_cols_out}",
+            f"- Linhas removidas: **0** (o cleaner não apaga linhas nem imputa valores)",
+            "",
+        ]
+        if cleaning_log.actions:
+            for act in cleaning_log.actions:
+                col = f" `{act.column}`" if act.column else ""
+                lines.append(f"- `{act.action}`{col}: {act.detail} (n={act.count})")
+            lines.append("")
+        else:
+            lines += ["- Nenhuma transformação necessária.", ""]
+    lines += [
         "## Perfil dos dados",
         "",
         f"- Linhas: **{profile.n_rows}**",
@@ -82,7 +116,8 @@ def build_markdown(
 
     for i, result in enumerate(results, start=1):
         status = "ok" if result.success else "falhou"
-        lines += [f"### {i}. {result.title} ({status})", ""]
+        how = ", codigo gerado" if result.used_llm_code else ""
+        lines += [f"### {i}. {result.title} ({status}{how})", ""]
         if result.error:
             lines += [f"> Erro: {result.error}", ""]
         if result.metrics:
@@ -108,9 +143,10 @@ def build_markdown(
         "",
         "## Método",
         "",
-        "- Profiler determinístico (Polars) calcula shape, nulos, tipos e únicos.",
-        "- Análises conhecidas rodam funções versionadas; `custom` passa por sandbox com timeout.",
-        "- O texto do LLM, quando usado, só interpreta números já calculados.",
+        "- Limpeza leve (strip, tokens nulos, colunas 100% vazias) é determinística e registrada acima.",
+        "- Profiler (Polars) calcula shape, nulos, tipos e únicos depois da limpeza.",
+        "- Com LLM, cada análise gera Python e roda no sandbox (até 3 tentativas); se falhar, usa template versionado.",
+        "- Sem LLM, só os templates. O texto do modelo só interpreta números já calculados.",
         "",
     ]
     return "\n".join(lines)

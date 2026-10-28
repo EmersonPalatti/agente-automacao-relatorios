@@ -1,18 +1,8 @@
 from __future__ import annotations
 
-from typing import Any, Literal
+from typing import Any
 
 from pydantic import BaseModel, Field
-
-AnalysisType = Literal[
-    "missingness",
-    "categorical_top",
-    "numeric_distribution",
-    "timeseries",
-    "numeric_by_category",
-    "correlation",
-    "custom",
-]
 
 
 class ColumnProfile(BaseModel):
@@ -41,7 +31,7 @@ class AnalysisSpec(BaseModel):
     id: str
     title: str
     goal: str
-    analysis_type: AnalysisType = "custom"
+    analysis_type: str = "custom"
     columns_hint: list[str] = Field(default_factory=list)
 
 
@@ -61,3 +51,18 @@ class AnalysisResult(BaseModel):
     artifacts: list[str] = Field(default_factory=list)
     metrics: dict[str, Any] = Field(default_factory=dict)
     used_llm_code: bool = False
+
+
+class CleaningAction(BaseModel):
+    action: str
+    detail: str
+    count: int = 0
+    column: str | None = None
+
+
+class CleaningLog(BaseModel):
+    n_rows_in: int
+    n_cols_in: int
+    n_rows_out: int
+    n_cols_out: int
+    actions: list[CleaningAction] = Field(default_factory=list)

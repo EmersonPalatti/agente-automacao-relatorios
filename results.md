@@ -8,18 +8,20 @@ Comparação usada no relatório (processo manual de EDA + gráficos + texto):
 
 ## Corridas do agente
 
-| Data | Dataset | LLM | Tempo agente | Redução | Relatório |
-|---|---|---|---|---|---|
-| 2026-10-27 | `data/raw/pedidos_ifood.csv` | não | **0.9s** | 99.99% | `outputs/reports/` (gitignored) |
+| Data | Dataset | LLM | Modelo | Tempo agente | Tokens | Custo | Redução |
+|---|---|---|---|---|---|---|---|
+| 2026-10-27 | `pedidos_ifood.csv` | não | — | **0.9s** | 0 | $0 | 99.99% |
+| 2026-10-27 | `pedidos_ifood.csv` | sim | `openrouter/nvidia/nemotron-3-ultra-550b-a55b:free` | **3min 43s** | 20 904 (14 chamadas) | **$0** (free) | **98.23%** |
 
-Etapas na corrida sem LLM (ordem de grandeza): ingest ~0.05s, profile/plan/write ~0s, analyze ~0.6s (5 gráficos), compile Markdown+PDF ~0.2s.
+Na corrida com LLM: planner e writer usaram o Nemotron; cada análise tentou gerar Python no sandbox (3 retries) e, quando o código falhou, o template versionado fechou o gráfico. Insights do relatório citam só números já calculados.
 
-Com LLM (planner + writer) o tempo sobe para a faixa de **1–4 min**, ainda ~98% mais rápido que o processo manual de 3h30. Custo típico: tokens via LiteLLM, da ordem de alguns centavos por relatório.
+Etapas (com LLM): ingest+clean+profile ~0.1s, plan ~19s, analyze ~186s, write ~18s, compile ~0.2s.
 
 ### Como medir de novo
 
 ```bash
 python cli.py run data/raw/pedidos_ifood.csv --no-llm
+python cli.py run data/raw/pedidos_ifood.csv
 ```
 
-O `report.md` gerado inclui a seção **Tempo manual estimado vs tempo do agente** e a tabela por etapa.
+O `report.md` gerado inclui economia de tempo, limpeza aplicada e, se houver LLM, tokens/custo.

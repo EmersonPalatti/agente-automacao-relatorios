@@ -8,7 +8,7 @@ from pathlib import Path
 
 from langgraph.graph import END, START, StateGraph
 
-from graph.nodes import analyze, compile_report, ingest, plan, profile, write
+from graph.nodes import analyze, clean, compile_report, ingest, plan, profile, write
 from graph.state import PipelineState
 from tools.progress import reset_progress, set_progress
 from tools.timing import DEFAULT_MANUAL_MINUTES, compute_economy
@@ -19,13 +19,15 @@ log = logging.getLogger("data_agent")
 def build_graph():
     g = StateGraph(PipelineState)
     g.add_node("ingest", ingest)
+    g.add_node("clean", clean)
     g.add_node("profile", profile)
     g.add_node("plan", plan)
     g.add_node("analyze", analyze)
     g.add_node("write", write)
     g.add_node("compile", compile_report)
     g.add_edge(START, "ingest")
-    g.add_edge("ingest", "profile")
+    g.add_edge("ingest", "clean")
+    g.add_edge("clean", "profile")
     g.add_edge("profile", "plan")
     g.add_edge("plan", "analyze")
     g.add_edge("analyze", "write")
@@ -87,9 +89,12 @@ def run_pipeline(
     md_path = final.get("report_md_path")
     pdf_path = final.get("report_pdf_path")
     if md_path and final.get("report_md"):
-        from tools.models import AnalysisPlan, AnalysisResult, DataProfile
+        from tools.models import AnalysisPlan, AnalysisResult, CleaningLog, DataProfile
         from tools.report_builder import build_markdown, write_markdown, write_pdf
 
+        cleaning = None
+        if final.get("cleaning_log"):
+            cleaning = CleaningLog.model_validate(final["cleaning_log"])
         md = build_markdown(
             source_name=final.get("source_name") or Path(source_path).name,
             profile=DataProfile.model_validate(final["profile"]),
@@ -99,6 +104,8 @@ def run_pipeline(
             economy=economy,
             used_llm=bool(final.get("used_llm")),
             insights_md=final.get("insights_md") or "",
+            cleaning_log=cleaning,
+            token_usage=list(final.get("token_usage") or []),
         )
         write_markdown(md, md_path)
         if pdf_path:

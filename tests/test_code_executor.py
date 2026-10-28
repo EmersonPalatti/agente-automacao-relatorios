@@ -10,6 +10,10 @@ def test_blocks_unsafe_code():
     assert looks_unsafe("import subprocess\nsubprocess.call('ls')")
 
 
+def test_allows_word_requests_in_comments():
+    assert looks_unsafe("# this requests a histogram\nax.plot([1, 2])") is None
+
+
 def test_executes_and_saves_plot(tmp_path: Path):
     df_path = tmp_path / "df.parquet"
     save_parquet(pl.DataFrame({"x": [1, 2, 3], "y": [4, 5, 6]}), df_path)

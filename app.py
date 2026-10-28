@@ -23,7 +23,7 @@ with st.sidebar:
         help="A tabela `source` aponta para o arquivo carregado.",
     )
     st.subheader("Execução")
-    use_llm = st.toggle("Usar LLM (se houver chave no ambiente)", value=False)
+    use_llm = st.toggle("Usar LLM (se houver chave no ambiente)", value=True)
     manual_minutes = st.number_input(
         "Tempo manual estimado (min)",
         min_value=15.0,

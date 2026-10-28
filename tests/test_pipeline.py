@@ -35,8 +35,9 @@ def test_full_pipeline_without_llm(tmp_path: Path):
     assert "São Paulo" in md or "city" in md
     assert result["economy"]["reduction_pct"] > 90
     assert "total" in result["timings"]
-    for step in ("ingest", "profile", "plan", "analyze", "write", "compile"):
+    for step in ("ingest", "clean", "profile", "plan", "analyze", "write", "compile"):
         assert step in result["timings"]
+    assert "Limpeza aplicada" in md
     successes = [r for r in result["analysis_results"] if r["success"]]
     assert successes, "pelo menos uma análise precisa ter rodado"
     assert any(r.get("artifacts") for r in successes)

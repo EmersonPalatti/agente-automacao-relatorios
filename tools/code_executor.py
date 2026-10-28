@@ -2,25 +2,28 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import textwrap
 from dataclasses import dataclass, field
 from pathlib import Path
 
-FORBIDDEN_SNIPPETS = (
-    "subprocess",
-    "os.system",
-    "os.popen",
-    "shutil.rmtree",
-    "socket",
-    "requests",
-    "http.client",
-    "pathlib.Path('/')",
-    "__import__",
-    "eval(",
-    "exec(",
-)
+_UNSAFE = [
+    r"(?m)^\s*import\s+subprocess\b",
+    r"(?m)^\s*from\s+subprocess\b",
+    r"\bos\.system\s*\(",
+    r"\bos\.popen\s*\(",
+    r"\bshutil\.rmtree\s*\(",
+    r"(?m)^\s*import\s+socket\b",
+    r"(?m)^\s*from\s+socket\b",
+    r"(?m)^\s*import\s+requests\b",
+    r"(?m)^\s*from\s+requests\b",
+    r"(?m)^\s*import\s+http\.client\b",
+    r"\beval\s*\(",
+    r"\bexec\s*\(",
+    r"__import__\s*\(",
+]
 
 WRAPPER = """\
 import matplotlib
@@ -29,11 +32,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from pathlib import Path
 
-df = pd.read_parquet(r"{data_path}")
-OUT_DIR = Path(r"{out_dir}")
+df = pd.read_parquet(r"__DATA_PATH__")
+OUT_DIR = Path(r"__OUT_DIR__")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-{code}
+__CODE__
 """
 
 
@@ -47,10 +50,9 @@ class ExecutionResult:
 
 
 def looks_unsafe(code: str) -> str | None:
-    lowered = code.replace(" ", "")
-    for snippet in FORBIDDEN_SNIPPETS:
-        if snippet.replace(" ", "") in lowered or snippet in code:
-            return f"código bloqueado: trecho '{snippet}'"
+    for pat in _UNSAFE:
+        if re.search(pat, code):
+            return f"codigo bloqueado: {pat}"
     return None
 
 
@@ -76,7 +78,7 @@ def execute_code(
     code: str,
     data_path: str | Path,
     out_dir: str | Path,
-    timeout: int = 45,
+    timeout: int = 90,
 ) -> ExecutionResult:
     unsafe = looks_unsafe(code)
     if unsafe:
@@ -86,14 +88,12 @@ def execute_code(
     out_dir.mkdir(parents=True, exist_ok=True)
     before = set(list_pngs(out_dir))
     script_path = out_dir / "_run.py"
-    script_path.write_text(
-        WRAPPER.format(
-            data_path=str(Path(data_path).resolve()),
-            out_dir=str(out_dir.resolve()),
-            code=textwrap.dedent(code).strip(),
-        ),
-        encoding="utf-8",
+    script = (
+        WRAPPER.replace("__DATA_PATH__", str(Path(data_path).resolve()))
+        .replace("__OUT_DIR__", str(out_dir.resolve()))
+        .replace("__CODE__", textwrap.dedent(code).strip())
     )
+    script_path.write_text(script, encoding="utf-8")
     env = {**os.environ, "PYTHONIOENCODING": "utf-8", "MPLBACKEND": "Agg"}
     try:
         proc = subprocess.run(

@@ -11,4 +11,5 @@ Regras:
 - Ao final, imprima uma linha `RESULTS_JSON:` seguida de um JSON com números reais calculados.
 - Trate nulos. Código deve rodar sem intervenção.
 
-Se a tentativa anterior falhou, corrija com base no erro. Não explique: responda só o código Python, sem markdown.
+Se a tentativa anterior falhou, corrija com base no erro.
+Responda só o código Python, sem markdown, sem tags de thinking e sem imports de os/subprocess/requests.
