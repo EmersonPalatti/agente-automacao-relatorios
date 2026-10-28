@@ -1,4 +1,6 @@
 .env
+.env.*
+!.env.example
 .venv/
 venv/
 __pycache__/
@@ -8,17 +10,26 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .coverage
+.coverage.*
 htmlcov/
 .ipynb_checkpoints/
 
 outputs/
 data/processed/
 *.parquet
+*.duckdb
+*.db
 
 .streamlit/secrets.toml
+**/secrets.toml
+
+*.log
+*.pem
+*.key
 
 dist/
 build/
 *.egg-info/
 .DS_Store
 Thumbs.db
+desktop.ini
