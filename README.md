@@ -80,15 +80,19 @@ python cli.py run data/raw/pedidos_ifood.csv --sql "SELECT * FROM source WHERE s
 
 Sem chave, planner/writer/codegen caem no modo determinístico.
 
+Codegen (Python no sandbox) é da **CLI**. No Streamlit o LLM, se ligado, só planeja e escreve; análises usam templates.
+
 ## Streamlit Community Cloud
 
-O `app.py` já está na raiz e há um `runtime.txt` com **Python 3.12**. Em [share.streamlit.io](https://share.streamlit.io): New app → este repo → `app.py`. Secrets opcionais: `OPENROUTER_API_KEY`, `LLM_MODEL`.
+`runtime.txt` pede **Python 3.12**. Em [share.streamlit.io](https://share.streamlit.io): New app → este repo → `app.py`.
+
+Não coloque chave de LLM em app público. A UI não executa código gerado (`allow_codegen=False`), SQL é só `SELECT`/`WITH` em `source`, e upload é limitado a 20 MB com nome sanitizado. Codegen com sandbox (env sem secrets + allowlist AST) fica na CLI local.
 
 ## O que o agente faz / não faz
 
-Faz: limpeza registrada, perfil real, plano data-agnostic, gráficos a partir dos dados, sandbox com timeout, seção de economia de tempo.
+Faz: limpeza registrada, perfil real, plano data-agnostic, gráficos a partir dos dados, sandbox com timeout e ambiente mínimo, seção de economia de tempo.
 
-Não faz: inventar estatística, imputar nulos, apagar linhas, hardcodar nomes de coluna, seguir depois de erro silencioso.
+Não faz: inventar estatística, imputar nulos, apagar linhas, hardcodar nomes de coluna, seguir depois de erro silencioso, copiar `API_KEY` para o processo do código gerado.
 
 ## Testes
 

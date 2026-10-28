@@ -1,10 +1,37 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import polars as pl
 
 TABLE_NAME = "source"
+
+_FORBIDDEN_SQL = re.compile(
+    r"\b(attach|copy|install|unload|load|export|pragma|create|drop|insert|update|delete|"
+    r"alter|grant|vacuum|checkpoint|call|execute|reset|"
+    r"read_csv(?:_auto)?|read_parquet|read_json(?:_auto)?|read_xlsx|read_blob|"
+    r"glob|getenv|which|system|shell|cmd|httpfs|sqlite_scan|postgres_scan)\b",
+    re.IGNORECASE,
+)
+
+
+def validate_user_sql(sql: str) -> str:
+    """SELECT/WITH de uma instrução, sem funções de arquivo nem DDL/DML."""
+    text = sql.strip()
+    if not text:
+        raise ValueError("SQL vazio")
+    core = text.rstrip().rstrip(";")
+    if ";" in core:
+        raise ValueError("apenas uma instrucao SQL")
+    head = core.split(None, 1)[0].upper()
+    if head not in {"SELECT", "WITH"}:
+        raise ValueError("apenas SELECT ou WITH")
+    if _FORBIDDEN_SQL.search(core):
+        raise ValueError("SQL contem operacao ou funcao nao permitida")
+    if re.search(r"from\s+['\"]", core, re.IGNORECASE):
+        raise ValueError("FROM so pode usar a tabela source")
+    return core
 
 
 def load_source(path: str | Path, sql: str | None = None) -> pl.DataFrame:
@@ -15,7 +42,7 @@ def load_source(path: str | Path, sql: str | None = None) -> pl.DataFrame:
 
     suffix = p.suffix.lower()
     if sql and sql.strip():
-        return _load_with_sql(p, sql.strip(), suffix)
+        return _load_with_sql(p, validate_user_sql(sql), suffix)
 
     if suffix == ".csv":
         return pl.read_csv(p, try_parse_dates=True, infer_schema_length=5000)

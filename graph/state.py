@@ -12,6 +12,7 @@ class PipelineState(TypedDict, total=False):
     plots_dir: str
     df_path: str
     use_llm: bool
+    allow_codegen: bool
     manual_minutes: float
     profile: dict[str, Any]
     cleaning_log: dict[str, Any]

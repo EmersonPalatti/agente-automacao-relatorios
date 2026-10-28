@@ -20,6 +20,7 @@ def run(
     out: Path = typer.Option(Path("outputs/reports"), help="Diretório de saída"),
     sql: str | None = typer.Option(None, help="Query DuckDB (tabela registrada: source)"),
     no_llm: bool = typer.Option(False, help="Força plano e narrativa determinísticos"),
+    no_codegen: bool = typer.Option(False, help="LLM so planeja/escreve; analises usam templates"),
     manual_minutes: float = typer.Option(DEFAULT_MANUAL_MINUTES, help="Tempo manual estimado, em minutos"),
 ) -> None:
     from graph.workflow import run_pipeline
@@ -32,6 +33,7 @@ def run(
         out,
         sql=sql,
         use_llm=not no_llm,
+        allow_codegen=not no_codegen,
         manual_minutes=manual_minutes,
         progress=_progress,
     )

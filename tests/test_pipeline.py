@@ -41,3 +41,48 @@ def test_full_pipeline_without_llm(tmp_path: Path):
     successes = [r for r in result["analysis_results"] if r["success"]]
     assert successes, "pelo menos uma análise precisa ter rodado"
     assert any(r.get("artifacts") for r in successes)
+
+
+def test_pipeline_marks_generated_code(tmp_path: Path, monkeypatch):
+    good_code = """
+print('RESULTS_JSON: {"n": %s}' % len(df))
+fig, ax = plt.subplots()
+ax.plot([1, 2, 3])
+fig.savefig(f"{OUT_DIR}/gen.png")
+plt.close(fig)
+"""
+    usage = {
+        "prompt_tokens": 1,
+        "completion_tokens": 1,
+        "total_tokens": 2,
+        "cost_usd": 0.0,
+        "model": "mock",
+    }
+
+    def fake_complete(system, user, json_mode=False, temperature=0.2):
+        if json_mode or "analysis_type" in system:
+            return (
+                '{"narrative_focus": "teste", "analyses": [{"id": "a1", "title": "plot gerado",'
+                ' "goal": "n", "analysis_type": "custom", "columns_hint": []}]}',
+                usage,
+            )
+        if "OUT_DIR" in system:
+            return good_code, usage
+        return "## Insights\n\n- mock com numero 10", usage
+
+    monkeypatch.setattr("graph.nodes.complete", fake_complete)
+    monkeypatch.setattr("graph.nodes.llm_configured", lambda: True)
+
+    result = run_pipeline(
+        FIXTURE,
+        tmp_path / "out",
+        use_llm=True,
+        allow_codegen=True,
+        manual_minutes=210,
+        run_id="gen",
+    )
+    generated = [r for r in result["analysis_results"] if r.get("used_llm_code")]
+    assert generated, result["analysis_results"]
+    assert generated[0]["success"]
+    assert any(str(p).endswith("gen.png") for p in generated[0]["artifacts"])
+    assert "codigo gerado" in result["report_md"]

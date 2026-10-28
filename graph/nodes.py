@@ -142,7 +142,7 @@ def analyze(state: dict) -> dict:
     for spec in planned.analyses:
         emit(f"  -> {spec.title}")
         result = None
-        if state.get("use_llm") and llm_configured():
+        if state.get("use_llm") and state.get("allow_codegen", True) and llm_configured():
             result, usage, llm_used = _run_generated(spec, state["df_path"], plots_dir, prof)
             usage_acc.extend(usage)
             used_llm = used_llm or llm_used

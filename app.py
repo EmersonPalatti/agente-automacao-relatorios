@@ -5,25 +5,30 @@ from pathlib import Path
 import streamlit as st
 
 from tools.timing import DEFAULT_MANUAL_MINUTES, format_duration
+from tools.uploads import MAX_UPLOAD_BYTES, safe_upload_path
 
 SAMPLE = Path("data/raw/pedidos_ifood.csv")
 UPLOADS = Path("data/processed/uploads")
 
 st.set_page_config(page_title="Agente de Relatórios", page_icon="📊", layout="wide")
 st.title("Agente de automação de relatórios")
-st.caption("Ingestão → perfil factual → análises → Markdown + PDF. O diferencial é medir o tempo.")
+st.caption("Ingestão → limpeza → perfil → análises → Markdown + PDF. O diferencial é medir o tempo.")
 
 with st.sidebar:
     st.subheader("Entrada")
     uploaded = st.file_uploader("CSV, Excel ou Parquet", type=["csv", "xlsx", "xls", "parquet"])
     use_sample = st.checkbox("Usar dataset de exemplo (pedidos)", value=not bool(uploaded), disabled=bool(uploaded))
     sql = st.text_area(
-        "SQL DuckDB (opcional)",
+        "SQL DuckDB (opcional, só SELECT/WITH em `source`)",
         placeholder="SELECT * FROM source WHERE status = 'delivered'",
-        help="A tabela `source` aponta para o arquivo carregado.",
+        help="Uma instrução SELECT ou WITH. Sem COPY/ATTACH/read_csv.",
     )
     st.subheader("Execução")
-    use_llm = st.toggle("Usar LLM (se houver chave no ambiente)", value=True)
+    st.caption(
+        "Nesta UI o LLM, se ligado, só planeja e escreve. "
+        "Código gerado no sandbox fica na CLI (`python cli.py run`)."
+    )
+    use_llm = st.toggle("Usar LLM para plano e insights (exige chave)", value=False)
     manual_minutes = st.number_input(
         "Tempo manual estimado (min)",
         min_value=15.0,
@@ -35,17 +40,22 @@ with st.sidebar:
 
 source_path: Path | None = None
 if uploaded is not None:
-    UPLOADS.mkdir(parents=True, exist_ok=True)
-    source_path = UPLOADS / uploaded.name
-    source_path.write_bytes(uploaded.getbuffer())
+    try:
+        data = uploaded.getvalue()
+        source_path = safe_upload_path(UPLOADS, uploaded.name, len(data))
+        source_path.write_bytes(data)
+    except ValueError as exc:
+        st.error(str(exc))
+        st.stop()
 elif use_sample and SAMPLE.exists():
     source_path = SAMPLE
 
 if source_path is None:
-    st.info("Envie um arquivo ou gere o exemplo com `python cli.py sample`.")
+    st.info("Envie um arquivo (até "
+            f"{MAX_UPLOAD_BYTES // (1024 * 1024)} MB) ou gere o exemplo com `python cli.py sample`.")
     st.stop()
 
-st.write(f"Arquivo: `{source_path}`")
+st.write(f"Arquivo: `{source_path.name}`")
 
 if run:
     from graph.workflow import run_pipeline
@@ -55,15 +65,21 @@ if run:
     def _progress(msg: str) -> None:
         status.write(msg)
 
-    with st.spinner("Analisando dados reais (sem inventar números)…"):
-        result = run_pipeline(
-            source_path,
-            "outputs/reports",
-            sql=sql.strip() or None,
-            use_llm=use_llm,
-            manual_minutes=float(manual_minutes),
-            progress=_progress,
-        )
+    try:
+        with st.spinner("Analisando dados reais (sem inventar números)…"):
+            result = run_pipeline(
+                source_path,
+                "outputs/reports",
+                sql=sql.strip() or None,
+                use_llm=use_llm,
+                allow_codegen=False,
+                manual_minutes=float(manual_minutes),
+                progress=_progress,
+            )
+    except ValueError as exc:
+        status.update(label="Falhou", state="error")
+        st.error(str(exc))
+        st.stop()
     status.update(label="Concluído", state="complete")
     st.session_state["last_result"] = result
 
