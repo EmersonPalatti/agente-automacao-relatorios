@@ -35,28 +35,52 @@ CSV / Excel / DuckDB
         ↓
    profiler factual
         ↓
-   planner (3–5 análises)
+   router condicional ──(n_rows == 0)──────────────────┐
+        ↓ (n_rows > 0)                                 │
+   planner (3–5 análises)                              │
+        ↓                                              │
+   codegen no sandbox (3 retries) → fallback template  │
+        ↓                                              │
+   writer (insights narrativos) ◀──────────────────────┘
         ↓
-   codegen no sandbox (3 retries) → fallback template
-        ↓
-   writer (insights)
-        ↓
-   Markdown + PDF  (+ tempos, limpeza, tokens)
+   Markdown + PDF compilados (+ tempos, limpeza, tokens)
 ```
 
-Orquestração: **LangGraph**. Estado tipado, um nó por etapa.
+Orquestração: **LangGraph** com estado tipado ([`PipelineState`](graph/state.py)) e aresta condicional para datasets vazios.
 
 ## Stack
 
 Python 3.11+ · LangGraph · Polars · DuckDB · Pydantic v2 · LiteLLM · Matplotlib/Plotly · ReportLab · Streamlit · Typer · pytest
 
-PDF via ReportLab (funciona no Windows; WeasyPrint exigiria GTK).
+PDF via ReportLab (funciona nativamente no Windows sem dependências C/GTK).
+
+## Estrutura do Projeto
+
+```
+agente-automacao-relatorios/
+├── graph/             # Orquestração LangGraph (state, nodes, workflow com edges condicionais)
+├── tools/             # Ferramentas determinísticas (cleaner, profiler, code_executor, loader, pdf)
+├── prompts/           # Prompts versionados de sistema (planner, coder, writer)
+├── experiments/       # Versões e histórico de evolução do pipeline (v1 vs v2)
+├── app.py             # Interface visual Streamlit (upload, métricas, gráficos e download PDF)
+├── cli.py             # Interface CLI (Typer) com execução em sandbox
+├── tests/             # Suíte de testes automatizados (pytest)
+├── docs/demo/         # Gráficos de demonstração gerados pelo agente
+└── data/              # Datasets de exemplo (pedidos_ifood.csv)
+```
+
+## Experimentos Versionados
+
+O projeto mantém experimentos documentados na pasta `experiments/`:
+- [`experiments/v1_basic`](experiments/v1_basic/README.md): MVP inicial com perfil básico e análises em templates determinísticos.
+- [`experiments/v2_with_cleaning`](experiments/v2_with_cleaning/README.md): pipeline atual com limpeza registrada (`CleaningLog`), correção de tipos temporais, geração de código no sandbox com fallback e arestas condicionais no LangGraph.
 
 ## Quickstart
 
 ```bash
 python -m venv .venv
-# Windows: .venv\Scripts\activate
+# Windows (cmd/PowerShell): .venv\Scripts\activate  (ou .venv\Scripts\Activate.ps1)
+# Linux/macOS: source .venv/bin/activate
 pip install -r requirements.txt
 
 python cli.py sample
@@ -64,9 +88,15 @@ python cli.py run data/raw/pedidos_ifood.csv --no-llm
 streamlit run app.py
 ```
 
-LLM (OpenRouter). Copie `.env.example` → `.env` e preencha `OPENROUTER_API_KEY`. Modelo padrão:
+Os relatórios gerados são salvos em `outputs/reports/<timestamp>/` (`report.md`, `report.pdf` e gráficos PNG).
 
-`openrouter/nvidia/nemotron-3-ultra-550b-a55b:free`
+### Configuração de LLM (Multi-Provider via LiteLLM)
+
+Copie `.env.example` → `.env`. O projeto aceita múltiplos provedores configurando a variável correspondente:
+- **OpenRouter (padrão gratuito):** `OPENROUTER_API_KEY` com modelo `openrouter/nvidia/nemotron-3-ultra-550b-a55b:free`
+- **OpenAI:** `OPENAI_API_KEY` (ex.: `LLM_MODEL=gpt-4o-mini`)
+- **Google Gemini:** `GEMINI_API_KEY` (ex.: `LLM_MODEL=gemini/gemini-1.5-flash`)
+- **Groq:** `GROQ_API_KEY` (ex.: `LLM_MODEL=groq/llama-3.3-70b-versatile`)
 
 ```bash
 python cli.py run data/raw/pedidos_ifood.csv
@@ -78,9 +108,9 @@ SQL opcional (tabela `source`):
 python cli.py run data/raw/pedidos_ifood.csv --sql "SELECT * FROM source WHERE status = 'delivered'"
 ```
 
-Sem chave, planner/writer/codegen caem no modo determinístico.
+Sem chave de API configurada, planner, writer e análises caem automaticamente no modo determinístico.
 
-Codegen (Python no sandbox) é da **CLI**. No Streamlit o LLM, se ligado, só planeja e escreve; análises usam templates.
+Codegen (Python no sandbox) é habilitado na **CLI**. No Streamlit o LLM, se ligado, só planeja e escreve; análises usam templates.
 
 ## Streamlit Community Cloud
 
@@ -98,4 +128,6 @@ Não faz: inventar estatística, imputar nulos, apagar linhas, hardcodar nomes d
 
 ```bash
 pytest
+# ou garantindo o interpretador do ambiente virtual:
+python -m pytest -v
 ```
