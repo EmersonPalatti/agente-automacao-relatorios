@@ -56,3 +56,22 @@ def test_generated_child_does_not_see_api_key(tmp_path: Path, monkeypatch):
     blocked = execute_code("import os\nprint(os.environ)", df_path, tmp_path / "plots")
     assert not blocked.ok
     assert "bloqueado" in (blocked.stderr or "")
+
+
+def test_detects_overwritten_png_artifact(tmp_path: Path):
+    import time
+
+    df_path = tmp_path / "df.parquet"
+    plots_dir = tmp_path / "plots"
+    save_parquet(pl.DataFrame({"x": [1, 2], "y": [3, 4]}), df_path)
+    code = """
+fig, ax = plt.subplots()
+ax.plot(df["x"], df["y"])
+fig.savefig(f"{OUT_DIR}/same.png")
+plt.close(fig)
+"""
+    first = execute_code(code, df_path, plots_dir)
+    assert first.ok and any(p.endswith("same.png") for p in first.artifacts)
+    time.sleep(0.02)
+    second = execute_code(code, df_path, plots_dir)
+    assert second.ok and any(p.endswith("same.png") for p in second.artifacts)

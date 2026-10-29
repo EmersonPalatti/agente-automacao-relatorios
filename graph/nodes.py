@@ -203,11 +203,12 @@ def _run_generated(
     cols = [{"name": c.name, "dtype": c.dtype} for c in prof.columns]
     for attempt in range(1, MAX_CODE_RETRIES + 1):
         user = (
+            f"id: {spec.id}\n"
             f"Titulo: {spec.title}\nObjetivo: {spec.goal}\n"
             f"analysis_type: {spec.analysis_type}\n"
             f"columns_hint: {spec.columns_hint}\n"
             f"Colunas disponiveis: {json.dumps(cols, ensure_ascii=False)}\n"
-            f"Salve PNGs em OUT_DIR.\n"
+            f"Salve PNGs em OUT_DIR usando o prefixo '{spec.id}_' (ex.: {spec.id}_plot.png).\n"
         )
         if last_error:
             user += f"\nA tentativa anterior falhou:\n{last_error}\nCorrija o codigo.\n"
@@ -280,13 +281,15 @@ def write(state: dict) -> dict:
     t0 = time.perf_counter()
     emit("Escrevendo insights...")
     prof = DataProfile.model_validate(state["profile"])
-    planned = AnalysisPlan.model_validate(state["plan"])
+    planned = AnalysisPlan.model_validate(
+        state.get("plan") or {"analyses": [], "narrative_focus": "Dataset sem linhas para análise"}
+    )
     results = [AnalysisResult.model_validate(r) for r in state.get("analysis_results") or []]
     usage_acc = list(state.get("token_usage") or [])
     used_llm = bool(state.get("used_llm"))
     insights = _fallback_insights(prof, planned, results)
 
-    if state.get("use_llm") and llm_configured():
+    if prof.n_rows > 0 and state.get("use_llm") and llm_configured():
         payload = {
             "profile": {
                 "n_rows": prof.n_rows,
@@ -330,38 +333,76 @@ def compile_report(state: dict) -> dict:
     t0 = time.perf_counter()
     emit("Compilando Markdown e PDF...")
     prof = DataProfile.model_validate(state["profile"])
-    planned = AnalysisPlan.model_validate(state["plan"])
+    planned = AnalysisPlan.model_validate(
+        state.get("plan") or {"analyses": [], "narrative_focus": "Dataset sem linhas para análise"}
+    )
     results = [AnalysisResult.model_validate(r) for r in state.get("analysis_results") or []]
     timings = dict(state.get("timings") or {})
-    # total parcial antes desta etapa; o workflow acrescenta o total final
-    agent_so_far = sum(v for k, v in timings.items() if k != "total")
-    economy = compute_economy(state.get("manual_minutes") or 210.0, agent_so_far)
+    started_at = state.get("started_at")
+    manual_minutes = state.get("manual_minutes") or 210.0
     cleaning = None
     if state.get("cleaning_log"):
         cleaning = CleaningLog.model_validate(state["cleaning_log"])
-    md = build_markdown(
-        source_name=state.get("source_name") or Path(state["source_path"]).name,
+    source_name = state.get("source_name") or Path(state["source_path"]).name
+    used_llm = bool(state.get("used_llm"))
+    insights_md = state.get("insights_md") or ""
+    token_usage = list(state.get("token_usage") or [])
+    run_dir = Path(state["run_dir"])
+
+    # Estima o tempo até o momento para renderizar o PDF uma única vez
+    now_perf = time.perf_counter()
+    timings["compile"] = now_perf - t0
+    timings["total"] = (
+        (now_perf - started_at)
+        if started_at is not None
+        else sum(v for k, v in timings.items() if k != "total")
+    )
+    economy = compute_economy(manual_minutes, timings["total"])
+    md_for_pdf = build_markdown(
+        source_name=source_name,
         profile=prof,
         plan=planned,
         results=results,
         timings=timings,
         economy=economy,
-        used_llm=bool(state.get("used_llm")),
-        insights_md=state.get("insights_md") or "",
+        used_llm=used_llm,
+        insights_md=insights_md,
         cleaning_log=cleaning,
-        token_usage=list(state.get("token_usage") or []),
+        token_usage=token_usage,
     )
-    run_dir = Path(state["run_dir"])
+    pdf_path = write_pdf(md_for_pdf, run_dir / "report.pdf", image_base=run_dir)
+
+    # Atualiza com o tempo exato pós-PDF e grava o Markdown final
+    end_perf = time.perf_counter()
+    compile_elapsed = end_perf - t0
+    timings["compile"] = compile_elapsed
+    timings["total"] = (
+        (end_perf - started_at)
+        if started_at is not None
+        else sum(v for k, v in timings.items() if k != "total")
+    )
+    economy = compute_economy(manual_minutes, timings["total"])
+    md = build_markdown(
+        source_name=source_name,
+        profile=prof,
+        plan=planned,
+        results=results,
+        timings=timings,
+        economy=economy,
+        used_llm=used_llm,
+        insights_md=insights_md,
+        cleaning_log=cleaning,
+        token_usage=token_usage,
+    )
     md_path = write_markdown(md, run_dir / "report.md")
-    pdf_path = write_pdf(md, run_dir / "report.pdf", image_base=run_dir)
-    return _timed_update(
-        state,
-        "compile",
-        t0,
-        report_md=md,
-        report_md_path=str(md_path),
-        report_pdf_path=str(pdf_path),
-    )
+    return {
+        "timings": timings,
+        "economy": economy.as_dict(),
+        "report_md": md,
+        "report_md_path": str(md_path),
+        "report_pdf_path": str(pdf_path),
+        "logs": _log(state, f"compile concluído em {compile_elapsed:.2f}s"),
+    }
 
 
 def _fallback_insights(profile: DataProfile, plan: AnalysisPlan, results: list[AnalysisResult]) -> str:

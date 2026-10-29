@@ -23,6 +23,8 @@ class PipelineState(TypedDict, total=False):
     report_md_path: str
     report_pdf_path: str
     timings: dict[str, float]
+    started_at: float
+    economy: dict[str, float]
     logs: list[str]
     errors: list[str]
     token_usage: list[dict[str, Any]]

@@ -86,3 +86,20 @@ plt.close(fig)
     assert generated[0]["success"]
     assert any(str(p).endswith("gen.png") for p in generated[0]["artifacts"])
     assert "codigo gerado" in result["report_md"]
+
+
+def test_empty_dataset_routes_directly_to_write(tmp_path: Path):
+    result = run_pipeline(
+        FIXTURE,
+        tmp_path / "out",
+        sql="SELECT * FROM source WHERE 1 = 0",
+        use_llm=False,
+        run_id="empty",
+    )
+    assert result["profile"]["n_rows"] == 0
+    assert "plan" not in result["timings"]
+    assert "analyze" not in result["timings"]
+    assert "write" in result["timings"]
+    assert "compile" in result["timings"]
+    assert Path(result["report_md_path"]).exists()
+    assert Path(result["report_pdf_path"]).exists()

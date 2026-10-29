@@ -167,10 +167,14 @@ def extract_metrics(stdout: str) -> dict:
     return {}
 
 
-def list_pngs(out_dir: Path) -> list[str]:
+def _png_mtimes(out_dir: Path) -> dict[str, int]:
     if not out_dir.exists():
-        return []
-    return sorted(str(p) for p in out_dir.glob("*.png"))
+        return {}
+    return {str(p): p.stat().st_mtime_ns for p in out_dir.glob("*.png")}
+
+
+def list_pngs(out_dir: Path) -> list[str]:
+    return sorted(_png_mtimes(out_dir).keys())
 
 
 def execute_code(
@@ -185,7 +189,7 @@ def execute_code(
 
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    before = set(list_pngs(out_dir))
+    before = _png_mtimes(out_dir)
     script_path = out_dir / "_run.py"
     script = (
         WRAPPER.replace("__DATA_PATH__", str(Path(data_path).resolve()))
@@ -207,8 +211,8 @@ def execute_code(
 
     stdout = proc.stdout or ""
     stderr = proc.stderr or ""
-    after = set(list_pngs(out_dir))
-    artifacts = sorted(after - before)
+    after = _png_mtimes(out_dir)
+    artifacts = sorted(p for p, mtime in after.items() if before.get(p) != mtime)
     ok = proc.returncode == 0
     return ExecutionResult(
         ok=ok,
