@@ -79,6 +79,7 @@ WRAPPER = """\
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import json
 from pathlib import Path as _Path
@@ -187,7 +188,8 @@ def execute_code(
     if unsafe:
         return ExecutionResult(ok=False, stderr=unsafe)
 
-    out_dir = Path(out_dir)
+    # resolve(): o subprocess roda com cwd=out_dir; um caminho relativo para o script seria duplicado.
+    out_dir = Path(out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
     before = _png_mtimes(out_dir)
     script_path = out_dir / "_run.py"

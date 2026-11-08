@@ -75,3 +75,23 @@ plt.close(fig)
     time.sleep(0.02)
     second = execute_code(code, df_path, plots_dir)
     assert second.ok and any(p.endswith("same.png") for p in second.artifacts)
+
+
+def test_executes_with_relative_out_dir(tmp_path: Path, monkeypatch):
+    # Regressão: o pipeline passa out_dir relativo (outputs/reports/<id>/plots).
+    monkeypatch.chdir(tmp_path)
+    df_path = Path("df.parquet")
+    save_parquet(pl.DataFrame({"x": [1, 2, 3]}), df_path)
+    code = "print('RESULTS_JSON: {\"n\": %s}' % len(df))"
+    result = execute_code(code, df_path, Path("outputs") / "plots")
+    assert result.ok, result.stderr
+    assert result.metrics.get("n") == 3
+
+
+def test_numpy_available_as_np(tmp_path: Path):
+    df_path = tmp_path / "df.parquet"
+    save_parquet(pl.DataFrame({"x": [1.0, 2.0, 3.0]}), df_path)
+    code = "print('RESULTS_JSON: {\"m\": %s}' % float(np.mean(df['x'])))"
+    result = execute_code(code, df_path, tmp_path / "plots")
+    assert result.ok, result.stderr
+    assert result.metrics.get("m") == 2.0

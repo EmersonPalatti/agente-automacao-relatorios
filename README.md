@@ -9,10 +9,10 @@ Não é um chatbot que “chuta” EDA. Limpeza e profiler são determinísticos
 | Métrica | Como medir | Sem LLM | Com LLM (OpenRouter Nemotron 3 Ultra free) |
 |---|---|---|---|
 | Tempo manual estimado | EDA + gráficos + relatório escrito | 3h 30min | 3h 30min |
-| Tempo do agente | `time.perf_counter()` | **0.9s** | **3min 43s** |
-| Redução | diferença % | 99.99% | **98.23%** |
-| Custo LLM | LiteLLM | $0 | **$0** (20 904 tokens, 14 chamadas) |
-| Qualidade | números batem com o código | templates + profiler | planner/writer + sandbox (3 retries) |
+| Tempo do agente | `time.perf_counter()` | **0.8s** | **2min 7s** |
+| Redução | diferença % | 99.99% | **98.99%** |
+| Custo LLM | LiteLLM | $0 | **$0** (13 473 tokens, 8 chamadas) |
+| Qualidade | números batem com o código | templates + profiler | planner/writer + sandbox: 5/5 análises com código gerado |
 
 Detalhe: [`results.md`](results.md). Relatório gerado inclui as mesmas métricas.
 

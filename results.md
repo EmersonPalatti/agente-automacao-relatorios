@@ -8,14 +8,18 @@ Comparação usada no relatório (processo manual de EDA + gráficos + texto):
 
 ## Corridas do agente
 
-| Data | Dataset | LLM | Modelo | Tempo agente | Tokens | Custo | Redução |
-|---|---|---|---|---|---|---|---|
-| 2026-10-27 | `pedidos_ifood.csv` | não | — | **0.9s** | 0 | $0 | 99.99% |
-| 2026-10-27 | `pedidos_ifood.csv` | sim | `openrouter/nvidia/nemotron-3-ultra-550b-a55b:free` | **3min 43s** | 20 904 (14 chamadas) | **$0** (free) | **98.23%** |
+| Data | Dataset | LLM | Modelo | Codegen ok | Tempo agente | Tokens | Custo | Redução |
+|---|---|---|---|---|---|---|---|---|
+| 2026-11-08 | `pedidos_ifood.csv` | não | — | — (templates) | **0.8s** | 0 | $0 | 99.99% |
+| 2026-11-08 | `pedidos_ifood.csv` | sim | `openrouter/nvidia/nemotron-3-ultra-550b-a55b:free` | **5/5** | **2min 7s** | 13 473 (8 chamadas) | **$0** (free) | **98.99%** |
 
-Na corrida com LLM: planner e writer usaram o Nemotron; cada análise tentou gerar Python no sandbox (3 retries) e, quando o código falhou, o template versionado fechou o gráfico. Insights do relatório citam só números já calculados.
+Na corrida com LLM: planner e writer usaram o Nemotron, e as 5 análises rodaram o Python gerado no sandbox sem precisar do template de fallback. Insights do relatório citam só números já calculados.
 
-Etapas (com LLM): ingest+clean+profile ~0.1s, plan ~19s, analyze ~186s, write ~18s, compile ~0.2s.
+Etapas (com LLM): ingest+clean+profile ~0.1s, plan ~19s, analyze ~93s, write ~14s, compile ~0.3s.
+
+### Histórico
+
+A corrida de 2026-10-27 (3min 43s, 20 904 tokens, 14 chamadas, 98.23%) foi feita com um bug no sandbox: o script era chamado por caminho relativo com `cwd` na própria pasta de saída, então nenhum código gerado chegava a rodar e todas as análises caíram no template depois de 3 tentativas. Corrigido em `tools/code_executor.py` (`out_dir.resolve()`), junto com `numpy as np` exposto no wrapper do sandbox.
 
 ### Como medir de novo
 
