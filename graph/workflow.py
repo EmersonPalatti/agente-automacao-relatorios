@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import time
+import uuid
 from collections.abc import Callable
 from datetime import datetime
 from pathlib import Path
@@ -71,7 +72,8 @@ def run_pipeline(
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
     token = set_progress(progress)
     t0 = time.perf_counter()
-    run_id = run_id or datetime.now().strftime("%Y%m%d_%H%M%S")
+    # Sufixo aleatório: dois visitantes do app no mesmo segundo não podem dividir a pasta de saída.
+    run_id = run_id or f"{datetime.now().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
     run_dir = Path(output_dir) / run_id
     initial: PipelineState = {
         "source_path": str(Path(source_path)),

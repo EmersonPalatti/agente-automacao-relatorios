@@ -1,0 +1,3 @@
+[server]
+# Igual a tools/uploads.py MAX_UPLOAD_BYTES; sem isso o uploader anuncia 200MB.
+maxUploadSize = 20

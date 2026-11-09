@@ -33,3 +33,17 @@ def test_sql_rejects_copy_and_read_csv():
         validate_user_sql("SELECT * FROM 'other.csv'")
     with pytest.raises(ValueError):
         validate_user_sql("SELECT 1; SELECT 2")
+
+
+def test_load_excel(tmp_path: Path):
+    # Polars lê Excel via fastexcel; sem ele no requirements o upload .xlsx quebrava no deploy.
+    import openpyxl
+
+    wb = openpyxl.Workbook()
+    wb.active.append(["city", "n"])
+    wb.active.append(["Recife", 3])
+    path = tmp_path / "t.xlsx"
+    wb.save(path)
+    df = load_source(path)
+    assert df.columns == ["city", "n"]
+    assert df.shape == (1, 2)
