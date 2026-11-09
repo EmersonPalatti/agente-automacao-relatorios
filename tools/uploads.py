@@ -21,3 +21,30 @@ def safe_upload_path(dest_dir: Path, original_name: str, size: int) -> Path:
     stem = _SAFE_STEM.sub("_", Path(name).stem).strip("._")[:80] or "upload"
     dest_dir.mkdir(parents=True, exist_ok=True)
     return dest_dir / f"{uuid.uuid4().hex}_{stem}{suffix}"
+
+
+def prune_older_than(root: Path, max_age_seconds: float) -> int:
+    """Apaga arquivos/pastas de primeiro nível em `root` mais velhos que o limite.
+
+    Usado só pelo app público, cujo disco é compartilhado entre visitantes e não é
+    limpo sozinho. A CLI não chama isso, para não apagar relatórios locais.
+    """
+    import shutil
+    import time
+
+    if not root.exists():
+        return 0
+    cutoff = time.time() - max_age_seconds
+    removed = 0
+    for entry in root.iterdir():
+        try:
+            if entry.stat().st_mtime >= cutoff:
+                continue
+            if entry.is_dir():
+                shutil.rmtree(entry)
+            else:
+                entry.unlink()
+            removed += 1
+        except OSError:
+            continue  # outra sessão pode estar apagando ou usando o mesmo item
+    return removed

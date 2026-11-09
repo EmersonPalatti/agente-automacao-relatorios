@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -371,12 +372,22 @@ def _register_fonts() -> tuple[str, str]:
     return "Helvetica", "Helvetica-Bold"
 
 
+# Nomes de gráfico vêm de colunas do usuário e podem ter "(" ou ")", ex.: dist_Valor (R$).png.
+# O alt termina no primeiro "](" e o caminho vai até o último ")" da linha.
+IMAGE_LINE = re.compile(r"^!\[(.*?)\]\((.+)\)\s*$")
+
+
+def parse_image_line(line: str) -> tuple[str, str] | None:
+    """Retorna (alt, caminho) se a linha for uma imagem Markdown sozinha."""
+    match = IMAGE_LINE.match(line.strip())
+    return (match.group(1), match.group(2)) if match else None
+
+
 def _image_path(line: str, base: Path) -> Path | None:
-    start = line.find("(")
-    end = line.rfind(")")
-    if start == -1 or end == -1:
+    parsed = parse_image_line(line)
+    if parsed is None:
         return None
-    rel = line[start + 1 : end]
+    rel = parsed[1]
     p = Path(rel)
     if p.exists():
         return p

@@ -2,13 +2,44 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import duckdb
 import streamlit as st
 
+from tools.llm import llm_configured
+from tools.report_builder import parse_image_line
 from tools.timing import DEFAULT_MANUAL_MINUTES, format_duration
-from tools.uploads import MAX_UPLOAD_BYTES, safe_upload_path
+from tools.uploads import MAX_UPLOAD_BYTES, prune_older_than, safe_upload_path
 
 SAMPLE = Path("data/raw/pedidos_ifood.csv")
 UPLOADS = Path("data/processed/uploads")
+REPORTS = Path("outputs/reports")
+RETENTION_SECONDS = 6 * 3600
+
+
+def render_report(md: str) -> None:
+    """Renderiza o Markdown do relatório trocando ![..](caminho) por st.image.
+
+    O caminho dos gráficos é do disco do servidor; o navegador não consegue
+    buscá-lo, então st.markdown mostraria a imagem quebrada.
+    """
+    buffer: list[str] = []
+    for line in md.splitlines():
+        image = parse_image_line(line)
+        if image is None:
+            buffer.append(line)
+            continue
+        if buffer:
+            st.markdown("\n".join(buffer))
+            buffer = []
+        alt, raw_path = image
+        path = Path(raw_path)
+        if path.exists():
+            st.image(str(path), caption=alt or None, width="stretch")
+        else:
+            st.caption(f"Gráfico indisponível: {alt or path.name}")
+    if buffer:
+        st.markdown("\n".join(buffer))
+
 
 st.set_page_config(page_title="Agente de Relatórios", page_icon="📊", layout="wide")
 st.title("Agente de automação de relatórios")
@@ -36,17 +67,28 @@ with st.sidebar:
         value=float(DEFAULT_MANUAL_MINUTES),
         step=15.0,
     )
-    run = st.button("Gerar relatório", type="primary", use_container_width=True)
+    run = st.button("Gerar relatório", type="primary", width="stretch")
+
+if run:
+    # O disco do app público é compartilhado e não se limpa sozinho.
+    for folder in (REPORTS, UPLOADS):
+        prune_older_than(folder, RETENTION_SECONDS)
 
 source_path: Path | None = None
 if uploaded is not None:
-    try:
-        data = uploaded.getvalue()
-        source_path = safe_upload_path(UPLOADS, uploaded.name, len(data))
-        source_path.write_bytes(data)
-    except ValueError as exc:
-        st.error(str(exc))
-        st.stop()
+    # O Streamlit reexecuta o script a cada interação: grava o upload uma vez por arquivo.
+    cached = st.session_state.get("upload")
+    if cached and cached["id"] == uploaded.file_id and Path(cached["path"]).exists():
+        source_path = Path(cached["path"])
+    else:
+        try:
+            data = uploaded.getvalue()
+            source_path = safe_upload_path(UPLOADS, uploaded.name, len(data))
+            source_path.write_bytes(data)
+        except ValueError as exc:
+            st.error(str(exc))
+            st.stop()
+        st.session_state["upload"] = {"id": uploaded.file_id, "path": str(source_path)}
 elif use_sample and SAMPLE.exists():
     source_path = SAMPLE
 
@@ -60,6 +102,9 @@ st.write(f"Arquivo: `{source_path.name}`")
 if run:
     from graph.workflow import run_pipeline
 
+    if use_llm and not llm_configured():
+        st.warning("Nenhuma chave de LLM configurada: plano e insights vão usar o modo determinístico.")
+
     status = st.status("Rodando pipeline…", expanded=True)
 
     def _progress(msg: str) -> None:
@@ -69,7 +114,7 @@ if run:
         with st.spinner("Analisando dados reais (sem inventar números)…"):
             result = run_pipeline(
                 source_path,
-                "outputs/reports",
+                REPORTS,
                 sql=sql.strip() or None,
                 use_llm=use_llm,
                 allow_codegen=False,
@@ -79,6 +124,11 @@ if run:
     except ValueError as exc:
         status.update(label="Falhou", state="error")
         st.error(str(exc))
+        st.stop()
+    except duckdb.Error as exc:
+        # SQL válido para o filtro, mas que o DuckDB rejeita (coluna inexistente, sintaxe).
+        status.update(label="Falhou", state="error")
+        st.error(f"Erro no SQL: {str(exc).splitlines()[0]}")
         st.stop()
     status.update(label="Concluído", state="complete")
     st.session_state["last_result"] = result
@@ -106,7 +156,7 @@ if timings:
         color_discrete_sequence=["#1d3557"],
     )
     fig.update_layout(margin=dict(l=10, r=10, t=10, b=10), height=280)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
 md_path = result.get("report_md_path")
 pdf_path = result.get("report_pdf_path")
@@ -116,14 +166,5 @@ if md_path and Path(md_path).exists():
 if pdf_path and Path(pdf_path).exists():
     dl2.download_button("Baixar PDF", Path(pdf_path).read_bytes(), file_name="report.pdf", mime="application/pdf")
 
-plots = result.get("analysis_results") or []
-images = [a for r in plots for a in r.get("artifacts") or []]
-if images:
-    st.subheader("Gráficos")
-    cols = st.columns(min(2, len(images)))
-    for i, img in enumerate(images):
-        if Path(img).exists():
-            cols[i % 2].image(img, use_container_width=True)
-
 st.subheader("Relatório")
-st.markdown(result.get("report_md") or "")
+render_report(result.get("report_md") or "")
