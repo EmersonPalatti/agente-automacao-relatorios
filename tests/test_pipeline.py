@@ -103,3 +103,10 @@ def test_empty_dataset_routes_directly_to_write(tmp_path: Path):
     assert "compile" in result["timings"]
     assert Path(result["report_md_path"]).exists()
     assert Path(result["report_pdf_path"]).exists()
+
+
+def test_clean_writer_text_strips_fences_think_and_star_bullets():
+    from graph.nodes import _clean_writer_text
+
+    raw = "<think>rascunho</think>\n```markdown\n## Insights\n\n* item um\n  * sub\n- item dois\n```"
+    assert _clean_writer_text(raw) == "## Insights\n\n- item um\n  - sub\n- item dois"

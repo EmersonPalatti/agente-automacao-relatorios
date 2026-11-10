@@ -204,6 +204,8 @@ def execute_code(
             [sys.executable, str(script_path)],
             capture_output=True,
             text=True,
+            encoding="utf-8",  # o filho escreve UTF-8; sem isso o Windows decodifica como cp1252
+            errors="replace",
             timeout=timeout,
             cwd=str(out_dir),
             env=child_env(out_dir),
