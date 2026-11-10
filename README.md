@@ -1,6 +1,6 @@
 # Agente de automação de relatórios
 
-Recebe uma tabela (CSV, Excel, Parquet ou uma consulta SQL no DuckDB), limpa, analisa e devolve um relatório em Markdown e PDF com gráficos e insights. O foco do projeto, pensado como portfólio para o estágio no iFood, é **medir quanto tempo isso economiza** em relação a fazer a análise à mão.
+Analistas de Operações gastam horas montando relatórios recorrentes: limpar a base, calcular os mesmos recortes, montar os gráficos e escrever o resumo para a gestão. Este agente faz esse trabalho em minutos. Ele recebe uma tabela (CSV, Excel, Parquet ou uma consulta SQL no DuckDB), limpa, analisa e devolve um relatório em Markdown e PDF com gráficos e insights, e **mede quanto tempo economizou** em relação ao processo manual.
 
 **App publicado:** <https://agente-automacao-relatorios.streamlit.app/>
 
@@ -8,7 +8,7 @@ O LLM não inventa a análise. Limpeza e perfil dos dados são feitos por códig
 
 ## Tempo manual estimado vs Tempo do agente
 
-Dataset de exemplo `pedidos_ifood.csv` (800 linhas, 11 colunas), comparado a uma estimativa de 3h30 de trabalho manual (EDA, gráficos e texto):
+Dataset de exemplo `pedidos_ifood.csv` (800 linhas, 11 colunas), comparado a uma estimativa de 3h30 de trabalho manual (EDA, gráficos e texto). Como medir o tempo manual de verdade está em [`results.md`](results.md#como-cronometrar-o-tempo-manual).
 
 | | Sem LLM | Com LLM |
 |---|---|---|
@@ -206,4 +206,4 @@ Os testes cobrem loader (incluindo o bloqueio de leitura de arquivos via SQL), l
 
 - As medições de qualidade usam 4 corridas por versão com um modelo gratuito de saída variável. Servem como sinal, não como benchmark.
 - O writer ainda calcula uma razão por conta própria de vez em quando, como "7 vezes maior", apesar de o prompt proibir. O avaliador detecta isso, mas o pipeline ainda não marca esses números no relatório.
-- O tempo manual de 3h30 é uma estimativa, não uma medição cronometrada.
+- O tempo manual de 3h30 ainda é uma estimativa, não uma medição cronometrada. O protocolo para cronometrar está em [`results.md`](results.md#como-cronometrar-o-tempo-manual).
