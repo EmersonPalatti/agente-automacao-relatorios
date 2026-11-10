@@ -47,3 +47,39 @@ def test_load_excel(tmp_path: Path):
     df = load_source(path)
     assert df.columns == ["city", "n"]
     assert df.shape == (1, 2)
+
+
+@pytest.mark.parametrize(
+    "sql",
+    [
+        "SELECT content FROM read_text('README.md')",
+        "SELECT * FROM read_csv('tests/fixtures/dirty.csv')",
+        "SELECT * FROM 'tests/fixtures/dirty.csv'",
+    ],
+)
+def test_sql_cannot_read_server_files(sql):
+    # O app é público: o SQL do visitante não pode ler arquivos do servidor.
+    with pytest.raises(Exception):
+        load_source(FIXTURE, sql=sql)
+
+
+def test_sql_cannot_read_files_even_if_regex_misses(monkeypatch):
+    # Mesmo que o filtro por regex deixe passar, o DuckDB recusa o acesso.
+    import tools.data_loader as dl
+
+    monkeypatch.setattr(dl, "validate_user_sql", lambda s: s)
+    with pytest.raises(Exception, match="(?i)external|disabled|permission"):
+        load_source(FIXTURE, sql="SELECT content FROM read_text('README.md')")
+
+
+def test_sql_on_excel(tmp_path: Path):
+    import openpyxl
+
+    wb = openpyxl.Workbook()
+    wb.active.append(["city", "n"])
+    wb.active.append(["Recife", 3])
+    wb.active.append(["Natal", 5])
+    path = tmp_path / "t.xlsx"
+    wb.save(path)
+    df = load_source(path, sql="SELECT city FROM source WHERE n > 4")
+    assert df["city"].to_list() == ["Natal"]
