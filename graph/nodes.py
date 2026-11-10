@@ -200,18 +200,36 @@ def _run_generated(
     last_error = ""
     usage_acc: list[dict] = []
     system = load_prompt("coder.md")
-    cols = [{"name": c.name, "dtype": c.dtype} for c in prof.columns]
+    cols = [
+        {
+            "name": c.name,
+            "dtype": c.dtype,
+            "null_pct": c.null_pct,
+            "n_unique": c.n_unique,
+            "sample_values": c.sample_values[:4],
+        }
+        for c in prof.columns
+    ]
+    base_msg = (
+        f"id: {spec.id}\n"
+        f"Título: {spec.title}\n"
+        f"Objetivo: {spec.goal}\n"
+        f"analysis_type sugerido: {spec.analysis_type}\n"
+        f"Colunas principais: {spec.columns_hint}\n"
+        f"Linhas no dataset: {prof.n_rows}\n"
+        f"Colunas disponíveis: {json.dumps(cols, ensure_ascii=False)}\n"
+        f"Salve os PNGs em OUT_DIR com o prefixo '{spec.id}_' (ex.: {spec.id}_grafico.png).\n"
+    )
+    last_code = ""
     for attempt in range(1, MAX_CODE_RETRIES + 1):
-        user = (
-            f"id: {spec.id}\n"
-            f"Titulo: {spec.title}\nObjetivo: {spec.goal}\n"
-            f"analysis_type: {spec.analysis_type}\n"
-            f"columns_hint: {spec.columns_hint}\n"
-            f"Colunas disponiveis: {json.dumps(cols, ensure_ascii=False)}\n"
-            f"Salve PNGs em OUT_DIR usando o prefixo '{spec.id}_' (ex.: {spec.id}_plot.png).\n"
-        )
+        user = base_msg
         if last_error:
-            user += f"\nA tentativa anterior falhou:\n{last_error}\nCorrija o codigo.\n"
+            # Código junto com o erro: sem ele o modelo reescreve o script às cegas.
+            user += (
+                f"\nTentativa anterior ({attempt - 1} de {MAX_CODE_RETRIES}) falhou.\n"
+                f"Código:\n{last_code[-4000:]}\n\nErro:\n{last_error[-2000:]}\n"
+                "Corrija a causa e devolva o script inteiro.\n"
+            )
         try:
             code, usage = complete(system, user, temperature=0.1)
             usage_acc.append(usage)
@@ -219,10 +237,18 @@ def _run_generated(
             last_error = str(exc)
             continue
         code = _strip_fences(code)
+        last_code = code
         if not code.strip():
             last_error = "modelo devolveu codigo vazio"
             continue
         exec_result = execute_code(code, df_path, plots_dir)
+        if exec_result.ok and not exec_result.metrics:
+            # Sem números o writer não tem o que citar: conta como falha e tenta de novo.
+            last_error = (
+                "O script rodou, mas não imprimiu uma linha 'RESULTS_JSON: {...}' com JSON válido. "
+                f"Fim do stdout:\n{exec_result.stdout[-800:]}"
+            )
+            continue
         if exec_result.ok:
             return (
                 AnalysisResult(
@@ -290,31 +316,14 @@ def write(state: dict) -> dict:
     insights = _fallback_insights(prof, planned, results)
 
     if prof.n_rows > 0 and state.get("use_llm") and llm_configured():
-        payload = {
-            "profile": {
-                "n_rows": prof.n_rows,
-                "n_cols": prof.n_cols,
-                "notes": prof.notes,
-                "numeric_summary": prof.numeric_summary,
-            },
-            "focus": planned.narrative_focus,
-            "results": [
-                {
-                    "title": r.title,
-                    "success": r.success,
-                    "metrics": r.metrics,
-                    "error": r.error,
-                }
-                for r in results
-            ],
-        }
+        payload = writer_payload(prof, planned, results)
         try:
             text, usage = complete(
                 load_prompt("writer.md"),
                 json.dumps(payload, ensure_ascii=False),
             )
             usage_acc.append(usage)
-            insights = text.strip()
+            insights = _clean_writer_text(text)
             used_llm = True
         except Exception as exc:
             emit(f"Writer LLM falhou ({exc}); usando narrativa determinística")
@@ -327,6 +336,41 @@ def write(state: dict) -> dict:
         used_llm=used_llm,
         token_usage=usage_acc,
     )
+
+
+def _clean_writer_text(text: str) -> str:
+    """Tira <think> e um eventual cerco ```markdown; o PDF só entende Markdown simples."""
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.S | re.I).strip()
+    fenced = re.fullmatch(r"```[a-zA-Z]*\s*\n(.*?)\n?```", text, flags=re.S)
+    if fenced:
+        text = fenced.group(1).strip()
+    # O PDF só reconhece "- " como item de lista.
+    return re.sub(r"^(\s*)[*•]\s+", r"\1- ", text, flags=re.M)
+
+
+def writer_payload(prof: DataProfile, planned: AnalysisPlan, results: list[AnalysisResult]) -> dict:
+    """Tudo o que o writer pode citar. Também usado na avaliação de grounding."""
+    goals = {a.id: a.goal for a in planned.analyses}
+    return {
+        "profile": {
+            "n_rows": prof.n_rows,
+            "n_cols": prof.n_cols,
+            "notes": prof.notes,
+            "numeric_summary": prof.numeric_summary,
+        },
+        "focus": planned.narrative_focus,
+        "results": [
+            {
+                "title": r.title,
+                "goal": goals.get(r.spec_id, ""),
+                "analysis_type": r.analysis_type,
+                "success": r.success,
+                "metrics": r.metrics,
+                "error": r.error,
+            }
+            for r in results
+        ],
+    }
 
 
 def compile_report(state: dict) -> dict:
