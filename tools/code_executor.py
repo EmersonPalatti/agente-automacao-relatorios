@@ -44,6 +44,18 @@ FORBIDDEN_NAMES = {
 }
 
 FORBIDDEN_ATTRS = {"parent", "parents", "home", "cwd", "root", "absolute", "resolve"}
+# O df já chega carregado: o código gerado não tem por que ler nem gravar outros
+# arquivos. Sem isso, pd.read_csv(".env") passaria pela AST.
+FILE_IO_ATTRS = {
+    "read_csv", "read_table", "read_fwf", "read_json", "read_parquet", "read_feather",
+    "read_orc", "read_excel", "read_pickle", "read_html", "read_xml", "read_sql",
+    "read_sql_query", "read_sql_table", "read_hdf", "read_sas", "read_spss", "read_stata",
+    "read_clipboard", "to_csv", "to_json", "to_parquet", "to_pickle", "to_excel",
+    "to_feather", "to_hdf", "to_sql", "to_html", "to_xml", "to_clipboard",
+    "load", "loadtxt", "genfromtxt", "fromfile", "save", "savez", "savetxt", "tofile",
+    "imread", "read_text", "read_bytes", "write_text", "write_bytes",
+}
+FORBIDDEN_ATTRS |= FILE_IO_ATTRS
 
 FORBIDDEN_NAME_ROOTS = {
     "os",

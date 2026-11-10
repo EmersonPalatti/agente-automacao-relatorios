@@ -13,7 +13,8 @@ Não escreva `import`. O sandbox rejeita o código antes de rodar se encontrar:
 - `import` de qualquer módulo fora de pandas, numpy, matplotlib, json, math, datetime, collections, statistics, decimal e re;
 - `open`, `eval`, `exec`, `compile`, `getattr`, `setattr`, `globals`, `locals`, `vars`, `input`, `exit`;
 - qualquer menção a `os`, `sys`, `subprocess`, `pathlib`, `shutil`, `requests` ou `socket`;
-- atributos que começam com `__` ou chamados `.parent`, `.parents`, `.home`, `.cwd`, `.root`, `.absolute` ou `.resolve`.
+- atributos que começam com `__` ou chamados `.parent`, `.parents`, `.home`, `.cwd`, `.root`, `.absolute` ou `.resolve`;
+- leitura ou gravação de arquivos: `pd.read_*`, `df.to_*` (como `to_csv`), `np.load`, `np.save`, `plt.imread`. O `df` já está carregado, e o único arquivo que você grava é o PNG, com `fig.savefig`.
 
 O bloqueio vale para qualquer uso do nome, inclusive como variável. Então não chame variáveis de `code`, `signal`, `input`, `inspect`, `threading`, `http` ou `os`.
 

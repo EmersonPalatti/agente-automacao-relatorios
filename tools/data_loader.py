@@ -70,8 +70,9 @@ def _load_with_sql(path: Path, sql: str, suffix: str) -> pl.DataFrame:
     import duckdb
 
     if suffix in {".duckdb", ".db"}:
-        con = duckdb.connect(str(path), read_only=True)
+        con = duckdb.connect(str(path), read_only=True, config={"enable_external_access": False})
         try:
+            _lock(con)
             return _query_polars(con, sql)
         finally:
             con.close()
@@ -79,22 +80,35 @@ def _load_with_sql(path: Path, sql: str, suffix: str) -> pl.DataFrame:
     con = duckdb.connect()
     try:
         file_sql = _posix(path)
+        # TABLE e não VIEW: os dados precisam estar na memória antes de o acesso
+        # a arquivos ser desligado, senão a própria view não consegue ler o CSV.
         if suffix == ".csv":
             con.execute(
-                f"CREATE VIEW {TABLE_NAME} AS SELECT * FROM read_csv_auto('{file_sql}')"
+                f"CREATE TABLE {TABLE_NAME} AS SELECT * FROM read_csv_auto('{file_sql}')"
             )
         elif suffix == ".parquet":
             con.execute(
-                f"CREATE VIEW {TABLE_NAME} AS SELECT * FROM read_parquet('{file_sql}')"
+                f"CREATE TABLE {TABLE_NAME} AS SELECT * FROM read_parquet('{file_sql}')"
             )
         elif suffix in {".xlsx", ".xls"}:
-            pdf = pl.read_excel(path)
-            con.register(TABLE_NAME, pdf.to_pandas())
+            pdf = pl.read_excel(path).to_pandas()
+            con.execute(f"CREATE TABLE {TABLE_NAME} AS SELECT * FROM pdf")
         else:
             raise ValueError(f"SQL sobre {suffix} não é suportado")
+        con.execute("SET enable_external_access = false")
+        _lock(con)
         return _query_polars(con, sql)
     finally:
         con.close()
+
+
+def _lock(con) -> None:
+    """Impede que o SQL do usuário leia arquivos do servidor (read_text, read_blob...).
+
+    O filtro por regex em validate_user_sql é só a primeira barreira: sempre haverá
+    uma função de leitura que ele não conhece. Aqui o próprio DuckDB recusa.
+    """
+    con.execute("SET lock_configuration = true")
 
 
 def _query_polars(con, sql: str) -> pl.DataFrame:

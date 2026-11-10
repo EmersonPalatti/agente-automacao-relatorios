@@ -1,3 +1,4 @@
+import pytest
 from pathlib import Path
 
 import polars as pl
@@ -95,3 +96,20 @@ def test_numpy_available_as_np(tmp_path: Path):
     result = execute_code(code, df_path, tmp_path / "plots")
     assert result.ok, result.stderr
     assert result.metrics.get("m") == 2.0
+
+
+@pytest.mark.parametrize(
+    "code",
+    [
+        "x = pd.read_csv('.env')",
+        "np.load('segredo.npy')",
+        "df.to_csv('C:/fora.csv')",
+        "plt.imread('foto.png')",
+    ],
+)
+def test_generated_code_cannot_touch_other_files(code):
+    assert looks_unsafe(code)
+
+
+def test_savefig_and_json_dumps_still_allowed():
+    assert looks_unsafe("fig, ax = plt.subplots(); fig.savefig(f'{OUT_DIR}/a.png'); print(json.dumps({}))") is None
