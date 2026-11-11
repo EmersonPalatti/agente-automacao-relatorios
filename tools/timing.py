@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-DEFAULT_MANUAL_MINUTES = 210.0  # 3h30 — EDA + gráficos + relatório escrito
+DEFAULT_MANUAL_MINUTES = 105.0  # 1h45 — meio da faixa de 1h30–2h; EDA + gráficos + relatório escrito
 
 
 @dataclass(frozen=True)

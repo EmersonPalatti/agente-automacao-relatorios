@@ -206,7 +206,7 @@ def main() -> None:
     out = ROOT / "outputs" / "eval"
     out.mkdir(parents=True, exist_ok=True)
     tmp = Path(tempfile.mkdtemp(prefix="eval_"))
-    datasets = [ROOT / "data" / "raw" / "pedidos_ifood.csv", make_tickets_csv(tmp / "chamados_suporte.csv")]
+    datasets = [ROOT / "data" / "raw" / "pedidos_delivery.csv", make_tickets_csv(tmp / "chamados_suporte.csv")]
 
     runs = []
     for ds in datasets:

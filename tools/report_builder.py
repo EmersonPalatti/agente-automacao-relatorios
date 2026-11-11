@@ -40,7 +40,7 @@ def build_markdown(
         f"| LLM | {'sim' if used_llm else 'não (plano e narrativa determinísticos)'} |",
         "",
         "O tempo manual assume EDA + gráficos + relatório escrito por uma pessoa "
-        "(valor padrão: 3h30). Ajuste se o seu processo for diferente.",
+        "(valor padrão: 1h45, 105 min). Ajuste se o seu processo for diferente.",
         "",
     ]
     usage = summarize_usage(token_usage or [])

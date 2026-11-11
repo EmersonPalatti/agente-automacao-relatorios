@@ -49,7 +49,7 @@ def run(
 
 @app.command()
 def sample(
-    dest: Path = typer.Option(Path("data/raw/pedidos_ifood.csv")),
+    dest: Path = typer.Option(Path("data/raw/pedidos_delivery.csv")),
     n: int = typer.Option(800, min=10),
     seed: int = typer.Option(42),
 ) -> None:

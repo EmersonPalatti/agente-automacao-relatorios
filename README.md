@@ -8,16 +8,16 @@ A limpeza, o perfil e as métricas saem de código executado. O modelo escolhe o
 
 ## Tempo manual estimado vs Tempo do agente
 
-Dataset de exemplo `pedidos_ifood.csv` (800 linhas, 11 colunas), comparado a uma estimativa de 3h30 de trabalho manual (EDA, gráficos e texto). Como medir o tempo manual de verdade está em [`results.md`](results.md#como-cronometrar-o-tempo-manual).
+O dataset de exemplo `pedidos_delivery.csv` (800 linhas, 11 colunas) é sintético. A comparação usa uma estimativa de 1h45 de trabalho manual (EDA, gráficos e texto), o meio da faixa de 1h30–2h de quem já faz o relatório de cor. Como medir o tempo manual de verdade está em [`results.md`](results.md#como-cronometrar-o-tempo-manual).
 
 | | Sem LLM | Com LLM |
 |---|---|---|
 | Tempo do agente | **0,8 s** | **2 min 7 s** |
-| Redução de tempo | 99,99% | **98,99%** |
+| Redução de tempo | 99,99% | **97,98%** |
 | Custo | $0 | **$0** (13 473 tokens, 8 chamadas, modelo gratuito) |
 | Análises | templates prontos | 5 de 5 com código gerado pelo LLM |
 
-Corrida única de 2026-11-08, com `pedidos_ifood.csv`. O tempo do agente é medido com `time.perf_counter()` em cada etapa e sai no próprio relatório; a redução usa a estimativa de 3h30 no denominador. A média de várias corridas está na tabela abaixo.
+Corrida única de 2026-11-08, com `pedidos_delivery.csv`. O tempo do agente é medido com `time.perf_counter()` em cada etapa e sai no próprio relatório; a redução usa a estimativa de 1h45 no denominador. A média de várias corridas está na tabela abaixo.
 
 ### Qualidade dos prompts
 
@@ -85,8 +85,8 @@ python -m venv .venv
 # Windows: .venv\Scripts\activate    Linux/macOS: source .venv/bin/activate
 pip install -r requirements.txt
 
-python cli.py sample                                    # gera data/raw/pedidos_ifood.csv
-python cli.py run data/raw/pedidos_ifood.csv --no-llm   # sem LLM, em menos de 1 s
+python cli.py sample                                       # gera data/raw/pedidos_delivery.csv
+python cli.py run data/raw/pedidos_delivery.csv --no-llm   # sem LLM, em menos de 1 s
 streamlit run app.py                                    # interface web
 ```
 
@@ -96,16 +96,16 @@ Outras opções da CLI (`python cli.py run --help`):
 
 ```bash
 # Filtra com SQL antes de analisar (a tabela se chama source)
-python cli.py run data/raw/pedidos_ifood.csv --sql "SELECT * FROM source WHERE status = 'delivered'"
+python cli.py run data/raw/pedidos_delivery.csv --sql "SELECT * FROM source WHERE status = 'delivered'"
 
 # Usa o LLM para planejar e escrever, mas analisa com templates
-python cli.py run data/raw/pedidos_ifood.csv --no-codegen
+python cli.py run data/raw/pedidos_delivery.csv --no-codegen
 
-# Muda a estimativa de tempo manual usada na comparação (padrão: 210 min)
-python cli.py run data/raw/pedidos_ifood.csv --manual-minutes 120
+# Muda a estimativa de tempo manual usada na comparação (padrão: 105 min)
+python cli.py run data/raw/pedidos_delivery.csv --manual-minutes 120
 
 # Salva em outra pasta (padrão: outputs/reports)
-python cli.py run data/raw/pedidos_ifood.csv --out relatorios/
+python cli.py run data/raw/pedidos_delivery.csv --out relatorios/
 
 # Consulta um banco DuckDB (o --sql é obrigatório nesse caso)
 python cli.py run vendas.duckdb --sql "SELECT * FROM pedidos"   # .duckdb ou .db
@@ -212,4 +212,4 @@ Os testes cobrem loader (incluindo o bloqueio de leitura de arquivos via SQL), l
 
 - As medições de qualidade usam 4 corridas por versão com um modelo gratuito de saída variável. Servem como sinal, não como benchmark.
 - O writer ainda calcula uma razão por conta própria de vez em quando, como "7 vezes maior", apesar de o prompt proibir. O avaliador detecta isso, mas o pipeline ainda não marca esses números no relatório.
-- O tempo manual de 3h30 ainda é uma estimativa, não uma medição cronometrada. O protocolo para cronometrar está em [`results.md`](results.md#como-cronometrar-o-tempo-manual).
+- O tempo manual de 1h45 (meio da faixa de 1h30–2h, para quem já faz o relatório de cor) ainda é uma estimativa, não uma medição cronometrada. O protocolo para cronometrar está em [`results.md`](results.md#como-cronometrar-o-tempo-manual).
