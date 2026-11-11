@@ -1,0 +1,22 @@
+{
+  "name": "video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Motion video do agente de automação de relatórios",
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render LinkedInVideo out/video.mp4 --codec h264",
+    "still": "remotion still LinkedInVideo out/still.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.542",
+    "@remotion/google-fonts": "4.0.542",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.542"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "typescript": "5.9.3"
+  }
+}
