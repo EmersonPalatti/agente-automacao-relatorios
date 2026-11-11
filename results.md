@@ -56,7 +56,7 @@ Medido com `scripts/eval_prompts.py`, que roda o pipeline com LLM e codegen em d
 | Código certo na 1ª tentativa | 58% | **95%** |
 | Análises que caíram no template | 3 | **0** |
 | Números do writer que não estão no payload | 6,1% (8 de 132) | **2,9%** (4 de 139) |
-| Tempo médio por relatório | 3min 43s | **2min 51s** |
+| Tempo médio por relatório | 3min 43s | **2min 50s** |
 | Tokens por relatório | 17 879 | 20 771 (+16%) |
 
 O planner já era bom na v1, sem colunas inventadas, colunas de ID ou análises repetidas, e continuou assim na v2.
