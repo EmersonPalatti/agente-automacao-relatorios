@@ -6,6 +6,22 @@ Comparação usada no relatório (processo manual de EDA + gráficos + texto):
 |---|---|
 | Dataset de pedidos (800 linhas, 11 colunas) | 3h 30min (210 min) |
 
+Esse valor é uma estimativa. Quando houver uma medição cronometrada, ela entra na tabela abaixo e passa a ser o número usado no README e no relatório, com `--manual-minutes`.
+
+### Como cronometrar o tempo manual
+
+Uma medição vale mais que a estimativa, desde que siga as mesmas regras do agente:
+
+1. **Mesma entrada:** `data/raw/pedidos_ifood.csv`, sem olhar o relatório do agente antes.
+2. **Mesma entrega:** um documento com qualidade dos dados (nulos por coluna), concentração por cidade, comparação de uma métrica entre grupos, evolução no tempo, de 4 a 7 insights com números e de 2 a 4 recomendações. Com gráficos.
+3. **Ferramentas livres:** Excel, pandas ou o que a pessoa usaria no dia a dia. Sem LLM, porque o ponto é comparar com o processo manual.
+4. **Cronômetro corrido:** começa ao abrir o arquivo e para quando o documento está pronto para enviar. Pausas longas ficam de fora; consultas a documentação ficam dentro.
+5. **Registre por etapa**, para comparar com o tempo por etapa do agente.
+
+| Data | Quem | Ferramenta | Limpeza e perfil | Análises e gráficos | Texto | Total |
+|---|---|---|---|---|---|---|
+| — | — | — | — | — | — | _a medir_ |
+
 ## Corridas do agente
 
 | Data | Dataset | LLM | Modelo | Codegen ok | Tempo agente | Tokens | Custo | Redução |
