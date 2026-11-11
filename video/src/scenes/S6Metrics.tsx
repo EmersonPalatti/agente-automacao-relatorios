@@ -21,7 +21,7 @@ type Metric = {
 const METRICS: Metric[] = [
   {
     target: 97,
-    format: (value) => `↑ ${Math.round(value)}%+`,
+    format: (value) => `✓ ${Math.round(value)}%+`,
     caption: "menos tempo",
   },
   {

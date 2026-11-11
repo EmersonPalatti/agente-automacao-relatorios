@@ -70,7 +70,7 @@ export const S7Trust: FC = () => {
       />
       <div style={{ height: 36 }} />
       <Line
-        text="O LLM planeja e escreve. Não inventa."
+        text="O LLM planeja e escreve a partir delas."
         delay={14}
         color={COLORS.gray}
         fontSize={40}

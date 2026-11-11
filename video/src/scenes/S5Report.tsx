@@ -7,9 +7,9 @@ const CARD_H = 324;
 const GAP = 12;
 
 const SHEETS = [
-  { src: "plots/missingness.png", label: "report.pdf" },
-  { src: "plots/top_city.png", label: "plots/" },
-  { src: "plots/timeseries.png", label: "report.md" },
+  { src: "plots/missingness.png", label: "nulos por coluna" },
+  { src: "plots/top_city.png", label: "pedidos por cidade" },
+  { src: "plots/timeseries.png", label: "volume no tempo" },
 ] as const;
 
 const clamp = {
@@ -91,8 +91,8 @@ const ReportSheet: FC<{
     >
       <div
         style={{
-          fontFamily: FONTS.mono,
-          fontWeight: 500,
+          fontFamily: FONTS.sans,
+          fontWeight: 600,
           fontSize: 36,
           lineHeight: 1,
           color: COLORS.gray,

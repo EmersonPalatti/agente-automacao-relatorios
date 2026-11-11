@@ -12,7 +12,7 @@ const numberStyle = {
   whiteSpace: "nowrap",
 } as const;
 
-/** "~1h45" com marca-texto e um risco que atravessa o número. */
+/** "1h45" com marca-texto e um risco que atravessa o número. */
 const ManualTime: React.FC = () => {
   const frame = useCurrentFrame();
   const opacity = interpolate(frame, [0, 15], [0, 1], {
@@ -43,7 +43,7 @@ const ManualTime: React.FC = () => {
         padding: "18px 40px 22px",
       }}
     >
-      <span style={{ ...numberStyle, fontSize: 176, color: COLORS.redInk }}>~1h45</span>
+      <span style={{ ...numberStyle, fontSize: 176, color: COLORS.redInk }}>1h45</span>
       <div
         style={{
           position: "absolute",
@@ -114,9 +114,42 @@ const AgentTime: React.FC = () => {
   );
 };
 
+const Label: React.FC<{ children: React.ReactNode; delay: number }> = ({ children, delay }) => (
+  <FadeIn delay={delay}>
+    <div
+      style={{
+        fontFamily: FONTS.sans,
+        fontWeight: 600,
+        fontSize: 36,
+        lineHeight: 1.2,
+        color: COLORS.gray,
+        textAlign: "center",
+        marginBottom: 14,
+      }}
+    >
+      {children}
+    </div>
+  </FadeIn>
+);
+
 export const S1Hook: React.FC = () => {
   return (
     <SceneFrame>
+      <FadeIn delay={0}>
+        <div
+          style={{
+            fontFamily: FONTS.sans,
+            fontWeight: 800,
+            fontSize: 56,
+            lineHeight: 1.1,
+            letterSpacing: -1,
+            color: COLORS.ink,
+            textAlign: "center",
+          }}
+        >
+          Um relatório de operações
+        </div>
+      </FadeIn>
       <div
         style={{
           flex: 1,
@@ -124,40 +157,19 @@ export const S1Hook: React.FC = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          gap: 36,
+          gap: 56,
+          paddingBottom: 60,
         }}
       >
-        <ManualTime />
-        <AgentTime />
-        <FadeIn delay={40}>
-          <div
-            style={{
-              fontFamily: FONTS.sans,
-              fontWeight: 400,
-              fontSize: 42,
-              lineHeight: 1.2,
-              color: COLORS.gray,
-              textAlign: "center",
-            }}
-          >
-            relatório de operações
-          </div>
-        </FadeIn>
-      </div>
-      <FadeIn delay={46}>
-        <div
-          style={{
-            fontFamily: FONTS.sans,
-            fontWeight: 400,
-            fontSize: 36,
-            lineHeight: 1.2,
-            color: COLORS.gray,
-            textAlign: "center",
-          }}
-        >
-          tempo manual estimado
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <Label delay={4}>na mão · estimado</Label>
+          <ManualTime />
         </div>
-      </FadeIn>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <Label delay={32}>com o agente</Label>
+          <AgentTime />
+        </div>
+      </div>
     </SceneFrame>
   );
 };

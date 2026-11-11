@@ -54,13 +54,14 @@ const Clock: FC = () => {
 
   return (
     <svg
-      width={108}
-      height={108}
+      width={190}
+      height={190}
       viewBox="0 0 64 64"
       aria-hidden
       style={{
         flexShrink: 0,
-        marginTop: 6,
+        marginTop: -30,
+        marginRight: -30,
         opacity: interpolate(enter, [0, 1], [0, 1], clamp),
       }}
     >
@@ -70,7 +71,7 @@ const Clock: FC = () => {
         r="22"
         fill="none"
         stroke={COLORS.redInk}
-        strokeWidth="1.25"
+        strokeWidth="2"
       />
       <line
         x1="32"
@@ -78,7 +79,7 @@ const Clock: FC = () => {
         x2="32"
         y2="15"
         stroke={COLORS.redInk}
-        strokeWidth="1.25"
+        strokeWidth="2"
         strokeLinecap="round"
         transform={`rotate(${turn} 32 32)`}
       />
