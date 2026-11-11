@@ -67,7 +67,7 @@ def generate_orders(n: int = 800, seed: int = 42) -> list[dict]:
             rating = rng.choice([3, 4, 4, 5, 5, 5]) if rng.random() > 0.12 else ""
         rows.append(
             {
-                "order_id": f"IF{i:05d}",
+                "order_id": f"PD{i:05d}",
                 "order_datetime": dt.strftime("%Y-%m-%d %H:%M:%S"),
                 "city": city,
                 "restaurant": rng.choice(RESTAURANTS[cuisine]),
