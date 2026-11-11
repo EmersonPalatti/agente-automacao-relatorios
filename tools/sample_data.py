@@ -96,6 +96,6 @@ def write_sample_csv(dest: str | Path, n: int = 800, seed: int = 42) -> Path:
 
 
 if __name__ == "__main__":
-    out = Path(__file__).resolve().parent.parent / "data" / "raw" / "pedidos_ifood.csv"
+    out = Path(__file__).resolve().parent.parent / "data" / "raw" / "pedidos_delivery.csv"
     path = write_sample_csv(out)
     print(f"escrito {path}")

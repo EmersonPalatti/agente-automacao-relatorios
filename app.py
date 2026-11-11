@@ -10,7 +10,7 @@ from tools.report_builder import parse_image_line
 from tools.timing import DEFAULT_MANUAL_MINUTES, format_duration
 from tools.uploads import MAX_UPLOAD_BYTES, prune_older_than, safe_upload_path
 
-SAMPLE = Path("data/raw/pedidos_ifood.csv")
+SAMPLE = Path("data/raw/pedidos_delivery.csv")
 UPLOADS = Path("data/processed/uploads")
 REPORTS = Path("outputs/reports")
 RETENTION_SECONDS = 6 * 3600
