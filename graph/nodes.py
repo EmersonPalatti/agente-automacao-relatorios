@@ -16,7 +16,7 @@ from tools.models import AnalysisPlan, AnalysisResult, AnalysisSpec, CleaningLog
 from tools.profiler import profile_dataframe
 from tools.progress import emit
 from tools.report_builder import build_markdown, write_markdown, write_pdf
-from tools.timing import compute_economy
+from tools.timing import DEFAULT_MANUAL_MINUTES, compute_economy
 
 MAX_CODE_RETRIES = 3
 
@@ -383,7 +383,7 @@ def compile_report(state: dict) -> dict:
     results = [AnalysisResult.model_validate(r) for r in state.get("analysis_results") or []]
     timings = dict(state.get("timings") or {})
     started_at = state.get("started_at")
-    manual_minutes = state.get("manual_minutes") or 210.0
+    manual_minutes = state.get("manual_minutes") or DEFAULT_MANUAL_MINUTES
     cleaning = None
     if state.get("cleaning_log"):
         cleaning = CleaningLog.model_validate(state["cleaning_log"])
