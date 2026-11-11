@@ -4,15 +4,15 @@ Comparação usada no relatório (processo manual de EDA + gráficos + texto):
 
 | Cenário | Tempo manual estimado |
 |---|---|
-| Dataset de pedidos (800 linhas, 11 colunas) | 3h 30min (210 min) |
+| Dataset de pedidos (800 linhas, 11 colunas) | 1h 45min (105 min) |
 
-Esse valor é uma estimativa. Quando houver uma medição cronometrada, ela entra na tabela abaixo e passa a ser o número usado no README e no relatório, com `--manual-minutes`.
+A faixa estimada é de 1h30 a 2h para quem já domina o processo e faz o relatório de cor. A comparação usa o meio da faixa, 1h45 (105 min). Em 2026-11-11 a estimativa foi revista de 3h30 (210 min) para 105 min, porque 3h30 era exagerada nesse caso. Continua sendo estimativa. Quando houver uma medição cronometrada pelo protocolo abaixo, ela entra na tabela e passa a ser o número usado no README e no relatório, com `--manual-minutes`.
 
 ### Como cronometrar o tempo manual
 
 Uma medição vale mais que a estimativa, desde que siga as mesmas regras do agente:
 
-1. **Mesma entrada:** `data/raw/pedidos_ifood.csv`, sem olhar o relatório do agente antes.
+1. **Mesma entrada:** `data/raw/pedidos_delivery.csv`, sem olhar o relatório do agente antes.
 2. **Mesma entrega:** um documento com qualidade dos dados (nulos por coluna), concentração por cidade, comparação de uma métrica entre grupos, evolução no tempo, de 4 a 7 insights com números e de 2 a 4 recomendações. Com gráficos.
 3. **Ferramentas livres:** Excel, pandas ou o que a pessoa usaria no dia a dia. Sem LLM, porque o ponto é comparar com o processo manual.
 4. **Cronômetro corrido:** começa ao abrir o arquivo e para quando o documento está pronto para enviar. Pausas longas ficam de fora; consultas a documentação ficam dentro.
@@ -26,8 +26,10 @@ Uma medição vale mais que a estimativa, desde que siga as mesmas regras do age
 
 | Data | Dataset | LLM | Modelo | Codegen ok | Tempo agente | Tokens | Custo | Redução |
 |---|---|---|---|---|---|---|---|---|
-| 2026-11-08 | `pedidos_ifood.csv` | não | — | — (templates) | **0.8s** | 0 | $0 | 99.99% |
-| 2026-11-08 | `pedidos_ifood.csv` | sim | `openrouter/nvidia/nemotron-3-ultra-550b-a55b:free` | **5/5** | **2min 7s** | 13 473 (8 chamadas) | **$0** (free) | **98.99%** |
+| 2026-11-08 | `pedidos_delivery.csv` | não | — | — (templates) | **0.8s** | 0 | $0 | 99.99% |
+| 2026-11-08 | `pedidos_delivery.csv` | sim | `openrouter/nvidia/nemotron-3-ultra-550b-a55b:free` | **5/5** | **2min 7s** | 13 473 (8 chamadas) | **$0** (free) | **97.98%** |
+
+As reduções desta tabela foram recalculadas para 105 min (6 300 s). Na publicação original, com 210 min, a corrida sem LLM continuava em 99.99% e a com LLM (127 s) estava em 98.99%.
 
 Na corrida com LLM: planner e writer usaram o Nemotron, e as 5 análises rodaram o Python gerado no sandbox sem precisar do template de fallback. Insights do relatório citam só números já calculados.
 
@@ -35,20 +37,20 @@ Etapas (com LLM): ingest+clean+profile ~0.1s, plan ~19s, analyze ~93s, write ~14
 
 ### Histórico
 
-A corrida de 2026-10-27 (3min 43s, 20 904 tokens, 14 chamadas, 98.23%) foi feita com um bug no sandbox: o script era chamado por caminho relativo com `cwd` na própria pasta de saída, então nenhum código gerado chegava a rodar e todas as análises caíram no template depois de 3 tentativas. Corrigido em `tools/code_executor.py` (`out_dir.resolve()`), junto com `numpy as np` exposto no wrapper do sandbox.
+A corrida de 2026-10-27 (3min 43s, 20 904 tokens, 14 chamadas) foi feita com um bug no sandbox: o script era chamado por caminho relativo com `cwd` na própria pasta de saída, então nenhum código gerado chegava a rodar e todas as análises caíram no template depois de 3 tentativas. Corrigido em `tools/code_executor.py` (`out_dir.resolve()`), junto com `numpy as np` exposto no wrapper do sandbox. A redução publicada na época era 98.23% contra 210 min. Contra 105 min, os mesmos 223 s dão 96.46%.
 
 ### Como medir de novo
 
 ```bash
-python cli.py run data/raw/pedidos_ifood.csv --no-llm
-python cli.py run data/raw/pedidos_ifood.csv
+python cli.py run data/raw/pedidos_delivery.csv --no-llm
+python cli.py run data/raw/pedidos_delivery.csv
 ```
 
 O `report.md` gerado inclui economia de tempo, limpeza aplicada e, se houver LLM, tokens/custo.
 
 ## Avaliação dos prompts (v1 → v2)
 
-Medido com `scripts/eval_prompts.py`, que roda o pipeline com LLM e codegen em dois datasets de domínios diferentes, `pedidos_ifood.csv` e um de chamados de suporte gerado pelo script, com 2 corridas em cada. Modelo: `openrouter/nvidia/nemotron-3-ultra-550b-a55b:free`. Data: 2026-11-09.
+Medido com `scripts/eval_prompts.py`, que roda o pipeline com LLM e codegen em dois datasets de domínios diferentes, `pedidos_delivery.csv` e um de chamados de suporte gerado pelo script, com 2 corridas em cada. Modelo: `openrouter/nvidia/nemotron-3-ultra-550b-a55b:free`. Data: 2026-11-09.
 
 | Métrica | v1 | v2 |
 |---|---|---|
