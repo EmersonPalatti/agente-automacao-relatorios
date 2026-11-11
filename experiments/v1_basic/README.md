@@ -12,4 +12,4 @@ ingest → profile → plan → analyze → write → compile
 - **Writer:** LLM só interpreta métricas já calculadas; fallback monta bullets com os JSON das análises.
 - **Tempo:** `time.perf_counter()` em cada nó + total no relatório.
 
-Prompts desta versão: `prompts/planner.md`, `prompts/coder.md`, `prompts/writer.md`, `prompts/profiler.md`.
+Prompts desta versão: `prompts/planner.md`, `prompts/coder.md`, `prompts/writer.md` e `prompts/profiler.md` (este último foi removido depois; o perfil é só código).

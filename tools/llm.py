@@ -28,9 +28,13 @@ def llm_configured() -> bool:
     return any(os.getenv(k) for k in API_KEY_VARS)
 
 
+PROVIDER_PREFIXES = ("openrouter/", "openai/", "groq/", "gemini/", "anthropic/")
+
+
 def resolve_model() -> str:
+    """Modelo do LiteLLM. Sem prefixo de provedor, vai pelo OpenRouter se houver a chave dele."""
     model = (os.getenv("LLM_MODEL") or DEFAULT_MODEL).strip()
-    if os.getenv("OPENROUTER_API_KEY") and not model.startswith(("openrouter/", "openai/", "groq/", "gemini/")):
+    if os.getenv("OPENROUTER_API_KEY") and not model.startswith(PROVIDER_PREFIXES):
         model = f"openrouter/{model}"
     return model
 
